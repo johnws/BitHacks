@@ -1,0 +1,5744 @@
+1
+00:00:00,000 --> 00:00:00,120
+
+2
+00:00:00,120 --> 00:00:02,500
+The following content is
+provided under a Creative
+
+3
+00:00:02,500 --> 00:00:03,910
+Commons license.
+
+4
+00:00:03,910 --> 00:00:06,950
+Your support will help MIT
+OpenCourseWare continue to
+
+5
+00:00:06,950 --> 00:00:10,600
+offer high quality educational
+resources for free.
+
+6
+00:00:10,600 --> 00:00:13,500
+To make a donation or view
+additional materials from
+
+7
+00:00:13,500 --> 00:00:17,430
+hundreds of MIT courses visit
+MIT OpenCourseWare at
+
+8
+00:00:17,430 --> 00:00:18,680
+ocw.mit.edu.
+
+9
+00:00:18,680 --> 00:00:20,740
+
+10
+00:00:20,740 --> 00:00:22,650
+PROFESSOR: So today we're
+going to talk about bit
+
+11
+00:00:22,650 --> 00:00:32,420
+hacking, which is a topic that
+has a long, long history in
+
+12
+00:00:32,420 --> 00:00:33,480
+computer science.
+
+13
+00:00:33,480 --> 00:00:40,985
+We'll only cover on a few
+of the techniques.
+
+14
+00:00:40,985 --> 00:00:43,550
+
+15
+00:00:43,550 --> 00:00:46,420
+So let's just get going.
+
+16
+00:00:46,420 --> 00:00:51,920
+So I want to swap
+two integers.
+
+17
+00:00:51,920 --> 00:00:54,530
+So I think most of you would
+know how to write a program to
+
+18
+00:00:54,530 --> 00:00:55,520
+swap two integers.
+
+19
+00:00:55,520 --> 00:00:57,540
+And it would look something
+like this.
+
+20
+00:00:57,540 --> 00:00:58,960
+And mostly this is pseudocode.
+
+21
+00:00:58,960 --> 00:01:03,250
+I'm not going to be doing
+declarations of types and
+
+22
+00:01:03,250 --> 00:01:06,120
+writing full code, in order to
+make sure things get on slides
+
+23
+00:01:06,120 --> 00:01:07,230
+and so forth.
+
+24
+00:01:07,230 --> 00:01:08,130
+So what do you do?
+
+25
+00:01:08,130 --> 00:01:12,890
+You assign a temporary
+to the value of x.
+
+26
+00:01:12,890 --> 00:01:16,270
+You then let x take
+the value of y.
+
+27
+00:01:16,270 --> 00:01:20,480
+And then you let y take the
+value of the temporary.
+
+28
+00:01:20,480 --> 00:01:23,110
+What could be simpler?
+
+29
+00:01:23,110 --> 00:01:25,125
+Well how about doing it
+without a temporary?
+
+30
+00:01:25,125 --> 00:01:27,770
+
+31
+00:01:27,770 --> 00:01:34,205
+So how do you swap two numbers
+without a temporary?
+
+32
+00:01:34,205 --> 00:01:37,290
+
+33
+00:01:37,290 --> 00:01:38,540
+So here's one way.
+
+34
+00:01:38,540 --> 00:01:49,980
+
+35
+00:01:49,980 --> 00:01:51,640
+So what's going on there?
+
+36
+00:01:51,640 --> 00:01:58,790
+So the carrot is an XOR,
+exclusive or, OK?
+
+37
+00:01:58,790 --> 00:02:01,040
+So here's what's going on.
+
+38
+00:02:01,040 --> 00:02:03,300
+So let's do an example first.
+
+39
+00:02:03,300 --> 00:02:05,530
+So I have x and y.
+
+40
+00:02:05,530 --> 00:02:11,990
+I then let x be the
+XOR of x and y.
+
+41
+00:02:11,990 --> 00:02:17,300
+So, as you see, that first bit
+is the XOR of one and zero.
+
+42
+00:02:17,300 --> 00:02:20,660
+The second bit is the XOR of
+zero and zero, which is zero.
+
+43
+00:02:20,660 --> 00:02:23,220
+The third bit is the
+XOR of one and one.
+
+44
+00:02:23,220 --> 00:02:24,680
+That's zero.
+
+45
+00:02:24,680 --> 00:02:26,080
+And so forth throughout
+the bits.
+
+46
+00:02:26,080 --> 00:02:29,630
+
+47
+00:02:29,630 --> 00:02:37,970
+So then I let y be the
+XOR of x and y.
+
+48
+00:02:37,970 --> 00:02:43,400
+And then, finally, I let x be
+the XOR of x and y again.
+
+49
+00:02:43,400 --> 00:02:45,800
+And now, if you notice,
+that number is the
+
+50
+00:02:45,800 --> 00:02:47,370
+same as that number.
+
+51
+00:02:47,370 --> 00:02:49,255
+And that number is the
+same as that number.
+
+52
+00:02:49,255 --> 00:02:52,580
+
+53
+00:02:52,580 --> 00:02:54,950
+Magic.
+
+54
+00:02:54,950 --> 00:02:58,060
+We're going to see a lot of
+magic today actually.
+
+55
+00:02:58,060 --> 00:02:58,720
+OK?
+
+56
+00:02:58,720 --> 00:03:01,940
+We're going to see a lot of
+magic today, no temporary.
+
+57
+00:03:01,940 --> 00:03:03,730
+Why does this work?
+
+58
+00:03:03,730 --> 00:03:06,830
+So the reason this works as a
+great property of XOR is that
+
+59
+00:03:06,830 --> 00:03:10,560
+it's its own inverse.
+
+60
+00:03:10,560 --> 00:03:18,060
+So if you take x exclusive or
+y, and you exclusive or that
+
+61
+00:03:18,060 --> 00:03:21,020
+with y, you get x.
+
+62
+00:03:21,020 --> 00:03:25,930
+If you were to exclusive or that
+with x you would get y.
+
+63
+00:03:25,930 --> 00:03:32,310
+So that first step is basically
+putting in here the
+
+64
+00:03:32,310 --> 00:03:37,630
+XOR of x and y so that when you
+end up on the next step
+
+65
+00:03:37,630 --> 00:03:44,780
+computing the XOR of y
+and this, you get x.
+
+66
+00:03:44,780 --> 00:03:46,080
+So now you've got x here.
+
+67
+00:03:46,080 --> 00:03:52,520
+And you've now got the original
+x XORed with y here.
+
+68
+00:03:52,520 --> 00:03:57,310
+So to get back the value of
+y you just XOR out the x.
+
+69
+00:03:57,310 --> 00:04:00,060
+So it swaps them.
+
+70
+00:04:00,060 --> 00:04:01,310
+Whose brain hurts?
+
+71
+00:04:01,310 --> 00:04:06,730
+
+72
+00:04:06,730 --> 00:04:10,080
+You can study these later on.
+
+73
+00:04:10,080 --> 00:04:14,290
+But a pretty neat trick,
+pretty neat trick.
+
+74
+00:04:14,290 --> 00:04:16,690
+Does it perform well?
+
+75
+00:04:16,690 --> 00:04:18,940
+Turns out not really.
+
+76
+00:04:18,940 --> 00:04:21,440
+And the other way is actually
+a better way of doing it,
+
+77
+00:04:21,440 --> 00:04:24,710
+generally, with most compilers
+and architectures.
+
+78
+00:04:24,710 --> 00:04:27,820
+And the reason is because the
+other way of doing it you can
+
+79
+00:04:27,820 --> 00:04:32,300
+actually, essentially, pull two
+things out of memory, one
+
+80
+00:04:32,300 --> 00:04:33,540
+into a temporary one--
+
+81
+00:04:33,540 --> 00:04:35,400
+and then stick them
+back like this.
+
+82
+00:04:35,400 --> 00:04:37,780
+That's what the compiler
+ends up doing.
+
+83
+00:04:37,780 --> 00:04:41,610
+Where as this one, it has
+to wait for each step.
+
+84
+00:04:41,610 --> 00:04:43,870
+And so you don't get to exploit
+instruction-level
+
+85
+00:04:43,870 --> 00:04:45,120
+parallelism.
+
+86
+00:04:45,120 --> 00:04:47,850
+Remember from last time
+instruction-level parallelism
+
+87
+00:04:47,850 --> 00:04:50,970
+is the fact that a processor
+can issue more than one
+
+88
+00:04:50,970 --> 00:04:53,730
+instruction at a given step.
+
+89
+00:04:53,730 --> 00:04:57,620
+And here, this sequence of
+operations, each step has to
+
+90
+00:04:57,620 --> 00:05:00,090
+wait until the previous
+one is computed
+
+91
+00:05:00,090 --> 00:05:01,490
+before it can execute.
+
+92
+00:05:01,490 --> 00:05:04,550
+So you get no instruction
+parallelism in this.
+
+93
+00:05:04,550 --> 00:05:06,760
+So it's not particularly
+high performing.
+
+94
+00:05:06,760 --> 00:05:08,750
+But there are other places
+where we'll use
+
+95
+00:05:08,750 --> 00:05:10,190
+this kind of property.
+
+96
+00:05:10,190 --> 00:05:13,720
+But it's a neat bit hack,
+swap two things
+
+97
+00:05:13,720 --> 00:05:14,970
+without using a temporary.
+
+98
+00:05:14,970 --> 00:05:17,760
+
+99
+00:05:17,760 --> 00:05:19,440
+Now here's a real bit hack.
+
+100
+00:05:19,440 --> 00:05:21,410
+And a real useful one.
+
+101
+00:05:21,410 --> 00:05:25,730
+Finding the minimum of two
+integers, x and y.
+
+102
+00:05:25,730 --> 00:05:31,440
+Gee whiz, let me just call a
+sub routine or something.
+
+103
+00:05:31,440 --> 00:05:36,390
+So you might be tempted to write
+something like this; if
+
+104
+00:05:36,390 --> 00:05:39,870
+x is less than y then
+the result is x.
+
+105
+00:05:39,870 --> 00:05:43,250
+Otherwise, the result is y.
+
+106
+00:05:43,250 --> 00:05:44,600
+Seems pretty straightforward.
+
+107
+00:05:44,600 --> 00:05:49,740
+Or if you know a little bit more
+c, you can write it with
+
+108
+00:05:49,740 --> 00:05:55,610
+this sort of cryptic if x is
+less than y, then x else y.
+
+109
+00:05:55,610 --> 00:05:58,830
+So those are two equivalent
+c ways of doing things.
+
+110
+00:05:58,830 --> 00:06:02,700
+
+111
+00:06:02,700 --> 00:06:03,950
+So what's wrong with that?
+
+112
+00:06:03,950 --> 00:06:06,550
+
+113
+00:06:06,550 --> 00:06:09,840
+Well nothing if you don't
+mind slow code.
+
+114
+00:06:09,840 --> 00:06:12,160
+In fact, for something like
+this the compiler actually
+
+115
+00:06:12,160 --> 00:06:14,450
+will optimize it to
+deal with it.
+
+116
+00:06:14,450 --> 00:06:16,980
+But let me just point
+out a couple things.
+
+117
+00:06:16,980 --> 00:06:24,300
+First of all, the processor
+has within it a branch
+
+118
+00:06:24,300 --> 00:06:27,020
+prediction unit.
+
+119
+00:06:27,020 --> 00:06:30,830
+Whenever it comes to a branch
+it guesses which way the
+
+120
+00:06:30,830 --> 00:06:33,980
+branch is going to go, and
+proceeds to speculatively
+
+121
+00:06:33,980 --> 00:06:36,520
+execute along that path.
+
+122
+00:06:36,520 --> 00:06:41,290
+If it turns out to be wrong it
+says, whoa, hold your horses,
+
+123
+00:06:41,290 --> 00:06:43,570
+got to go that way.
+
+124
+00:06:43,570 --> 00:06:45,920
+To do that, it empties the
+processor pipeline.
+
+125
+00:06:45,920 --> 00:06:48,190
+And that takes, on the
+machines we're
+
+126
+00:06:48,190 --> 00:06:49,855
+using, around 16 cycles.
+
+127
+00:06:49,855 --> 00:06:52,880
+
+128
+00:06:52,880 --> 00:06:56,520
+So you don't want to have
+branches that are
+
+129
+00:06:56,520 --> 00:06:58,620
+mis-predicted.
+
+130
+00:06:58,620 --> 00:07:01,310
+And, in particular, what
+you want to look for in
+
+131
+00:07:01,310 --> 00:07:04,326
+conditional instructions, is
+whether they're predictable.
+
+132
+00:07:04,326 --> 00:07:07,000
+
+133
+00:07:07,000 --> 00:07:11,130
+So something that's almost all
+the time branching the same
+
+134
+00:07:11,130 --> 00:07:14,720
+way, that's a predictable
+branch.
+
+135
+00:07:14,720 --> 00:07:19,100
+The hardware is very smart
+about figuring out how to
+
+136
+00:07:19,100 --> 00:07:21,800
+predict that, and will make
+the right prediction.
+
+137
+00:07:21,800 --> 00:07:25,370
+And you won't pay any
+performance penalty.
+
+138
+00:07:25,370 --> 00:07:27,840
+But if you have something where
+you don't know which way
+
+139
+00:07:27,840 --> 00:07:34,100
+it goes, so in a code like this,
+the architecture isn't
+
+140
+00:07:34,100 --> 00:07:35,400
+going to know.
+
+141
+00:07:35,400 --> 00:07:39,480
+If you just throw at it various
+pairs of x and y it's
+
+142
+00:07:39,480 --> 00:07:42,560
+a 50/50 guess as to whether
+it guesses right.
+
+143
+00:07:42,560 --> 00:07:46,280
+So half the time it's going to
+predict the wrong thing.
+
+144
+00:07:46,280 --> 00:07:50,170
+
+145
+00:07:50,170 --> 00:07:53,280
+So the compiler might
+be smart enough.
+
+146
+00:07:53,280 --> 00:07:54,100
+But maybe not.
+
+147
+00:07:54,100 --> 00:07:55,770
+But you can be sure.
+
+148
+00:07:55,770 --> 00:07:59,150
+And here's a way
+of being sure.
+
+149
+00:07:59,150 --> 00:08:00,400
+You write this code.
+
+150
+00:08:00,400 --> 00:08:04,560
+
+151
+00:08:04,560 --> 00:08:05,965
+What is going on there?
+
+152
+00:08:05,965 --> 00:08:10,350
+
+153
+00:08:10,350 --> 00:08:12,320
+So here we go.
+
+154
+00:08:12,320 --> 00:08:18,060
+We're taking x less than y,
+and taking a minus sign.
+
+155
+00:08:18,060 --> 00:08:20,060
+Yikes, what's that do?
+
+156
+00:08:20,060 --> 00:08:23,000
+Well c represents the Boolean's
+true and false with
+
+157
+00:08:23,000 --> 00:08:25,680
+the integers one and
+zero, respectively.
+
+158
+00:08:25,680 --> 00:08:30,970
+So if you execute the operator
+x less than y, as opposed to
+
+159
+00:08:30,970 --> 00:08:35,090
+doing a conditional based on x
+bit less than y, it returns to
+
+160
+00:08:35,090 --> 00:08:38,440
+either a zero or a one,
+depending upon whether it was
+
+161
+00:08:38,440 --> 00:08:39,820
+successful.
+
+162
+00:08:39,820 --> 00:08:45,920
+So when you take the negation
+of that, this is
+
+163
+00:08:45,920 --> 00:08:46,940
+either zero or one.
+
+164
+00:08:46,940 --> 00:08:50,950
+It's either going to
+be zero or minus 1.
+
+165
+00:08:50,950 --> 00:08:56,110
+And what is minus 1 in two's
+complement arithmetic?
+
+166
+00:08:56,110 --> 00:08:59,720
+It's a word filled
+all with ones.
+
+167
+00:08:59,720 --> 00:09:05,460
+So you either get a word all
+filled with zeros or you get a
+
+168
+00:09:05,460 --> 00:09:06,710
+word all filled with ones.
+
+169
+00:09:06,710 --> 00:09:11,410
+So if x is less than y you get
+a word all filled with one's.
+
+170
+00:09:11,410 --> 00:09:12,570
+So then what are you doing?
+
+171
+00:09:12,570 --> 00:09:16,440
+You're doing x XOR
+y, and you're
+
+172
+00:09:16,440 --> 00:09:18,280
+ending it with all ones.
+
+173
+00:09:18,280 --> 00:09:22,780
+Well that's a noop to end
+it with all ones.
+
+174
+00:09:22,780 --> 00:09:25,630
+To mask something-- if I do an
+and of anything with one, I
+
+175
+00:09:25,630 --> 00:09:27,740
+get whatever the thing is.
+
+176
+00:09:27,740 --> 00:09:33,490
+So this expression ends up
+evaluating to just x XOR y.
+
+177
+00:09:33,490 --> 00:09:35,260
+Great, then what?
+
+178
+00:09:35,260 --> 00:09:40,330
+I take y here and I XOR it, I
+get back x because of that
+
+179
+00:09:40,330 --> 00:09:44,420
+inverse property of XOR.
+
+180
+00:09:44,420 --> 00:09:47,880
+So if x is less than y, then
+r gets the value of x.
+
+181
+00:09:47,880 --> 00:09:54,640
+
+182
+00:09:54,640 --> 00:09:57,670
+If x is greater or equal to
+y then this expression
+
+183
+00:09:57,670 --> 00:09:59,740
+evaluates to zero.
+
+184
+00:09:59,740 --> 00:10:04,220
+And a word of zeroes ended with
+x or y gives you a word
+
+185
+00:10:04,220 --> 00:10:07,755
+of zeroes because zero is
+an annihilator for and.
+
+186
+00:10:07,755 --> 00:10:10,580
+
+187
+00:10:10,580 --> 00:10:12,930
+Wherever you and with zero, it
+doesn't matter what it is.
+
+188
+00:10:12,930 --> 00:10:14,320
+You get zero.
+
+189
+00:10:14,320 --> 00:10:30,660
+So therefore this just becomes
+r equals y because
+
+190
+00:10:30,660 --> 00:10:37,010
+y XOR zero is y.
+
+191
+00:10:37,010 --> 00:10:40,940
+So pretty clever, is
+this really better?
+
+192
+00:10:40,940 --> 00:10:43,150
+Seems like an awful
+lot of operations.
+
+193
+00:10:43,150 --> 00:10:46,830
+Well the answer is yes it is,
+because all of this goes on
+
+194
+00:10:46,830 --> 00:10:52,190
+within the processing unit
+rather than with anything
+
+195
+00:10:52,190 --> 00:10:54,610
+having to do with memory.
+
+196
+00:10:54,610 --> 00:10:57,740
+It gets the values for x and y
+to begin with and then it's
+
+197
+00:10:57,740 --> 00:11:00,410
+all instructions within
+the processing unit.
+
+198
+00:11:00,410 --> 00:11:02,060
+Those typically take
+one cycle.
+
+199
+00:11:02,060 --> 00:11:08,310
+And if there's any parallelism
+in it the parallelism will be
+
+200
+00:11:08,310 --> 00:11:12,280
+able to execute even more than
+one operation per cycle.
+
+201
+00:11:12,280 --> 00:11:16,622
+In fact, the machines we're
+using have are six issue.
+
+202
+00:11:16,622 --> 00:11:21,400
+They can run six operation
+simultaneously,
+
+203
+00:11:21,400 --> 00:11:24,420
+each taking a cycle.
+
+204
+00:11:24,420 --> 00:11:27,930
+So the difference between that
+and going out to memory is
+
+205
+00:11:27,930 --> 00:11:31,010
+really quite considerable.
+
+206
+00:11:31,010 --> 00:11:34,130
+So everybody follow that?
+
+207
+00:11:34,130 --> 00:11:35,910
+Pretty cute trick, how
+to make it go fast.
+
+208
+00:11:35,910 --> 00:11:37,060
+Yes, question?
+
+209
+00:11:37,060 --> 00:11:39,510
+AUDIENCE: Doesn't the expression
+that's tested,
+
+210
+00:11:39,510 --> 00:11:43,920
+doesn't it have to be
+[? weighed for ?] the inner
+
+211
+00:11:43,920 --> 00:11:45,390
+expression before you take--
+
+212
+00:11:45,390 --> 00:11:48,660
+PROFESSOR: There's no--
+this is a comparison.
+
+213
+00:11:48,660 --> 00:11:52,200
+This is operated like a--
+
+214
+00:11:52,200 --> 00:11:55,190
+so there's no compare
+instruction there.
+
+215
+00:11:55,190 --> 00:12:01,350
+It's a CPU operation.
+
+216
+00:12:01,350 --> 00:12:04,100
+It's an arithmetic and logical
+operation of the CPU that it
+
+217
+00:12:04,100 --> 00:12:07,690
+can do in one cycle,
+is to compare.
+
+218
+00:12:07,690 --> 00:12:10,330
+The normal thing that you're
+trying to do if you have an if
+
+219
+00:12:10,330 --> 00:12:13,680
+is you're trying to change
+the program counter.
+
+220
+00:12:13,680 --> 00:12:16,100
+And that's what's costly.
+
+221
+00:12:16,100 --> 00:12:22,380
+Not the actual doing the test of
+the branch, test of whether
+
+222
+00:12:22,380 --> 00:12:24,220
+x is less y.
+
+223
+00:12:24,220 --> 00:12:25,024
+OK?
+
+224
+00:12:25,024 --> 00:12:27,617
+AUDIENCE: Would you have to wait
+for that to finish before
+
+225
+00:12:27,617 --> 00:12:28,976
+you can do the negation?
+
+226
+00:12:28,976 --> 00:12:30,460
+PROFESSOR: Yes you do.
+
+227
+00:12:30,460 --> 00:12:35,190
+So that's one cycle, two cycles,
+we can add it up here,
+
+228
+00:12:35,190 --> 00:12:36,020
+three cycles.
+
+229
+00:12:36,020 --> 00:12:37,450
+This can be going
+on in parallel.
+
+230
+00:12:37,450 --> 00:12:41,990
+So it's really only
+two cycles total.
+
+231
+00:12:41,990 --> 00:12:47,960
+Three cycles, four cycles, so in
+four cycles you can get the
+
+232
+00:12:47,960 --> 00:12:51,790
+minimum done.
+
+233
+00:12:51,790 --> 00:12:55,980
+The L1 cache in the architecture
+we're using costs
+
+234
+00:12:55,980 --> 00:12:59,280
+you four cycles to fetch
+something if you get a cache
+
+235
+00:12:59,280 --> 00:13:02,350
+hit in the L1 cache.
+
+236
+00:13:02,350 --> 00:13:04,200
+That's the cheapest memory
+operation you
+
+237
+00:13:04,200 --> 00:13:05,560
+can do, is four cycles.
+
+238
+00:13:05,560 --> 00:13:07,690
+This computed the whole minimum
+in four cycles.
+
+239
+00:13:07,690 --> 00:13:15,520
+
+240
+00:13:15,520 --> 00:13:18,570
+Here's another one,
+modular addition.
+
+241
+00:13:18,570 --> 00:13:23,580
+So sometimes you know something
+that the compiler
+
+242
+00:13:23,580 --> 00:13:24,970
+doesn't know.
+
+243
+00:13:24,970 --> 00:13:28,710
+Like suppose that you know that
+x is between zero and
+
+244
+00:13:28,710 --> 00:13:34,330
+some value n, and y is between
+zero and some value n, and you
+
+245
+00:13:34,330 --> 00:13:36,900
+want to compute their sum.
+
+246
+00:13:36,900 --> 00:13:41,820
+So what is that the sum is going
+to be less than what?
+
+247
+00:13:41,820 --> 00:13:43,070
+2n.
+
+248
+00:13:43,070 --> 00:13:45,000
+
+249
+00:13:45,000 --> 00:13:50,180
+So normally a modular operation
+is very expensive
+
+250
+00:13:50,180 --> 00:13:52,380
+because it involves a divide.
+
+251
+00:13:52,380 --> 00:13:56,240
+Now multiply is normally more
+expensive than an ordinary ALU
+
+252
+00:13:56,240 --> 00:13:58,930
+operation that's just a bitwise
+operation, like
+
+253
+00:13:58,930 --> 00:14:03,480
+addition, or XORing bitwise
+XORs, or comparison,
+
+254
+00:14:03,480 --> 00:14:04,120
+or what have you.
+
+255
+00:14:04,120 --> 00:14:06,870
+Those are very cheap one
+cycle operations.
+
+256
+00:14:06,870 --> 00:14:10,700
+Multiply is usually a many
+cycle operation.
+
+257
+00:14:10,700 --> 00:14:14,540
+Divide is often implemented by
+doing repeated multiplies
+
+258
+00:14:14,540 --> 00:14:18,060
+using any of a variety of
+techniques, including Newton
+
+259
+00:14:18,060 --> 00:14:18,850
+techniques.
+
+260
+00:14:18,850 --> 00:14:23,240
+Sometimes there is a divider,
+or a divide step.
+
+261
+00:14:23,240 --> 00:14:26,190
+But divide is, generally, in any
+case more expensive, even
+
+262
+00:14:26,190 --> 00:14:30,510
+though it's doing operations
+all within the processor.
+
+263
+00:14:30,510 --> 00:14:37,910
+So if you actually compute mod
+using your percent thing.
+
+264
+00:14:37,910 --> 00:14:41,750
+This actually can be quite
+expensive unless you're
+
+265
+00:14:41,750 --> 00:14:44,110
+dividing by a power of two.
+
+266
+00:14:44,110 --> 00:14:46,860
+If you mod a power of two
+that's easy because the
+
+267
+00:14:46,860 --> 00:14:49,550
+processor, if knows it's a power
+of two, if the compiler
+
+268
+00:14:49,550 --> 00:14:54,210
+knows it's a power of two,
+it'll just do a masking
+
+269
+00:14:54,210 --> 00:14:59,080
+operation on the low order bits
+to give you whatever the
+
+270
+00:14:59,080 --> 00:15:02,040
+remainder is, mod2 to the n.
+
+271
+00:15:02,040 --> 00:15:05,340
+But if you're not in that
+situation, n may not be a
+
+272
+00:15:05,340 --> 00:15:08,640
+power of two, you still want
+to do something modn, there
+
+273
+00:15:08,640 --> 00:15:11,980
+still are some tricks you can
+play but the compiler won't-
+
+274
+00:15:11,980 --> 00:15:14,710
+this is one the compiler
+generally won't play for you
+
+275
+00:15:14,710 --> 00:15:17,410
+because the compiler won't
+know that these are
+
+276
+00:15:17,410 --> 00:15:20,420
+preconditions in your code.
+
+277
+00:15:20,420 --> 00:15:22,590
+By the way, one of the most
+common things is just doing x
+
+278
+00:15:22,590 --> 00:15:24,950
+plus 1 modn.
+
+279
+00:15:24,950 --> 00:15:29,970
+Very, very common thing to be
+doing, x plus 1 modn, where
+
+280
+00:15:29,970 --> 00:15:32,930
+you're wrapping around
+in some index space.
+
+281
+00:15:32,930 --> 00:15:36,910
+
+282
+00:15:36,910 --> 00:15:38,150
+Here's another way
+you could do it.
+
+283
+00:15:38,150 --> 00:15:39,660
+So divide is expensive.
+
+284
+00:15:39,660 --> 00:15:43,410
+Here you could just say
+z equals x plus y.
+
+285
+00:15:43,410 --> 00:15:47,610
+And then if z is less than n,
+give z otherwise z minus n.
+
+286
+00:15:47,610 --> 00:15:50,620
+
+287
+00:15:50,620 --> 00:15:52,210
+The problem with this
+is that it's got an
+
+288
+00:15:52,210 --> 00:15:54,210
+unpredictable branch.
+
+289
+00:15:54,210 --> 00:15:56,510
+To execute this code, I could
+have written it out with an if
+
+290
+00:15:56,510 --> 00:16:00,960
+statement, it's got to change
+the program counter to execute
+
+291
+00:16:00,960 --> 00:16:03,205
+either this or this.
+
+292
+00:16:03,205 --> 00:16:05,960
+
+293
+00:16:05,960 --> 00:16:09,680
+so not very fast because you
+have an unpredictable branch.
+
+294
+00:16:09,680 --> 00:16:11,920
+And we already talked about that
+has to empty the pipeline
+
+295
+00:16:11,920 --> 00:16:15,530
+if it's wrong in the guess.
+
+296
+00:16:15,530 --> 00:16:19,520
+So here's a way of doing
+it which doesn't
+
+297
+00:16:19,520 --> 00:16:24,060
+have an explicit branch.
+
+298
+00:16:24,060 --> 00:16:27,010
+So we compute x plus y.
+
+299
+00:16:27,010 --> 00:16:30,360
+And now what we do is we look
+at whether z is greater than
+
+300
+00:16:30,360 --> 00:16:31,610
+or equal to n.
+
+301
+00:16:31,610 --> 00:16:34,180
+
+302
+00:16:34,180 --> 00:16:37,900
+And if it is, we're basically
+going to take the negation.
+
+303
+00:16:37,900 --> 00:16:41,040
+So that if it's is greater or
+equal to n, the negation here
+
+304
+00:16:41,040 --> 00:16:44,590
+is all ones, once again,
+is minus 1.
+
+305
+00:16:44,590 --> 00:16:50,260
+And so this becomes n and-ed
+with minus one.
+
+306
+00:16:50,260 --> 00:16:51,780
+That gives me n.
+
+307
+00:16:51,780 --> 00:16:54,150
+And so then I'll
+take z minus n.
+
+308
+00:16:54,150 --> 00:16:56,250
+That's what I want
+
+309
+00:16:56,250 --> 00:17:02,730
+However, if this is z is less
+than n, then this will
+
+310
+00:17:02,730 --> 00:17:03,850
+evaluate to zero.
+
+311
+00:17:03,850 --> 00:17:05,740
+Minus zero is zero.
+
+312
+00:17:05,740 --> 00:17:08,319
+And n and zero is zero.
+
+313
+00:17:08,319 --> 00:17:11,599
+And so I'll end up just
+getting the x plus y.
+
+314
+00:17:11,599 --> 00:17:14,650
+So it's basically the same
+trick with a couple of
+
+315
+00:17:14,650 --> 00:17:22,829
+twiddles on the minimum that we
+saw on the previous foil.
+
+316
+00:17:22,829 --> 00:17:27,220
+
+317
+00:17:27,220 --> 00:17:28,470
+Who's having fun?
+
+318
+00:17:28,470 --> 00:17:31,322
+
+319
+00:17:31,322 --> 00:17:33,390
+Good.
+
+320
+00:17:33,390 --> 00:17:34,800
+As I said, we're going to
+see lots of tricks,
+
+321
+00:17:34,800 --> 00:17:36,280
+magic tricks even.
+
+322
+00:17:36,280 --> 00:17:41,140
+
+323
+00:17:41,140 --> 00:17:43,210
+Round up to a power of two.
+
+324
+00:17:43,210 --> 00:17:45,540
+This is a common thing that
+you want to do here.
+
+325
+00:17:45,540 --> 00:17:48,630
+This, for example, goes on in
+memory allocators, which we'll
+
+326
+00:17:48,630 --> 00:17:50,710
+talk about later
+in the course.
+
+327
+00:17:50,710 --> 00:17:53,670
+So in a memory allocator,
+somebody asks for a hunk of
+
+328
+00:17:53,670 --> 00:18:00,020
+storage of size 19, most memory
+allocators want to give
+
+329
+00:18:00,020 --> 00:18:04,280
+out chunks that are powers of
+two for reasons we will
+
+330
+00:18:04,280 --> 00:18:05,940
+discover later.
+
+331
+00:18:05,940 --> 00:18:12,100
+So you want to round up to the
+next higher power of two.
+
+332
+00:18:12,100 --> 00:18:14,240
+So how do you do that?
+
+333
+00:18:14,240 --> 00:18:17,570
+So here's an example.
+
+334
+00:18:17,570 --> 00:18:25,610
+So what I do is I decrement n,
+and then I update n or-ing it
+
+335
+00:18:25,610 --> 00:18:29,920
+with the left shift of n, and
+then or-ing that with- sorry,
+
+336
+00:18:29,920 --> 00:18:31,870
+the right shift of n by one.
+
+337
+00:18:31,870 --> 00:18:35,420
+Then the right shift of n by
+two, et cetera, et cetera.
+
+338
+00:18:35,420 --> 00:18:36,670
+So here's an example.
+
+339
+00:18:36,670 --> 00:18:39,810
+
+340
+00:18:39,810 --> 00:18:42,850
+So here's my original number.
+
+341
+00:18:42,850 --> 00:18:45,120
+And what I want is to round it
+up to the next power of two.
+
+342
+00:18:45,120 --> 00:18:46,630
+This is what I'm going to
+end up with in the end.
+
+343
+00:18:46,630 --> 00:18:48,420
+See I've got the next
+higher power of two?
+
+344
+00:18:48,420 --> 00:18:51,430
+Just one bit is on if I've
+rounded up to the next higher
+
+345
+00:18:51,430 --> 00:18:53,430
+power of two.
+
+346
+00:18:53,430 --> 00:18:54,610
+So what do I do?
+
+347
+00:18:54,610 --> 00:19:03,790
+I basically decrement and then
+I take this word and I shift
+
+348
+00:19:03,790 --> 00:19:07,230
+it by one to the right
+and or it in.
+
+349
+00:19:07,230 --> 00:19:13,570
+
+350
+00:19:13,570 --> 00:19:17,340
+And then I shift it by
+two and or it in.
+
+351
+00:19:17,340 --> 00:19:21,160
+And then I shift it by
+four and or it in.
+
+352
+00:19:21,160 --> 00:19:22,940
+And then, in fact, I shift
+it by eight and or it in.
+
+353
+00:19:22,940 --> 00:19:23,870
+And I didn't do that.
+
+354
+00:19:23,870 --> 00:19:26,590
+And since this isn't a 64-bit
+word I skipped the last two
+
+355
+00:19:26,590 --> 00:19:28,860
+instructions.
+
+356
+00:19:28,860 --> 00:19:31,320
+So what's going on when I'm
+shifting and or-ing it in, by
+
+357
+00:19:31,320 --> 00:19:34,090
+one, by two, by four.
+
+358
+00:19:34,090 --> 00:19:35,260
+What's happening?
+
+359
+00:19:35,260 --> 00:19:35,680
+Yeah?
+
+360
+00:19:35,680 --> 00:19:41,344
+AUDIENCE: [INAUDIBLE] this way
+there's no number of ones
+
+361
+00:19:41,344 --> 00:19:42,165
+starting from the one.
+
+362
+00:19:42,165 --> 00:19:44,670
+PROFESSOR: Yeah basically, from
+the most significant bit,
+
+363
+00:19:44,670 --> 00:19:46,640
+if you look at what's happening
+with the most
+
+364
+00:19:46,640 --> 00:19:50,650
+significant bit, you're
+shifting it by one.
+
+365
+00:19:50,650 --> 00:19:52,320
+Then you're shifting
+it by two.
+
+366
+00:19:52,320 --> 00:19:55,630
+You're flooding the low
+order bits with ones.
+
+367
+00:19:55,630 --> 00:19:58,700
+And because it's an or, as soon
+as something gets set to
+
+368
+00:19:58,700 --> 00:20:00,350
+one, it stays a one.
+
+369
+00:20:00,350 --> 00:20:02,280
+So it doesn't matter what's
+actually happening in the low
+
+370
+00:20:02,280 --> 00:20:02,730
+order bits.
+
+371
+00:20:02,730 --> 00:20:05,070
+The only bit that we care
+about is this bit.
+
+372
+00:20:05,070 --> 00:20:09,355
+And it basically floods all of
+the other bits with one.
+
+373
+00:20:09,355 --> 00:20:12,200
+
+374
+00:20:12,200 --> 00:20:15,440
+And then, once I've flooded them
+all with one I increment.
+
+375
+00:20:15,440 --> 00:20:21,230
+And that gives me a carry out to
+this position and gives me
+
+376
+00:20:21,230 --> 00:20:22,160
+the next higher power.
+
+377
+00:20:22,160 --> 00:20:27,760
+So why did I decrement here,
+and then increment there?
+
+378
+00:20:27,760 --> 00:20:29,890
+What's the decrement for?
+
+379
+00:20:29,890 --> 00:20:30,180
+Yeah?
+
+380
+00:20:30,180 --> 00:20:34,950
+AUDIENCE: So that you can flood
+with one because you
+
+381
+00:20:34,950 --> 00:20:36,858
+want to get yourself back.
+
+382
+00:20:36,858 --> 00:20:38,766
+So you want to the
+add the one--
+
+383
+00:20:38,766 --> 00:20:41,703
+PROFESSOR: But why did
+I decrement first?
+
+384
+00:20:41,703 --> 00:20:45,685
+AUDIENCE: If you were not to
+decrement, it would just flood
+
+385
+00:20:45,685 --> 00:20:47,340
+everything with ones.
+
+386
+00:20:47,340 --> 00:20:51,270
+PROFESSOR: Well here, if I
+didn't decrement right here, I
+
+387
+00:20:51,270 --> 00:20:52,520
+would have gotten
+the same result.
+
+388
+00:20:52,520 --> 00:20:55,022
+
+389
+00:20:55,022 --> 00:20:58,810
+If you already have
+a power of two.
+
+390
+00:20:58,810 --> 00:21:01,560
+If I already have a power of two
+and I flood the low order
+
+391
+00:21:01,560 --> 00:21:05,790
+bits, then I increment,
+I'll get the next
+
+392
+00:21:05,790 --> 00:21:08,150
+higher power of two.
+
+393
+00:21:08,150 --> 00:21:12,490
+So by subtracting one I make
+sure that I'm handling that
+
+394
+00:21:12,490 --> 00:21:16,050
+base case when n is
+a power of two.
+
+395
+00:21:16,050 --> 00:21:17,016
+Yeah?
+
+396
+00:21:17,016 --> 00:21:22,252
+AUDIENCE: Does the [INAUDIBLE]
+operate [INAUDIBLE]
+
+397
+00:21:22,252 --> 00:21:24,450
+PROFESSOR: It actually, the
+compiler is not going to care
+
+398
+00:21:24,450 --> 00:21:26,550
+in this case.
+
+399
+00:21:26,550 --> 00:21:29,030
+But it does make sure that it
+doesn't bother to try to
+
+400
+00:21:29,030 --> 00:21:31,510
+return and keep around
+the old value.
+
+401
+00:21:31,510 --> 00:21:35,130
+But it's smart enough to
+not worry about that.
+
+402
+00:21:35,130 --> 00:21:38,250
+
+403
+00:21:38,250 --> 00:21:42,770
+Yeah, I mean, some people like
+post-fix decrementing, and
+
+404
+00:21:42,770 --> 00:21:47,620
+some people like pre-fix
+decrementing and it doesn't
+
+405
+00:21:47,620 --> 00:21:49,930
+matter in most cases.
+
+406
+00:21:49,930 --> 00:21:52,610
+But sometimes doing it after--
+
+407
+00:21:52,610 --> 00:21:55,530
+there are situations where doing
+it post-decrementing
+
+408
+00:21:55,530 --> 00:21:56,780
+costs you a cycle.
+
+409
+00:21:56,780 --> 00:21:59,420
+
+410
+00:21:59,420 --> 00:22:01,310
+So everybody got
+the idea here?
+
+411
+00:22:01,310 --> 00:22:04,030
+So basically round up
+to a next power two.
+
+412
+00:22:04,030 --> 00:22:08,380
+
+413
+00:22:08,380 --> 00:22:10,710
+How about computing a
+mask of the least
+
+414
+00:22:10,710 --> 00:22:13,020
+significant one in a word?
+
+415
+00:22:13,020 --> 00:22:16,720
+So I want to mask which is the
+power of two, the word that's
+
+416
+00:22:16,720 --> 00:22:22,370
+all zeros except for one in the
+least significant one bit.
+
+417
+00:22:22,370 --> 00:22:23,620
+Any ideas how to do that?
+
+418
+00:22:23,620 --> 00:22:36,280
+
+419
+00:22:36,280 --> 00:22:37,680
+This is a classic trick.
+
+420
+00:22:37,680 --> 00:22:41,290
+Everybody should know
+this trick.
+
+421
+00:22:41,290 --> 00:22:44,345
+You take x and you and it with
+its two's complement.
+
+422
+00:22:44,345 --> 00:22:48,380
+
+423
+00:22:48,380 --> 00:22:50,470
+Take x and and it with it's
+two's complement.
+
+424
+00:22:50,470 --> 00:22:51,710
+Why does that work?
+
+425
+00:22:51,710 --> 00:22:54,590
+So here's x, some value here.
+
+426
+00:22:54,590 --> 00:22:59,870
+The two's complement is the
+one's complement plus one.
+
+427
+00:22:59,870 --> 00:23:00,590
+Right?
+
+428
+00:23:00,590 --> 00:23:01,240
+If you remember.
+
+429
+00:23:01,240 --> 00:23:04,180
+So one's complement just means
+I compliment every bit.
+
+430
+00:23:04,180 --> 00:23:05,570
+The two's complement
+is I compliment
+
+431
+00:23:05,570 --> 00:23:07,060
+every bit and add one.
+
+432
+00:23:07,060 --> 00:23:12,140
+So when I compliment every bit
+and add one, basically I go
+
+433
+00:23:12,140 --> 00:23:14,910
+all the way to the least
+significant bit and then I get
+
+434
+00:23:14,910 --> 00:23:16,030
+zeros after it.
+
+435
+00:23:16,030 --> 00:23:18,980
+So right up to there I get--
+
+436
+00:23:18,980 --> 00:23:22,575
+it's one's complement and then
+it's basically- would have
+
+437
+00:23:22,575 --> 00:23:24,940
+been 0, 1, 1, 1, 1, 1, plus 1.
+
+438
+00:23:24,940 --> 00:23:28,330
+The carrot pulls you
+back up to there.
+
+439
+00:23:28,330 --> 00:23:31,730
+And so then when you and them
+together, oh look at that.
+
+440
+00:23:31,730 --> 00:23:33,460
+There's our least significant
+bit sitting there.
+
+441
+00:23:33,460 --> 00:23:40,370
+
+442
+00:23:40,370 --> 00:23:42,430
+Pretty good one?
+
+443
+00:23:42,430 --> 00:23:46,740
+So so how do you find
+an index of the bit?
+
+444
+00:23:46,740 --> 00:23:52,240
+
+445
+00:23:52,240 --> 00:24:00,975
+So by an index I mean
+this is bit 01234.
+
+446
+00:24:00,975 --> 00:24:07,280
+Well it turns out these days
+many machines have a special
+
+447
+00:24:07,280 --> 00:24:09,210
+instruction to do that.
+
+448
+00:24:09,210 --> 00:24:11,790
+And so if you look around and
+you find the right library
+
+449
+00:24:11,790 --> 00:24:15,270
+that calls that instruction, you
+can use that instruction
+
+450
+00:24:15,270 --> 00:24:16,840
+pretty cheaply.
+
+451
+00:24:16,840 --> 00:24:20,090
+But there's still a lot of
+machines, especially things
+
+452
+00:24:20,090 --> 00:24:22,820
+like Mobile machines, et cetera,
+where they have a
+
+453
+00:24:22,820 --> 00:24:24,840
+depleted instruction set.
+
+454
+00:24:24,840 --> 00:24:29,460
+Where they have no instruction
+to convert from a power of two
+
+455
+00:24:29,460 --> 00:24:32,040
+to essentially it's
+log base two.
+
+456
+00:24:32,040 --> 00:24:34,760
+So LG is the notation
+for log base two.
+
+457
+00:24:34,760 --> 00:24:37,730
+
+458
+00:24:37,730 --> 00:24:39,390
+So how do you go about
+doing that?
+
+459
+00:24:39,390 --> 00:24:42,690
+
+460
+00:24:42,690 --> 00:24:52,200
+So what we're going to do is do
+some magic to motivate the
+
+461
+00:24:52,200 --> 00:24:54,740
+solution to this.
+
+462
+00:24:54,740 --> 00:24:58,980
+So one way to do it is to
+use the ESP instruction.
+
+463
+00:24:58,980 --> 00:25:00,680
+Are people familiar with
+the ESP instruction?
+
+464
+00:25:00,680 --> 00:25:03,920
+
+465
+00:25:03,920 --> 00:25:06,580
+What's that?
+
+466
+00:25:06,580 --> 00:25:07,300
+The stack [? order? ?]
+
+467
+00:25:07,300 --> 00:25:12,160
+No, no, that's BSP
+on some things.
+
+468
+00:25:12,160 --> 00:25:18,560
+Or yeah, right, so in the
+extended instruction set--
+
+469
+00:25:18,560 --> 00:25:20,280
+yeah, OK.
+
+470
+00:25:20,280 --> 00:25:24,535
+Yeah, so the ESP instruction;
+Extra Sensory Perception.
+
+471
+00:25:24,535 --> 00:25:28,040
+
+472
+00:25:28,040 --> 00:25:43,970
+And we have today the tremendous
+magician Tautology
+
+473
+00:25:43,970 --> 00:25:50,680
+who is going to demonstrate the
+theory behind finding the
+
+474
+00:25:50,680 --> 00:25:53,470
+index of the bit.
+
+475
+00:25:53,470 --> 00:25:56,200
+So please give a warm
+hand for Tautology.
+
+476
+00:25:56,200 --> 00:26:20,590
+
+477
+00:26:20,590 --> 00:26:21,380
+TAUTOLOGY: How about now?
+
+478
+00:26:21,380 --> 00:26:22,630
+Can everyone hear me?
+
+479
+00:26:22,630 --> 00:26:26,110
+
+480
+00:26:26,110 --> 00:26:29,870
+So, as my good friend Professor
+Leiserson has
+
+481
+00:26:29,870 --> 00:26:32,610
+mentioned, I am the
+amazing Tautology.
+
+482
+00:26:32,610 --> 00:26:37,265
+And today I am going to show
+you an amazing card trick
+
+483
+00:26:37,265 --> 00:26:39,550
+which will baffle your minds for
+approximately five minutes
+
+484
+00:26:39,550 --> 00:26:40,920
+until he shows you
+the next slide.
+
+485
+00:26:40,920 --> 00:26:43,480
+
+486
+00:26:43,480 --> 00:26:47,452
+All right, but to do this I will
+need five volunteers from
+
+487
+00:26:47,452 --> 00:26:48,714
+the audience.
+
+488
+00:26:48,714 --> 00:26:52,072
+PROFESSOR: Who can follow
+instructions.
+
+489
+00:26:52,072 --> 00:26:56,040
+[LAUGHTER]
+
+490
+00:26:56,040 --> 00:27:00,840
+So who would like to volunteer
+to participate in real magic?
+
+491
+00:27:00,840 --> 00:27:08,830
+Here we go, one, two, three,
+four, only four?
+
+492
+00:27:08,830 --> 00:27:11,630
+
+493
+00:27:11,630 --> 00:27:12,410
+We need one more.
+
+494
+00:27:12,410 --> 00:27:15,310
+So come on up and line up
+along the front here.
+
+495
+00:27:15,310 --> 00:27:16,825
+We need one more, one
+more volunteer.
+
+496
+00:27:16,825 --> 00:27:20,760
+
+497
+00:27:20,760 --> 00:27:23,360
+One more volunteer, you
+get extra points.
+
+498
+00:27:23,360 --> 00:27:28,580
+Remember participation is
+part of your grade.
+
+499
+00:27:28,580 --> 00:27:29,830
+OK I'm going to cold call.
+
+500
+00:27:29,830 --> 00:27:33,710
+
+501
+00:27:33,710 --> 00:27:34,960
+Here we go.
+
+502
+00:27:34,960 --> 00:27:40,066
+
+503
+00:27:40,066 --> 00:27:42,970
+TAUTOLOGY: All right,
+excellent.
+
+504
+00:27:42,970 --> 00:27:45,630
+Please cut this deck.
+
+505
+00:27:45,630 --> 00:27:48,886
+PROFESSOR: First you gotta
+show it's a random deck.
+
+506
+00:27:48,886 --> 00:27:50,920
+TAUTOLOGY: All right, I will
+first show you that's it's a
+
+507
+00:27:50,920 --> 00:27:52,170
+random deck.
+
+508
+00:27:52,170 --> 00:28:00,540
+
+509
+00:28:00,540 --> 00:28:04,300
+PROFESSOR: It's only 32 cards.
+
+510
+00:28:04,300 --> 00:28:06,480
+It's only 32 cards.
+
+511
+00:28:06,480 --> 00:28:08,560
+So he pulled out some
+of the other cards.
+
+512
+00:28:08,560 --> 00:28:12,370
+But they're in a pretty
+random order there.
+
+513
+00:28:12,370 --> 00:28:14,850
+So we want to give everybody a
+chance to shuffle the deck
+
+514
+00:28:14,850 --> 00:28:16,355
+here by doing a cut.
+
+515
+00:28:16,355 --> 00:28:44,240
+
+516
+00:28:44,240 --> 00:28:48,180
+Look at it, but don't show
+it to Tautology.
+
+517
+00:28:48,180 --> 00:28:55,860
+
+518
+00:28:55,860 --> 00:28:59,940
+Why don't you go around
+the back so that the
+
+519
+00:28:59,940 --> 00:29:01,190
+class can see the cards?
+
+520
+00:29:01,190 --> 00:29:07,260
+
+521
+00:29:07,260 --> 00:29:11,150
+So hide your cards while
+he runs around behind.
+
+522
+00:29:11,150 --> 00:29:14,810
+And then turn them around so
+that the class can see what
+
+523
+00:29:14,810 --> 00:29:15,670
+the cards are.
+
+524
+00:29:15,670 --> 00:29:20,250
+TAUTOLOGY: All right, are you
+guys ready to turn around?
+
+525
+00:29:20,250 --> 00:29:21,205
+Cool, excellent.
+
+526
+00:29:21,205 --> 00:29:23,840
+PROFESSOR: I'm not going
+to look at them either.
+
+527
+00:29:23,840 --> 00:29:27,010
+There are no dupes.
+
+528
+00:29:27,010 --> 00:29:29,145
+This is all done by ESP.
+
+529
+00:29:29,145 --> 00:29:32,410
+TAUTOLOGY: All right, now-
+
+530
+00:29:32,410 --> 00:29:33,460
+PROFESSOR: Why don't you
+come over here where
+
+531
+00:29:33,460 --> 00:29:34,330
+you can see the class?
+
+532
+00:29:34,330 --> 00:29:35,620
+TAUTOLOGY: Hello everybody.
+
+533
+00:29:35,620 --> 00:29:39,420
+I'm going to tell you what is
+on those five cards, which I
+
+534
+00:29:39,420 --> 00:29:41,200
+have not seen.
+
+535
+00:29:41,200 --> 00:29:44,160
+Behold I have not seen them.
+
+536
+00:29:44,160 --> 00:29:48,230
+OK, are you guys ready?
+
+537
+00:29:48,230 --> 00:29:49,780
+PROFESSOR: Now you've got
+to think about it.
+
+538
+00:29:49,780 --> 00:29:51,590
+You've got to think hard about
+what your card is.
+
+539
+00:29:51,590 --> 00:29:53,180
+If you're not sure
+you can check.
+
+540
+00:29:53,180 --> 00:29:55,790
+But you've got to think real
+hard about what your card is.
+
+541
+00:29:55,790 --> 00:29:57,040
+TAUTOLOGY: Okay.
+
+542
+00:29:57,040 --> 00:30:01,864
+
+543
+00:30:01,864 --> 00:30:03,460
+PROFESSOR: Are you guys
+thinking hard?
+
+544
+00:30:03,460 --> 00:30:09,290
+
+545
+00:30:09,290 --> 00:30:12,720
+I think you need some
+technological assistance.
+
+546
+00:30:12,720 --> 00:30:14,595
+TAUTOLOGY: I could use some
+technological assistance.
+
+547
+00:30:14,595 --> 00:30:19,640
+
+548
+00:30:19,640 --> 00:30:20,925
+PROFESSOR: There we go.
+
+549
+00:30:20,925 --> 00:30:26,610
+
+550
+00:30:26,610 --> 00:30:30,415
+This is our brain amplifier.
+
+551
+00:30:30,415 --> 00:30:34,420
+It amplifies the brain waves
+coming from you.
+
+552
+00:30:34,420 --> 00:30:36,205
+OK, give it a go.
+
+553
+00:30:36,205 --> 00:30:38,190
+TAUTOLOGY: Hang on,
+is this thing on?
+
+554
+00:30:38,190 --> 00:30:38,810
+There we go.
+
+555
+00:30:38,810 --> 00:30:40,110
+Now it's on.
+
+556
+00:30:40,110 --> 00:30:41,900
+OK, here I go.
+
+557
+00:30:41,900 --> 00:30:48,830
+
+558
+00:30:48,830 --> 00:30:51,760
+All right guys I'm having
+kind of an off day.
+
+559
+00:30:51,760 --> 00:30:56,300
+So I'm going to need a
+little bit of help.
+
+560
+00:30:56,300 --> 00:30:58,240
+Can you guys just raise
+your hand if you're
+
+561
+00:30:58,240 --> 00:30:59,590
+holding a red card?
+
+562
+00:30:59,590 --> 00:31:07,312
+
+563
+00:31:07,312 --> 00:31:08,560
+So that's a red?
+
+564
+00:31:08,560 --> 00:31:10,620
+PROFESSOR: Red, red,
+black, red.
+
+565
+00:31:10,620 --> 00:31:13,160
+
+566
+00:31:13,160 --> 00:31:14,410
+They did it right, right?
+
+567
+00:31:14,410 --> 00:31:19,355
+
+568
+00:31:19,355 --> 00:31:22,280
+TAUTOLOGY: Now let me
+give this a shot.
+
+569
+00:31:22,280 --> 00:31:25,942
+So red, black, red, red, red.
+
+570
+00:31:25,942 --> 00:31:31,320
+PROFESSOR: No, red, red - yes
+OK you do it your way.
+
+571
+00:31:31,320 --> 00:31:36,850
+
+572
+00:31:36,850 --> 00:31:40,550
+TAUTOLOGY: Now, now
+I might be wrong.
+
+573
+00:31:40,550 --> 00:31:48,470
+But I think- am I seeing a
+diamond with a seven on it?
+
+574
+00:31:48,470 --> 00:31:50,880
+Is that what I'm seeing?
+
+575
+00:31:50,880 --> 00:31:53,530
+PROFESSOR: Oh!
+
+576
+00:31:53,530 --> 00:31:55,682
+How impressive is that?
+
+577
+00:31:55,682 --> 00:31:58,764
+TAUTOLOGY: OK, one
+down, four to go.
+
+578
+00:31:58,764 --> 00:32:03,640
+
+579
+00:32:03,640 --> 00:32:05,280
+What else am I seeing?
+
+580
+00:32:05,280 --> 00:32:07,250
+I believe I am seeing.
+
+581
+00:32:07,250 --> 00:32:10,890
+You're going to have to think
+about this card pretty hard.
+
+582
+00:32:10,890 --> 00:32:12,400
+I'm having an off day.
+
+583
+00:32:12,400 --> 00:32:18,825
+So I think I'm seeing
+a spade, with a six.
+
+584
+00:32:18,825 --> 00:32:26,620
+
+585
+00:32:26,620 --> 00:32:28,810
+Thank you for your honesty.
+
+586
+00:32:28,810 --> 00:32:29,920
+Thank you.
+
+587
+00:32:29,920 --> 00:32:32,720
+It does mean a lot to me.
+
+588
+00:32:32,720 --> 00:32:44,040
+All right, so I'm seeing a-
+now what am I seeing now?
+
+589
+00:32:44,040 --> 00:32:47,750
+What could this be?
+
+590
+00:32:47,750 --> 00:32:49,860
+It's some kind of a heart.
+
+591
+00:32:49,860 --> 00:32:52,420
+
+592
+00:32:52,420 --> 00:32:58,330
+I think, just maybe, it
+has a value of five.
+
+593
+00:32:58,330 --> 00:33:03,045
+
+594
+00:33:03,045 --> 00:33:03,550
+PROFESSOR: Oh!
+
+595
+00:33:03,550 --> 00:33:06,060
+Three in a row!
+
+596
+00:33:06,060 --> 00:33:07,700
+I don't think he's doing
+this at random.
+
+597
+00:33:07,700 --> 00:33:09,585
+There must be ESP
+at work here.
+
+598
+00:33:09,585 --> 00:33:10,470
+TAUTOLOGY: Clearly.
+
+599
+00:33:10,470 --> 00:33:12,610
+It's all the hat to be honest.
+
+600
+00:33:12,610 --> 00:33:16,460
+It's all the technology, just
+the latest technology.
+
+601
+00:33:16,460 --> 00:33:19,065
+All right, so-
+
+602
+00:33:19,065 --> 00:33:20,760
+PROFESSOR: It gets
+harder as we go.
+
+603
+00:33:20,760 --> 00:33:24,440
+TAUTOLOGY: It does get
+harder as we go.
+
+604
+00:33:24,440 --> 00:33:27,700
+But, what is this?
+
+605
+00:33:27,700 --> 00:33:34,240
+do I- I think- no it can't
+be- can it be?
+
+606
+00:33:34,240 --> 00:33:37,202
+The three of hearts?
+
+607
+00:33:37,202 --> 00:33:38,895
+It's the three of hearts!
+
+608
+00:33:38,895 --> 00:33:42,800
+My old nemesis the
+three of hearts.
+
+609
+00:33:42,800 --> 00:33:45,102
+OK just one more card.
+
+610
+00:33:45,102 --> 00:33:46,830
+[LAUGHTER]
+
+611
+00:33:46,830 --> 00:33:49,084
+Did you just swap cards?
+
+612
+00:33:49,084 --> 00:33:51,705
+I think I just watched
+you swap you cards.
+
+613
+00:33:51,705 --> 00:33:53,910
+Well I'm just going
+for in the set-
+
+614
+00:33:53,910 --> 00:33:55,310
+PROFESSOR: And they did it
+without a temporary notice.
+
+615
+00:33:55,310 --> 00:34:00,160
+
+616
+00:34:00,160 --> 00:34:01,840
+They must have xor-ed them
+together or something.
+
+617
+00:34:01,840 --> 00:34:06,740
+
+618
+00:34:06,740 --> 00:34:09,480
+TAUTOLOGY: So the last card,
+which may or may not be in the
+
+619
+00:34:09,480 --> 00:34:11,850
+last person's hands.
+
+620
+00:34:11,850 --> 00:34:13,179
+Let me see if I can see it.
+
+621
+00:34:13,179 --> 00:34:15,984
+
+622
+00:34:15,984 --> 00:34:17,521
+What could it be?
+
+623
+00:34:17,521 --> 00:34:20,467
+
+624
+00:34:20,467 --> 00:34:21,717
+What could it be?
+
+625
+00:34:21,717 --> 00:34:25,780
+
+626
+00:34:25,780 --> 00:34:29,540
+No, no!
+
+627
+00:34:29,540 --> 00:34:33,760
+No, anything, not
+the- not that!
+
+628
+00:34:33,760 --> 00:34:35,243
+Not the 6 of diamonds!
+
+629
+00:34:35,243 --> 00:34:38,495
+
+630
+00:34:38,495 --> 00:34:43,580
+PROFESSOR: All right,
+five out of five!
+
+631
+00:34:43,580 --> 00:34:47,480
+Thank you, thank you.
+
+632
+00:34:47,480 --> 00:34:48,830
+OK guys go back to your seats.
+
+633
+00:34:48,830 --> 00:34:52,739
+
+634
+00:34:52,739 --> 00:34:54,525
+So that was a pretty
+easy trick, right?
+
+635
+00:34:54,525 --> 00:34:55,780
+TAUTOLOGY: Yeah, pretty easy.
+
+636
+00:34:55,780 --> 00:34:58,045
+PROFESSOR: So how
+does it work?
+
+637
+00:34:58,045 --> 00:35:01,980
+
+638
+00:35:01,980 --> 00:35:03,814
+What's the basic
+idea behind it?
+
+639
+00:35:03,814 --> 00:35:10,590
+
+640
+00:35:10,590 --> 00:35:11,940
+What's the basic
+idea behind it?
+
+641
+00:35:11,940 --> 00:35:17,780
+So key thing is how many bits
+of information did he get?
+
+642
+00:35:17,780 --> 00:35:19,580
+Five bits of information.
+
+643
+00:35:19,580 --> 00:35:23,980
+And there were how many
+cards in the deck?
+
+644
+00:35:23,980 --> 00:35:25,950
+Thirty-two.
+
+645
+00:35:25,950 --> 00:35:34,360
+So the pattern of the five bits,
+of which cards were read
+
+646
+00:35:34,360 --> 00:35:39,580
+let him know where in the cyclic
+sequence of cards he
+
+647
+00:35:39,580 --> 00:35:40,810
+was, right?
+
+648
+00:35:40,810 --> 00:35:42,180
+Because the cards really
+weren't random.
+
+649
+00:35:42,180 --> 00:35:43,430
+They just looked random.
+
+650
+00:35:43,430 --> 00:35:46,100
+
+651
+00:35:46,100 --> 00:35:48,840
+And so five bits is enough.
+
+652
+00:35:48,840 --> 00:35:53,540
+But that means that every the
+sequence of five cards in that
+
+653
+00:35:53,540 --> 00:35:57,200
+deck, as you rotate it
+around, has to have a
+
+654
+00:35:57,200 --> 00:35:58,450
+different bit pattern.
+
+655
+00:35:58,450 --> 00:36:01,790
+
+656
+00:36:01,790 --> 00:36:04,566
+So does anybody know a name
+for that property?
+
+657
+00:36:04,566 --> 00:36:08,120
+
+658
+00:36:08,120 --> 00:36:10,040
+A circular sequence that
+has that property?
+
+659
+00:36:10,040 --> 00:36:14,150
+
+660
+00:36:14,150 --> 00:36:20,370
+The property is that if
+you- well, let's see.
+
+661
+00:36:20,370 --> 00:36:21,620
+Maybe I have it up here.
+
+662
+00:36:21,620 --> 00:36:25,560
+
+663
+00:36:25,560 --> 00:36:32,360
+So here's our magic code,
+which is going to
+
+664
+00:36:32,360 --> 00:36:34,940
+compute the log of x.
+
+665
+00:36:34,940 --> 00:36:38,720
+And it's using what's called
+a De Bruijn sequence.
+
+666
+00:36:38,720 --> 00:36:43,590
+So let's come back to the
+magic trick in a minute.
+
+667
+00:36:43,590 --> 00:36:47,080
+And let's look to see
+how we compute this.
+
+668
+00:36:47,080 --> 00:36:49,450
+And then we'll understand
+how both work.
+
+669
+00:36:49,450 --> 00:36:52,320
+
+670
+00:36:52,320 --> 00:36:58,130
+There's a magic number here
+called De Bruijn.
+
+671
+00:36:58,130 --> 00:36:59,650
+De Bruijn was a Dutch
+mathematician.
+
+672
+00:36:59,650 --> 00:37:02,540
+
+673
+00:37:02,540 --> 00:37:06,360
+And then there's this funny
+conversion table.
+
+674
+00:37:06,360 --> 00:37:11,310
+And to find the log of x, where
+x is a power of two, I
+
+675
+00:37:11,310 --> 00:37:15,350
+multiply x by this magic
+number here.
+
+676
+00:37:15,350 --> 00:37:20,390
+Right shifted 58 places.
+
+677
+00:37:20,390 --> 00:37:22,900
+This is keeping how many bits
+after the multiply here?
+
+678
+00:37:22,900 --> 00:37:26,940
+
+679
+00:37:26,940 --> 00:37:31,430
+Six bits because it's
+a 64-bit word.
+
+680
+00:37:31,430 --> 00:37:33,105
+And then looking it
+up in this table.
+
+681
+00:37:33,105 --> 00:37:38,310
+
+682
+00:37:38,310 --> 00:37:40,580
+So let's take a look at
+what's going on there.
+
+683
+00:37:40,580 --> 00:37:47,890
+So a De Bruijn sequence, s, of
+length 2 to the k, is a cyclic
+
+684
+00:37:47,890 --> 00:37:51,940
+zero one sequence, such that
+each of the two to the zero
+
+685
+00:37:51,940 --> 00:37:57,230
+one strings of length k occurs
+exactly once as a
+
+686
+00:37:57,230 --> 00:38:00,010
+substring of s.
+
+687
+00:38:00,010 --> 00:38:02,040
+That's a mouthful.
+
+688
+00:38:02,040 --> 00:38:04,760
+Let's do an example, smaller.
+
+689
+00:38:04,760 --> 00:38:07,150
+So for example k equals 3.
+
+690
+00:38:07,150 --> 00:38:13,370
+So here's a sequence, 0, 0,
+0, 1, 1, 1, 0, 1, base 2.
+
+691
+00:38:13,370 --> 00:38:18,730
+If I look at the first three
+bits it's 0, 0, 0.
+
+692
+00:38:18,730 --> 00:38:22,520
+The second three bits
+is 0, 0, 1.
+
+693
+00:38:22,520 --> 00:38:25,340
+And notice that as I go through
+here every sequence,
+
+694
+00:38:25,340 --> 00:38:28,400
+and these are wrapping around
+the end, taking the last bit
+
+695
+00:38:28,400 --> 00:38:31,780
+and then the first
+two of the end.
+
+696
+00:38:31,780 --> 00:38:35,200
+Every one of these gives you
+an index of every different
+
+697
+00:38:35,200 --> 00:38:39,430
+bit pattern of length 3.
+
+698
+00:38:39,430 --> 00:38:46,000
+So these came up because people
+played with those
+
+699
+00:38:46,000 --> 00:38:51,010
+keypads where you have to enter
+a combination, right?
+
+700
+00:38:51,010 --> 00:38:52,960
+And if you have a keypad
+and you want to enter a
+
+701
+00:38:52,960 --> 00:38:56,920
+combination- let's say the
+keypad has only two numbers on
+
+702
+00:38:56,920 --> 00:38:59,080
+it, 0 and 1.
+
+703
+00:38:59,080 --> 00:39:04,710
+And you have to hit the right
+sequence of k numbers.
+
+704
+00:39:04,710 --> 00:39:08,630
+So the naive way of doing it
+would be to say well let's try
+
+705
+00:39:08,630 --> 00:39:11,600
+0,0,0,0,0,0,0.
+
+706
+00:39:11,600 --> 00:39:18,850
+Then let's try 0,0,0,0,0,0,1,
+then 0,0,0,0,0,1,0.
+
+707
+00:39:18,850 --> 00:39:22,710
+So what that'll do is you'll
+have to go through 2 to the k
+
+708
+00:39:22,710 --> 00:39:28,970
+numbers, each of which is k bits
+long, for k times 2 to
+
+709
+00:39:28,970 --> 00:39:32,320
+the k punches in order to be
+sure that you've hit every
+
+710
+00:39:32,320 --> 00:39:36,690
+number to open the lock.
+
+711
+00:39:36,690 --> 00:39:39,630
+The De Bruijn sequence takes
+it from k times 2 to the k
+
+712
+00:39:39,630 --> 00:39:40,730
+down to 2 to the k.
+
+713
+00:39:40,730 --> 00:39:45,190
+Still exponential in k, but
+there's k at the front because
+
+714
+00:39:45,190 --> 00:39:50,080
+it's making it so that each
+sequence that you have nests
+
+715
+00:39:50,080 --> 00:39:53,260
+into the previous one.
+
+716
+00:39:53,260 --> 00:39:54,810
+And that's basically what's
+going on here.
+
+717
+00:39:54,810 --> 00:39:59,950
+Every sequence of length
+3 exists in
+
+718
+00:39:59,950 --> 00:40:01,400
+the De Bruijn sequence.
+
+719
+00:40:01,400 --> 00:40:08,880
+And so this one here is a De
+Bruijn sequence of length 64
+
+720
+00:40:08,880 --> 00:40:12,040
+as it turns out.
+
+721
+00:40:12,040 --> 00:40:15,790
+And what we had in the magic
+trick was a De Bruijn sequence
+
+722
+00:40:15,790 --> 00:40:18,200
+of length 32.
+
+723
+00:40:18,200 --> 00:40:20,630
+So that when you cut the cards
+and you looked at the first
+
+724
+00:40:20,630 --> 00:40:27,115
+five cards that was a unique
+pattern of reds and blacks.
+
+725
+00:40:27,115 --> 00:40:29,890
+It told you where you were in
+the rotation of the sequence.
+
+726
+00:40:29,890 --> 00:40:32,430
+
+727
+00:40:32,430 --> 00:40:35,280
+And then there's a little bit
+of cleverness to how it is
+
+728
+00:40:35,280 --> 00:40:37,020
+that you translate
+that into cards.
+
+729
+00:40:37,020 --> 00:40:39,860
+Because remembering 32 cards,
+and what their sequence was,
+
+730
+00:40:39,860 --> 00:40:43,410
+and so forth, that's
+pretty hard.
+
+731
+00:40:43,410 --> 00:40:44,700
+But it turns out you
+can just do an
+
+732
+00:40:44,700 --> 00:40:46,970
+encoding of the five bits.
+
+733
+00:40:46,970 --> 00:40:50,000
+Two of the bits encode
+the suit.
+
+734
+00:40:50,000 --> 00:40:55,700
+So the high order bit encodes
+the suit, the two bits encode
+
+735
+00:40:55,700 --> 00:40:59,320
+the suit, and then the last
+three bits tell what the
+
+736
+00:40:59,320 --> 00:41:03,770
+number is, 1 through 8.
+
+737
+00:41:03,770 --> 00:41:06,950
+So that's how that worked.
+
+738
+00:41:06,950 --> 00:41:09,760
+It wasn't really magic
+after all.
+
+739
+00:41:09,760 --> 00:41:11,010
+Who's surprised?
+
+740
+00:41:11,010 --> 00:41:13,090
+
+741
+00:41:13,090 --> 00:41:17,040
+So how can we use this in
+this particular code?
+
+742
+00:41:17,040 --> 00:41:19,280
+So for this, basically
+the convert
+
+743
+00:41:19,280 --> 00:41:21,040
+table does the following.
+
+744
+00:41:21,040 --> 00:41:24,700
+It says, well, if you've got
+zero, the offset, the shift of
+
+745
+00:41:24,700 --> 00:41:27,180
+this amount here, is zero.
+
+746
+00:41:27,180 --> 00:41:30,990
+And if you've got one, then
+the shift is one.
+
+747
+00:41:30,990 --> 00:41:35,090
+And if you have a six-
+where's six in here?
+
+748
+00:41:35,090 --> 00:41:40,760
+
+749
+00:41:40,760 --> 00:41:44,930
+Sorry if I have a two here,
+then that's going
+
+750
+00:41:44,930 --> 00:41:47,520
+to be that I'm six.
+
+751
+00:41:47,520 --> 00:41:51,160
+So this table is inverting
+this number.
+
+752
+00:41:51,160 --> 00:41:54,930
+Do people see the relationship
+there?
+
+753
+00:41:54,930 --> 00:41:58,640
+So if I know what the pattern is
+I can do a look up and tell
+
+754
+00:41:58,640 --> 00:42:02,390
+how much did I shift by?
+
+755
+00:42:02,390 --> 00:42:05,140
+If I am shifting by a
+given amount there,
+
+756
+00:42:05,140 --> 00:42:07,190
+or circularly shifting.
+
+757
+00:42:07,190 --> 00:42:10,520
+So here's the way
+that code works.
+
+758
+00:42:10,520 --> 00:42:12,900
+Let's say we've got a number
+like 2 to the fourth that I'm
+
+759
+00:42:12,900 --> 00:42:15,310
+trying to figure out what
+the exponent is.
+
+760
+00:42:15,310 --> 00:42:17,600
+It's always a power of 2.
+
+761
+00:42:17,600 --> 00:42:19,380
+So I'm looking at 2 to
+the fourth and I
+
+762
+00:42:19,380 --> 00:42:21,020
+want to extract 4.
+
+763
+00:42:21,020 --> 00:42:23,800
+But all I have is the mask
+that's 16, which
+
+764
+00:42:23,800 --> 00:42:25,460
+has the one bit on.
+
+765
+00:42:25,460 --> 00:42:30,110
+What I do is I multiply this
+number, the De Bruijn sequence
+
+766
+00:42:30,110 --> 00:42:33,130
+number, by 16.
+
+767
+00:42:33,130 --> 00:42:35,840
+Well what happens when you
+multiply by a power of 2?
+
+768
+00:42:35,840 --> 00:42:40,390
+
+769
+00:42:40,390 --> 00:42:41,920
+It shifts it by 4 bits.
+
+770
+00:42:41,920 --> 00:42:44,500
+
+771
+00:42:44,500 --> 00:42:47,670
+So it's shifted the
+bits by 4 bits.
+
+772
+00:42:47,670 --> 00:42:51,320
+And now if I right shift
+it by 8 minus 3, I
+
+773
+00:42:51,320 --> 00:42:52,860
+capture the top 3 bits.
+
+774
+00:42:52,860 --> 00:42:55,840
+
+775
+00:42:55,840 --> 00:43:00,940
+In this case, 1, 1,
+0, which is 6.
+
+776
+00:43:00,940 --> 00:43:01,955
+Then I convert 6.
+
+777
+00:43:01,955 --> 00:43:03,740
+It says I had a shift of 4.
+
+778
+00:43:03,740 --> 00:43:22,770
+
+779
+00:43:22,770 --> 00:43:25,235
+And just with 64 bits it's a
+longer De Bruijn sequence.
+
+780
+00:43:25,235 --> 00:43:28,420
+
+781
+00:43:28,420 --> 00:43:30,540
+So it's performance is limited
+by the fact that you have to
+
+782
+00:43:30,540 --> 00:43:32,590
+do a multiply and
+a table look up.
+
+783
+00:43:32,590 --> 00:43:35,800
+But it's generally fairly
+competitive for many machines
+
+784
+00:43:35,800 --> 00:43:40,540
+that do not actually have a log
+base 2 of a power of 2.
+
+785
+00:43:40,540 --> 00:43:43,480
+These days machine instructions
+are getting-
+
+786
+00:43:43,480 --> 00:43:45,540
+there are instructions that
+will do that in a single
+
+787
+00:43:45,540 --> 00:43:47,850
+instruction for you.
+
+788
+00:43:47,850 --> 00:43:52,630
+But if you don't happen to have
+one on your architecture
+
+789
+00:43:52,630 --> 00:43:55,600
+and need to do this fast
+this is a reasonably
+
+790
+00:43:55,600 --> 00:43:57,090
+fast way to do it.
+
+791
+00:43:57,090 --> 00:43:59,950
+Even with a table look
+up and the thing.
+
+792
+00:43:59,950 --> 00:44:01,890
+The other way of doing it, of
+course, would be to shift by
+
+793
+00:44:01,890 --> 00:44:06,120
+one, shift by one, shift by one,
+until you get the one.
+
+794
+00:44:06,120 --> 00:44:07,710
+And there's some other
+techniques as well
+
+795
+00:44:07,710 --> 00:44:08,350
+that you can use.
+
+796
+00:44:08,350 --> 00:44:11,990
+You can do divide and conquer in
+a binary way, where you do
+
+797
+00:44:11,990 --> 00:44:15,640
+binary search for where the
+bit is, by shifting and so
+
+798
+00:44:15,640 --> 00:44:17,250
+forth, and hone in.
+
+799
+00:44:17,250 --> 00:44:20,060
+But the problem with those
+techniques, the binary search
+
+800
+00:44:20,060 --> 00:44:21,890
+in particular, is what?
+
+801
+00:44:21,890 --> 00:44:26,340
+If I try to binary search
+to find a bit what's
+
+802
+00:44:26,340 --> 00:44:27,640
+that going to be?
+
+803
+00:44:27,640 --> 00:44:28,320
+Yeah, branching.
+
+804
+00:44:28,320 --> 00:44:31,490
+You're going to have
+unpredictable branches.
+
+805
+00:44:31,490 --> 00:44:34,880
+And each of those will
+cost you 16 cycles.
+
+806
+00:44:34,880 --> 00:44:40,920
+And so with a 64-bit word you've
+got 16 cycles times six
+
+807
+00:44:40,920 --> 00:44:45,430
+bits that you're trying to
+decode, times however many
+
+808
+00:44:45,430 --> 00:44:47,140
+instructions it actually
+takes you.
+
+809
+00:44:47,140 --> 00:44:48,405
+It adds up to a lot of cycles.
+
+810
+00:44:48,405 --> 00:44:51,100
+
+811
+00:44:51,100 --> 00:44:52,930
+But that can sometimes
+be an effective way
+
+812
+00:44:52,930 --> 00:44:54,210
+of doing it as well.
+
+813
+00:44:54,210 --> 00:44:56,880
+And there are other ways.
+
+814
+00:44:56,880 --> 00:44:59,790
+You can look byte by byte.
+
+815
+00:44:59,790 --> 00:45:01,070
+There are a variety of
+other techniques.
+
+816
+00:45:01,070 --> 00:45:02,320
+Anyway, but this
+is a cute one.
+
+817
+00:45:02,320 --> 00:45:05,840
+
+818
+00:45:05,840 --> 00:45:09,140
+Here's another one,
+population count.
+
+819
+00:45:09,140 --> 00:45:11,420
+Count up the number of
+one bits in a word.
+
+820
+00:45:11,420 --> 00:45:16,710
+
+821
+00:45:16,710 --> 00:45:19,500
+So here's one way of doing it.
+
+822
+00:45:19,500 --> 00:45:22,080
+I start out r at zero.
+
+823
+00:45:22,080 --> 00:45:25,820
+And I keep incrementing r.
+
+824
+00:45:25,820 --> 00:45:30,640
+And what I do is I quit
+when x is zero.
+
+825
+00:45:30,640 --> 00:45:35,370
+And what I do is I do that
+trick of x, ending it
+
+826
+00:45:35,370 --> 00:45:37,060
+with x minus 1.
+
+827
+00:45:37,060 --> 00:45:38,310
+Which does what?
+
+828
+00:45:38,310 --> 00:45:40,550
+
+829
+00:45:40,550 --> 00:45:45,640
+Eliminates the low order bit,
+that's one, the low order one.
+
+830
+00:45:45,640 --> 00:45:48,350
+So basically I go through and
+I just kick out one of the
+
+831
+00:45:48,350 --> 00:45:51,150
+ones, kick out another one of
+the ones, kick out another one
+
+832
+00:45:51,150 --> 00:45:54,330
+of the ones, until I'm done.
+
+833
+00:45:54,330 --> 00:45:55,460
+This has a branch in it.
+
+834
+00:45:55,460 --> 00:45:58,370
+But in some sense it's a
+predictable branch because
+
+835
+00:45:58,370 --> 00:46:00,330
+almost all the time you're
+going through the loop.
+
+836
+00:46:00,330 --> 00:46:03,300
+
+837
+00:46:03,300 --> 00:46:09,940
+However, it has downside, which
+is that suppose you're
+
+838
+00:46:09,940 --> 00:46:11,545
+given minus 1.
+
+839
+00:46:11,545 --> 00:46:15,210
+
+840
+00:46:15,210 --> 00:46:21,260
+Then you have to do 64
+iterations of this loop before
+
+841
+00:46:21,260 --> 00:46:25,040
+you can get your final answer.
+
+842
+00:46:25,040 --> 00:46:29,410
+And so that's a lot of
+iterations to do.
+
+843
+00:46:29,410 --> 00:46:31,490
+So here's what's going
+on in your loop.
+
+844
+00:46:31,490 --> 00:46:32,660
+Here's x.
+
+845
+00:46:32,660 --> 00:46:34,970
+Here's x minus 1.
+
+846
+00:46:34,970 --> 00:46:37,180
+And now if I and them it's
+very similar to the other
+
+847
+00:46:37,180 --> 00:46:38,680
+trick that I taught you.
+
+848
+00:46:38,680 --> 00:46:41,700
+You and them, notice you have
+the same number you started
+
+849
+00:46:41,700 --> 00:46:44,630
+with except it's missing
+the one low order bit.
+
+850
+00:46:44,630 --> 00:46:53,420
+
+851
+00:46:53,420 --> 00:46:56,220
+So this is fast if the
+population count is small.
+
+852
+00:46:56,220 --> 00:47:00,820
+If you know there's only a
+couple of its on in the word,
+
+853
+00:47:00,820 --> 00:47:03,780
+then this can be a pretty
+effective technique.
+
+854
+00:47:03,780 --> 00:47:05,860
+But in the worst case it's going
+to take it's going to be
+
+855
+00:47:05,860 --> 00:47:07,590
+proportional to the number
+of bits in the word.
+
+856
+00:47:07,590 --> 00:47:10,760
+Because you're only getting
+rid of one bit at a time.
+
+857
+00:47:10,760 --> 00:47:14,350
+But it's better, in some sense,
+than looking one bit at
+
+858
+00:47:14,350 --> 00:47:18,165
+a time because you have the off
+chance that the number of
+
+859
+00:47:18,165 --> 00:47:20,800
+one bits will be sparse.
+
+860
+00:47:20,800 --> 00:47:22,740
+Whereas if you just looked at
+the low order bit, then the
+
+861
+00:47:22,740 --> 00:47:27,820
+next bit, then the next bit,
+that would definitely take you
+
+862
+00:47:27,820 --> 00:47:31,100
+worst case every single time.
+
+863
+00:47:31,100 --> 00:47:33,080
+Here's another way to do it.
+
+864
+00:47:33,080 --> 00:47:35,310
+It's a table look up.
+
+865
+00:47:35,310 --> 00:47:39,180
+So you have to pay, but if
+you're doing this a lot maybe
+
+866
+00:47:39,180 --> 00:47:42,800
+all of this is an L1 so the
+table look up only costs you
+
+867
+00:47:42,800 --> 00:47:46,950
+four cycles if it's
+an L1 cache.
+
+868
+00:47:46,950 --> 00:47:48,780
+So what is this sequence?
+
+869
+00:47:48,780 --> 00:47:54,410
+This tells for any given byte,
+so there's 256 values, how
+
+870
+00:47:54,410 --> 00:47:55,610
+many ones are in the world.
+
+871
+00:47:55,610 --> 00:47:58,980
+So zero has zero one bits.
+
+872
+00:47:58,980 --> 00:48:01,890
+One has one one bit.
+
+873
+00:48:01,890 --> 00:48:04,950
+Two has one one bit, three
+has two one bits.
+
+874
+00:48:04,950 --> 00:48:08,860
+Four has one one bit, five has
+two, six has two, seven has
+
+875
+00:48:08,860 --> 00:48:11,090
+three, eight has
+one, et cetera.
+
+876
+00:48:11,090 --> 00:48:12,060
+So that's this table.
+
+877
+00:48:12,060 --> 00:48:14,610
+I didn't fill out the
+rest of the table.
+
+878
+00:48:14,610 --> 00:48:17,380
+And now what you're doing in
+this loop is you're basically
+
+879
+00:48:17,380 --> 00:48:21,650
+taking a look at
+the value of x.
+
+880
+00:48:21,650 --> 00:48:25,480
+You're right shifting it and
+then your indexing, masking
+
+881
+00:48:25,480 --> 00:48:29,710
+with the low order byte.
+
+882
+00:48:29,710 --> 00:48:31,680
+So you may ask the
+low order byte.
+
+883
+00:48:31,680 --> 00:48:36,080
+You add that to the count by
+doing a look up, which
+
+884
+00:48:36,080 --> 00:48:41,470
+hopefully only takes you four
+cycles if the table is in L1.
+
+885
+00:48:41,470 --> 00:48:45,040
+And then just run around this
+loop until you've got no more
+
+886
+00:48:45,040 --> 00:48:47,850
+things in your word.
+
+887
+00:48:47,850 --> 00:48:50,180
+So how many are in byte one, how
+many are in byte two, how
+
+888
+00:48:50,180 --> 00:48:51,430
+many are in byte three,
+and so forth.
+
+889
+00:48:51,430 --> 00:48:56,910
+
+890
+00:48:56,910 --> 00:48:59,230
+For things that use table look
+up you have to be careful
+
+891
+00:48:59,230 --> 00:49:03,590
+because if you have a great big
+table why not look up two
+
+892
+00:49:03,590 --> 00:49:06,070
+bytes at a time?
+
+893
+00:49:06,070 --> 00:49:12,070
+Well two bytes is
+65,000 entries.
+
+894
+00:49:12,070 --> 00:49:18,700
+So why not look up four
+bytes at a time?
+
+895
+00:49:18,700 --> 00:49:20,920
+Four bytes is four
+billion entries.
+
+896
+00:49:20,920 --> 00:49:23,060
+At that point you're going out
+to memory and starting to
+
+897
+00:49:23,060 --> 00:49:25,260
+consume a lot of space.
+
+898
+00:49:25,260 --> 00:49:28,850
+So here's some common numbers.
+
+899
+00:49:28,850 --> 00:49:30,830
+These are sort of approximate.
+
+900
+00:49:30,830 --> 00:49:33,900
+But generally if you're doing
+operations on registers, one
+
+901
+00:49:33,900 --> 00:49:39,510
+cycles, and plus you can issue
+six per core, per cycle.
+
+902
+00:49:39,510 --> 00:49:42,870
+So L1 cache is going to cost
+you around four cycles, L2
+
+903
+00:49:42,870 --> 00:49:46,190
+cache about 10, L3 about
+50, and D RAM
+
+904
+00:49:46,190 --> 00:49:49,280
+about 150 to 200 cycles.
+
+905
+00:49:49,280 --> 00:49:51,900
+When you access these you get,
+in fact, generally for all
+
+906
+00:49:51,900 --> 00:49:55,950
+these, you tend to get
+a 64 byte cache line.
+
+907
+00:49:55,950 --> 00:49:56,980
+So you're getting
+more than one.
+
+908
+00:49:56,980 --> 00:49:59,770
+But if what you're doing is
+random access in a table it
+
+909
+00:49:59,770 --> 00:50:01,890
+doesn't help that all those
+other bytes are coming in.
+
+910
+00:50:01,890 --> 00:50:07,250
+
+911
+00:50:07,250 --> 00:50:10,950
+Population count three using
+parallel, divide, and conquer.
+
+912
+00:50:10,950 --> 00:50:12,200
+Here's the clever one.
+
+913
+00:50:12,200 --> 00:50:14,770
+
+914
+00:50:14,770 --> 00:50:16,020
+Here's the code.
+
+915
+00:50:16,020 --> 00:50:19,680
+
+916
+00:50:19,680 --> 00:50:22,290
+It's all register operations
+basically.
+
+917
+00:50:22,290 --> 00:50:26,320
+
+918
+00:50:26,320 --> 00:50:30,600
+So it's creating some masks.
+
+919
+00:50:30,600 --> 00:50:32,950
+So let's just take a look
+at what does this first
+
+920
+00:50:32,950 --> 00:50:34,200
+instruction do?
+
+921
+00:50:34,200 --> 00:50:36,790
+
+922
+00:50:36,790 --> 00:50:38,420
+It's taking minus one.
+
+923
+00:50:38,420 --> 00:50:42,900
+It's shifting it left 32 bits.
+
+924
+00:50:42,900 --> 00:50:45,400
+So that gives all ones in the
+higher order half of the word,
+
+925
+00:50:45,400 --> 00:50:47,210
+and all zeros in
+the lower half.
+
+926
+00:50:47,210 --> 00:50:50,960
+And then it's xor-ing
+it with minus one.
+
+927
+00:50:50,960 --> 00:50:52,670
+But with all minus ones.
+
+928
+00:50:52,670 --> 00:50:55,030
+So that gives you a mask
+of ones in the low
+
+929
+00:50:55,030 --> 00:50:57,280
+order half of the word.
+
+930
+00:50:57,280 --> 00:50:58,280
+Yeah question?
+
+931
+00:50:58,280 --> 00:51:03,363
+AUDIENCE: Why don't you just do
+negative one right shifted.
+
+932
+00:51:03,363 --> 00:51:04,520
+Isn't there a type of-
+
+933
+00:51:04,520 --> 00:51:05,320
+PROFESSOR: Yeah you
+can do that.
+
+934
+00:51:05,320 --> 00:51:06,620
+I was trying to be
+consistent here.
+
+935
+00:51:06,620 --> 00:51:08,950
+And, in fact, for these first
+two operations there are
+
+936
+00:51:08,950 --> 00:51:12,020
+actually more clever ways of
+doing this that take fewer
+
+937
+00:51:12,020 --> 00:51:12,980
+operations.
+
+938
+00:51:12,980 --> 00:51:15,395
+AUDIENCE: Isn't there a right
+shift operator that
+
+939
+00:51:15,395 --> 00:51:16,844
+[? pulls some ?] zeros
+in the top level?
+
+940
+00:51:16,844 --> 00:51:20,960
+PROFESSOR: Yeah, so there's
+logical versus arithmetic
+
+941
+00:51:20,960 --> 00:51:22,120
+right shift.
+
+942
+00:51:22,120 --> 00:51:22,490
+Yeah.
+
+943
+00:51:22,490 --> 00:51:25,790
+AUDIENCE: [INAUDIBLE]
+
+944
+00:51:25,790 --> 00:51:26,890
+PROFESSOR: That's right.
+
+945
+00:51:26,890 --> 00:51:28,300
+But then I wouldn't have
+the pattern that
+
+946
+00:51:28,300 --> 00:51:30,820
+I'm setting up here.
+
+947
+00:51:30,820 --> 00:51:35,340
+So yes, in fact, if you want to
+play with it yourself you
+
+948
+00:51:35,340 --> 00:51:37,240
+can optimize these first
+two statements.
+
+949
+00:51:37,240 --> 00:51:41,450
+They don't need to be as
+complicated as this one.
+
+950
+00:51:41,450 --> 00:51:43,660
+But basically what you're doing
+in every step is your
+
+951
+00:51:43,660 --> 00:51:46,540
+shifting it over, half
+the word, xor-ing it.
+
+952
+00:51:46,540 --> 00:51:50,630
+And then the second one is you
+get a block of 16 bits of
+
+953
+00:51:50,630 --> 00:51:54,450
+zeros, 16 ones, 16
+zeros, 16 ones.
+
+954
+00:51:54,450 --> 00:51:59,400
+The next one you get a block of
+eight zeros, eight one's,
+
+955
+00:51:59,400 --> 00:52:00,370
+eight zeros, eight ones.
+
+956
+00:52:00,370 --> 00:52:03,050
+And so basically you're
+generating masks for that.
+
+957
+00:52:03,050 --> 00:52:05,850
+So by the time you get down to
+the last one you're having
+
+958
+00:52:05,850 --> 00:52:09,030
+every other bit is zero.
+
+959
+00:52:09,030 --> 00:52:11,380
+You're alternating
+zeros and ones.
+
+960
+00:52:11,380 --> 00:52:12,960
+And then, basically-
+well let me not go
+
+961
+00:52:12,960 --> 00:52:13,590
+through the code here.
+
+962
+00:52:13,590 --> 00:52:16,090
+Let me show with an example.
+
+963
+00:52:16,090 --> 00:52:18,940
+The main thing to observe is
+that it takes log n time where
+
+964
+00:52:18,940 --> 00:52:21,400
+n is the word length
+to do this.
+
+965
+00:52:21,400 --> 00:52:24,070
+
+966
+00:52:24,070 --> 00:52:30,610
+So here's population count on
+32 bits, same kind of thing.
+
+967
+00:52:30,610 --> 00:52:31,860
+So here's the idea.
+
+968
+00:52:31,860 --> 00:52:34,260
+
+969
+00:52:34,260 --> 00:52:39,160
+We extract every other bit
+for the two words.
+
+970
+00:52:39,160 --> 00:52:41,460
+So you saw how I extracted
+that right?
+
+971
+00:52:41,460 --> 00:52:42,970
+So we extract.
+
+972
+00:52:42,970 --> 00:52:48,660
+So I can do that with
+a mask and a shift.
+
+973
+00:52:48,660 --> 00:52:50,330
+And then I add them together.
+
+974
+00:52:50,330 --> 00:52:54,340
+
+975
+00:52:54,340 --> 00:52:56,520
+So just so we can see what's
+being added here.
+
+976
+00:52:56,520 --> 00:52:59,040
+
+977
+00:52:59,040 --> 00:53:01,580
+And when I add them together the
+largest value I'm going to
+
+978
+00:53:01,580 --> 00:53:04,820
+have in any one of these
+things is what?
+
+979
+00:53:04,820 --> 00:53:05,940
+AUDIENCE: Two.
+
+980
+00:53:05,940 --> 00:53:08,630
+PROFESSOR: And [? that, ?]
+fortunately, fits in two bits.
+
+981
+00:53:08,630 --> 00:53:11,640
+
+982
+00:53:11,640 --> 00:53:14,840
+So we can get off the ground.
+
+983
+00:53:14,840 --> 00:53:18,220
+So now every two bits has
+the sum of the two
+
+984
+00:53:18,220 --> 00:53:19,110
+bits that were there.
+
+985
+00:53:19,110 --> 00:53:22,480
+The bits that I'm not showing
+are all zeros because it's
+
+986
+00:53:22,480 --> 00:53:23,720
+done 64 bit words.
+
+987
+00:53:23,720 --> 00:53:27,390
+The bits I'm showing
+are all zeros.
+
+988
+00:53:27,390 --> 00:53:28,640
+So now what do we do?
+
+989
+00:53:28,640 --> 00:53:32,780
+
+990
+00:53:32,780 --> 00:53:37,820
+We mask and shift and take off
+every two pairs of bits and
+
+991
+00:53:37,820 --> 00:53:39,070
+then add them together.
+
+992
+00:53:39,070 --> 00:53:43,770
+
+993
+00:53:43,770 --> 00:53:47,360
+So now this guy is saying
+there's four bit that were
+
+994
+00:53:47,360 --> 00:53:52,040
+originally in the
+word that began.
+
+995
+00:53:52,040 --> 00:53:54,620
+This one says there are two bits
+in that range, one bit,
+
+996
+00:53:54,620 --> 00:54:00,100
+one bit, two bits, three bits,
+two bits, two bits.
+
+997
+00:54:00,100 --> 00:54:01,350
+So we do it again.
+
+998
+00:54:01,350 --> 00:54:04,780
+
+999
+00:54:04,780 --> 00:54:06,030
+Add it together.
+
+1000
+00:54:06,030 --> 00:54:08,495
+
+1001
+00:54:08,495 --> 00:54:09,745
+And we just keep going.
+
+1002
+00:54:09,745 --> 00:54:14,640
+
+1003
+00:54:14,640 --> 00:54:16,510
+And then finally we add
+them all together.
+
+1004
+00:54:16,510 --> 00:54:20,460
+
+1005
+00:54:20,460 --> 00:54:25,860
+It says there are 17 ones in
+the word, which there were.
+
+1006
+00:54:25,860 --> 00:54:28,570
+I should have probably left the
+word up there or something
+
+1007
+00:54:28,570 --> 00:54:30,740
+so we could verify that.
+
+1008
+00:54:30,740 --> 00:54:32,080
+But Yeah there are 17 ones.
+
+1009
+00:54:32,080 --> 00:54:36,720
+So everybody see it's parallel,
+divide, and conquer
+
+1010
+00:54:36,720 --> 00:54:40,400
+because you're adding many
+words, many sub-pieces pieces
+
+1011
+00:54:40,400 --> 00:54:41,090
+of the word [UNINTELLIGIBLE].
+
+1012
+00:54:41,090 --> 00:54:44,270
+And the key thing is to make
+it so that no carries are
+
+1013
+00:54:44,270 --> 00:54:46,510
+propagating out of
+their range.
+
+1014
+00:54:46,510 --> 00:54:48,240
+But the numbers are just getting
+smaller and smaller.
+
+1015
+00:54:48,240 --> 00:54:51,430
+When you're done you're only
+going to have six bits here
+
+1016
+00:54:51,430 --> 00:54:52,480
+that are significant anyway.
+
+1017
+00:54:52,480 --> 00:54:53,730
+All of these will be zeros.
+
+1018
+00:54:53,730 --> 00:54:58,000
+
+1019
+00:54:58,000 --> 00:54:59,250
+Is that cool?
+
+1020
+00:54:59,250 --> 00:55:03,310
+
+1021
+00:55:03,310 --> 00:55:04,560
+So there's a 17, yeah.
+
+1022
+00:55:04,560 --> 00:55:11,720
+
+1023
+00:55:11,720 --> 00:55:14,960
+Here's a problem for which
+bit representations
+
+1024
+00:55:14,960 --> 00:55:16,370
+are a lot of fun.
+
+1025
+00:55:16,370 --> 00:55:18,760
+Last year we gave this as
+a problem to students.
+
+1026
+00:55:18,760 --> 00:55:21,600
+This year we're giving you a
+different problem so that lets
+
+1027
+00:55:21,600 --> 00:55:24,280
+me lecture on it.
+
+1028
+00:55:24,280 --> 00:55:28,250
+So many people are probably
+familiar with this problem.
+
+1029
+00:55:28,250 --> 00:55:30,460
+It's an old chess nut.
+
+1030
+00:55:30,460 --> 00:55:33,020
+But basically the queen's
+problems is to place n queens
+
+1031
+00:55:33,020 --> 00:55:37,650
+on an n by n chess board so that
+no queen attacks another.
+
+1032
+00:55:37,650 --> 00:55:43,110
+So there are no two Queens in
+any row, column, or diagonal.
+
+1033
+00:55:43,110 --> 00:55:46,000
+So queen's kind of
+move like this.
+
+1034
+00:55:46,000 --> 00:55:46,925
+It's got to be clear.
+
+1035
+00:55:46,925 --> 00:55:49,950
+If I did that around any one
+of these guys they wouldn't
+
+1036
+00:55:49,950 --> 00:55:50,850
+hit anybody else.
+
+1037
+00:55:50,850 --> 00:55:53,720
+In fact, this arrangement here
+is, I think, one of the few
+
+1038
+00:55:53,720 --> 00:55:54,430
+symmetric ones.
+
+1039
+00:55:54,430 --> 00:55:56,430
+Maybe it's the only
+symmetric one.
+
+1040
+00:55:56,430 --> 00:55:57,490
+It's radially symmetric.
+
+1041
+00:55:57,490 --> 00:55:58,795
+Most of them are
+more scattered.
+
+1042
+00:55:58,795 --> 00:56:01,370
+
+1043
+00:56:01,370 --> 00:56:03,790
+So the question is how do you
+find such a thing, or count
+
+1044
+00:56:03,790 --> 00:56:05,090
+the number of solutions,
+is another
+
+1045
+00:56:05,090 --> 00:56:06,340
+popular one, et cetera.
+
+1046
+00:56:06,340 --> 00:56:10,820
+
+1047
+00:56:10,820 --> 00:56:14,150
+A popular strategy for this is
+called backtracking search.
+
+1048
+00:56:14,150 --> 00:56:16,070
+And we're going to have in
+your homework a different
+
+1049
+00:56:16,070 --> 00:56:19,350
+backtracking search.
+
+1050
+00:56:19,350 --> 00:56:22,490
+And the idea is you just simply
+try to place the queens
+
+1051
+00:56:22,490 --> 00:56:24,830
+row by row.
+
+1052
+00:56:24,830 --> 00:56:29,750
+So, for example, we start out
+with the first row, row zero,
+
+1053
+00:56:29,750 --> 00:56:31,610
+and we place a queen.
+
+1054
+00:56:31,610 --> 00:56:33,980
+Then we go to the next row.
+
+1055
+00:56:33,980 --> 00:56:37,640
+And we try to see if a queen
+works on that square, nope,
+
+1056
+00:56:37,640 --> 00:56:40,230
+nope, yes it works there.
+
+1057
+00:56:40,230 --> 00:56:43,410
+Now we go on to the next row.
+
+1058
+00:56:43,410 --> 00:56:45,500
+So this is making progress.
+
+1059
+00:56:45,500 --> 00:56:46,360
+We're placing queens.
+
+1060
+00:56:46,360 --> 00:56:47,660
+We're going to more rows.
+
+1061
+00:56:47,660 --> 00:56:50,420
+We're going to get to the
+end of the rows, right?
+
+1062
+00:56:50,420 --> 00:57:00,030
+So we keep- yep, we found it.
+
+1063
+00:57:00,030 --> 00:57:01,200
+And we keep going.
+
+1064
+00:57:01,200 --> 00:57:04,330
+This is easy.
+
+1065
+00:57:04,330 --> 00:57:05,750
+Found it right after
+two there.
+
+1066
+00:57:05,750 --> 00:57:07,000
+That's pretty good.
+
+1067
+00:57:07,000 --> 00:57:16,824
+
+1068
+00:57:16,824 --> 00:57:19,170
+Found it there.
+
+1069
+00:57:19,170 --> 00:57:20,495
+Look, we're making
+great progress.
+
+1070
+00:57:20,495 --> 00:57:23,440
+
+1071
+00:57:23,440 --> 00:57:26,730
+Doesn't go there, doesn't go
+there, doesn't go there,
+
+1072
+00:57:26,730 --> 00:57:30,740
+doesn't go there, oops
+doesn't go anywhere.
+
+1073
+00:57:30,740 --> 00:57:32,210
+So what do we do?
+
+1074
+00:57:32,210 --> 00:57:35,060
+We backtrack.
+
+1075
+00:57:35,060 --> 00:57:38,340
+We say, gee, if it didn't fit
+in any those but it had
+
+1076
+00:57:38,340 --> 00:57:41,260
+nothing to do with the placement
+there, it's the
+
+1077
+00:57:41,260 --> 00:57:44,490
+fault of the guy who
+came before me.
+
+1078
+00:57:44,490 --> 00:57:47,580
+So that position is not a valid
+position, at least with
+
+1079
+00:57:47,580 --> 00:57:48,600
+that prefix.
+
+1080
+00:57:48,600 --> 00:57:49,900
+So we continue with him.
+
+1081
+00:57:49,900 --> 00:57:56,150
+
+1082
+00:57:56,150 --> 00:57:57,690
+Aha, we found another
+place for him.
+
+1083
+00:57:57,690 --> 00:58:00,280
+
+1084
+00:58:00,280 --> 00:58:02,140
+So then we try this one.
+
+1085
+00:58:02,140 --> 00:58:08,910
+
+1086
+00:58:08,910 --> 00:58:16,060
+Oops this doesn't look good,
+aha, got to backtrack.
+
+1087
+00:58:16,060 --> 00:58:18,055
+Whoops that's the last
+one in the row, got
+
+1088
+00:58:18,055 --> 00:58:21,490
+to backtrack again.
+
+1089
+00:58:21,490 --> 00:58:24,335
+So that means that guy
+can't go there.
+
+1090
+00:58:24,335 --> 00:58:28,950
+
+1091
+00:58:28,950 --> 00:58:32,300
+Found a place, now we get
+to go forward, hooray.
+
+1092
+00:58:32,300 --> 00:58:33,580
+And you keep going on.
+
+1093
+00:58:33,580 --> 00:58:35,010
+So you backtrack, et cetera,
+until you finally
+
+1094
+00:58:35,010 --> 00:58:37,490
+find a place for them.
+
+1095
+00:58:37,490 --> 00:58:42,260
+So the backtracking search
+is pretty interesting.
+
+1096
+00:58:42,260 --> 00:58:47,040
+But the question is how do you
+represent it so that it can go
+
+1097
+00:58:47,040 --> 00:58:48,290
+really fast.
+
+1098
+00:58:48,290 --> 00:58:50,710
+
+1099
+00:58:50,710 --> 00:58:52,950
+So here's some ideas.
+
+1100
+00:58:52,950 --> 00:58:56,020
+The first idea you might come up
+with is to use an array of
+
+1101
+00:58:56,020 --> 00:59:00,300
+n squared bytes, where you put a
+value in the byte if there's
+
+1102
+00:59:00,300 --> 00:59:02,360
+a queen there.
+
+1103
+00:59:02,360 --> 00:59:05,430
+You should, at this point,
+figure out that, gee all I
+
+1104
+00:59:05,430 --> 00:59:08,350
+have to know is whether a
+queen is there or not.
+
+1105
+00:59:08,350 --> 00:59:11,300
+So why should I keep a byte?
+
+1106
+00:59:11,300 --> 00:59:12,870
+Why not just keep a bit?
+
+1107
+00:59:12,870 --> 00:59:15,560
+That'll be smaller and have
+a smaller representing.
+
+1108
+00:59:15,560 --> 00:59:17,330
+So let's keep n squared bits.
+
+1109
+00:59:17,330 --> 00:59:21,340
+
+1110
+00:59:21,340 --> 00:59:23,960
+Well let's see.
+
+1111
+00:59:23,960 --> 00:59:28,320
+If I'm only putting a queen in
+one place in every row I never
+
+1112
+00:59:28,320 --> 00:59:34,510
+have to have more than one
+bit set in any row.
+
+1113
+00:59:34,510 --> 00:59:42,420
+So why not just say the column
+number in the row that I'm in?
+
+1114
+00:59:42,420 --> 00:59:50,500
+So rather than using an array of
+n bits for every row let me
+
+1115
+00:59:50,500 --> 00:59:59,010
+just use an index of a byte to
+say which row that one queen
+
+1116
+00:59:59,010 --> 01:00:01,550
+is in because there can't be any
+other Queens in that row
+
+1117
+01:00:01,550 --> 01:00:02,800
+in a legal configuration.
+
+1118
+01:00:02,800 --> 01:00:05,330
+
+1119
+01:00:05,330 --> 01:00:06,630
+So that's actually
+more clever.
+
+1120
+01:00:06,630 --> 01:00:08,490
+And that's the way most
+people code it.
+
+1121
+01:00:08,490 --> 01:00:12,000
+But we're going to look at a
+solution that was originally
+
+1122
+01:00:12,000 --> 01:00:18,390
+due to Edsger Dijkstra of using
+three bit vectors to
+
+1123
+01:00:18,390 --> 01:00:20,825
+represent the board.
+
+1124
+01:00:20,825 --> 01:00:28,810
+And the idea is we want to make
+things go- we're going to
+
+1125
+01:00:28,810 --> 01:00:32,550
+use three bit vectors that
+are relatively small.
+
+1126
+01:00:32,550 --> 01:00:34,190
+So it turns out the
+n queens is an
+
+1127
+01:00:34,190 --> 01:00:36,780
+exponential search problem.
+
+1128
+01:00:36,780 --> 01:00:43,920
+And so you really can't run n
+queens on 128 by 128 board.
+
+1129
+01:00:43,920 --> 01:00:47,180
+You can run that if you're
+interested in one solution.
+
+1130
+01:00:47,180 --> 01:00:48,720
+You can't count up how
+many solutions.
+
+1131
+01:00:48,720 --> 01:00:51,450
+And if you go to Wikipedia and
+look at n Queens they will
+
+1132
+01:00:51,450 --> 01:00:56,050
+tell you what all the latest
+records are for who has
+
+1133
+01:00:56,050 --> 01:00:59,740
+computed how many solutions
+there are on an n by n board
+
+1134
+01:00:59,740 --> 01:01:03,570
+for n up to some rather
+small number.
+
+1135
+01:01:03,570 --> 01:01:06,440
+
+1136
+01:01:06,440 --> 01:01:10,945
+So it's a way to get your name
+on the web, which, as you
+
+1137
+01:01:10,945 --> 01:01:12,260
+know, is very difficult to do.
+
+1138
+01:01:12,260 --> 01:01:15,500
+
+1139
+01:01:15,500 --> 01:01:18,240
+So let's see this three
+bit vector trick.
+
+1140
+01:01:18,240 --> 01:01:21,870
+So the idea of the bit vector
+trick is that, for any partial
+
+1141
+01:01:21,870 --> 01:01:25,310
+placement, rather than
+representing where the queens
+
+1142
+01:01:25,310 --> 01:01:27,380
+are on the board, what I really
+care about is which
+
+1143
+01:01:27,380 --> 01:01:28,840
+columns have been knocked out.
+
+1144
+01:01:28,840 --> 01:01:33,310
+
+1145
+01:01:33,310 --> 01:01:37,320
+So, therefore, what I'll do is
+I'll store a one if there's a
+
+1146
+01:01:37,320 --> 01:01:41,150
+queen in that column and a zero
+if I don't have a queen
+
+1147
+01:01:41,150 --> 01:01:42,400
+in that column.
+
+1148
+01:01:42,400 --> 01:01:44,630
+
+1149
+01:01:44,630 --> 01:01:47,410
+So the point is I can keep the
+whole representation of the
+
+1150
+01:01:47,410 --> 01:01:52,310
+column mask in a word that just
+tells me whether I have
+
+1151
+01:01:52,310 --> 01:01:54,970
+ones or zeros in a column.
+
+1152
+01:01:54,970 --> 01:01:59,680
+Now how do I know whether it's
+safe to place a queen in a
+
+1153
+01:01:59,680 --> 01:02:00,930
+given column?
+
+1154
+01:02:00,930 --> 01:02:07,380
+
+1155
+01:02:07,380 --> 01:02:08,630
+What's that?
+
+1156
+01:02:08,630 --> 01:02:11,852
+
+1157
+01:02:11,852 --> 01:02:12,605
+AUDIENCE: [INAUDIBLE]
+
+1158
+01:02:12,605 --> 01:02:15,340
+PROFESSOR: How do I know, if
+I try to place a queen say,
+
+1159
+01:02:15,340 --> 01:02:18,530
+here, how do I know whether
+that's OK or not?
+
+1160
+01:02:18,530 --> 01:02:24,420
+
+1161
+01:02:24,420 --> 01:02:27,280
+Suppose that my program
+wants to try to put a
+
+1162
+01:02:27,280 --> 01:02:29,390
+queen in this space.
+
+1163
+01:02:29,390 --> 01:02:32,070
+It can't because there's
+something here.
+
+1164
+01:02:32,070 --> 01:02:37,490
+It's just some operations on
+words, which we will see here.
+
+1165
+01:02:37,490 --> 01:02:40,780
+So placing a queen in column
+c is not safe if
+
+1166
+01:02:40,780 --> 01:02:43,650
+this down were here.
+
+1167
+01:02:43,650 --> 01:02:48,185
+When I and it with one shifted
+left by the number of columns
+
+1168
+01:02:48,185 --> 01:02:54,390
+so that I have the position of
+the queen in the column if
+
+1169
+01:02:54,390 --> 01:02:56,360
+that's non-zero because
+it means somebody
+
+1170
+01:02:56,360 --> 01:02:58,650
+else is in that column.
+
+1171
+01:02:58,650 --> 01:03:01,830
+If it's in a new column when I
+do the and I'll get all zeros.
+
+1172
+01:03:01,830 --> 01:03:04,600
+
+1173
+01:03:04,600 --> 01:03:06,810
+Everybody follow that?
+
+1174
+01:03:06,810 --> 01:03:10,420
+So testing columnists, whether
+it's safe to put it in a given
+
+1175
+01:03:10,420 --> 01:03:15,410
+column, from the column attack
+we can do that really, really
+
+1176
+01:03:15,410 --> 01:03:18,330
+efficiently, right?
+
+1177
+01:03:18,330 --> 01:03:19,580
+These are all going to
+be in registers.
+
+1178
+01:03:19,580 --> 01:03:22,070
+
+1179
+01:03:22,070 --> 01:03:28,850
+No memory operations, no table
+look ups, no L1 caches, all
+
+1180
+01:03:28,850 --> 01:03:30,100
+right in registers.
+
+1181
+01:03:30,100 --> 01:03:32,890
+
+1182
+01:03:32,890 --> 01:03:37,005
+Well what do we do about
+the diagonals?
+
+1183
+01:03:37,005 --> 01:03:40,810
+So for the diagonals we can
+also use a bit vector
+
+1184
+01:03:40,810 --> 01:03:43,860
+representation for
+each diagonal.
+
+1185
+01:03:43,860 --> 01:03:47,830
+Where I look to see if there's
+a number along this diagonal,
+
+1186
+01:03:47,830 --> 01:03:50,220
+and if there is a queen
+then it's a one.
+
+1187
+01:03:50,220 --> 01:03:54,070
+And if there isn't a queen on
+the diagonal it's zero.
+
+1188
+01:03:54,070 --> 01:03:57,320
+There are more diagonals then
+there are columns, right?
+
+1189
+01:03:57,320 --> 01:04:00,110
+So I have a longer bit vector
+representation.
+
+1190
+01:04:00,110 --> 01:04:02,550
+I have to represent that.
+
+1191
+01:04:02,550 --> 01:04:05,880
+But I can still do that in one
+computer word for things of
+
+1192
+01:04:05,880 --> 01:04:08,340
+different size, or even for
+things that are pretty good
+
+1193
+01:04:08,340 --> 01:04:14,140
+size two computer words would
+be, certainly, ample.
+
+1194
+01:04:14,140 --> 01:04:18,600
+So now how do I tell whether
+or not a queen placed on a
+
+1195
+01:04:18,600 --> 01:04:26,250
+given square can legally
+be placed there?
+
+1196
+01:04:26,250 --> 01:04:29,620
+
+1197
+01:04:29,620 --> 01:04:33,570
+So it turns out it's not safe to
+place it if when I take my
+
+1198
+01:04:33,570 --> 01:04:39,400
+writer ray, and I take n minus r
+plus c, and left shift it by
+
+1199
+01:04:39,400 --> 01:04:43,810
+that amount, and that's
+non-zero.
+
+1200
+01:04:43,810 --> 01:04:47,180
+So here I'm indexing rows and
+columns from the upper left
+
+1201
+01:04:47,180 --> 01:04:49,720
+hand corner.
+
+1202
+01:04:49,720 --> 01:04:52,620
+And so, basically, you're trying
+to say is, for a given
+
+1203
+01:04:52,620 --> 01:04:57,970
+square, notice that if I
+increase the row, that's this
+
+1204
+01:04:57,970 --> 01:05:06,660
+way, I get to the same- of if
+I'm increasing the row, I'm
+
+1205
+01:05:06,660 --> 01:05:10,110
+decreasing the diagonal
+that I'm on.
+
+1206
+01:05:10,110 --> 01:05:13,460
+But if I'm increasing the column
+I'm increasing the
+
+1207
+01:05:13,460 --> 01:05:16,730
+diagonal I'm on.
+
+1208
+01:05:16,730 --> 01:05:19,340
+So that's it's basically
+a difference here.
+
+1209
+01:05:19,340 --> 01:05:24,230
+And then you just normalize it
+and with essentially very,
+
+1210
+01:05:24,230 --> 01:05:26,650
+very few operations I can
+tell whether there's a
+
+1211
+01:05:26,650 --> 01:05:28,410
+conflict in a column.
+
+1212
+01:05:28,410 --> 01:05:31,190
+Of course, for both this and
+the other one, if I need to
+
+1213
+01:05:31,190 --> 01:05:34,170
+set it now that's pretty
+simple also.
+
+1214
+01:05:34,170 --> 01:05:37,320
+I just take this and
+or it with right.
+
+1215
+01:05:37,320 --> 01:05:41,630
+If my test is good, I just take
+this, or it with right,
+
+1216
+01:05:41,630 --> 01:05:43,040
+and now that's my new right.
+
+1217
+01:05:43,040 --> 01:05:46,960
+
+1218
+01:05:46,960 --> 01:05:49,530
+And left is similar.
+
+1219
+01:05:49,530 --> 01:05:52,860
+So, once again, we have these
+guys going this way, placing a
+
+1220
+01:05:52,860 --> 01:05:54,560
+queen in row r.
+
+1221
+01:05:54,560 --> 01:05:58,980
+And column c is not safe if-
+and now I just look at row
+
+1222
+01:05:58,980 --> 01:06:02,070
+plus column because these
+diagonals increase with both
+
+1223
+01:06:02,070 --> 01:06:04,280
+row and column.
+
+1224
+01:06:04,280 --> 01:06:07,970
+You're increasing the diagonal
+for both row and column.
+
+1225
+01:06:07,970 --> 01:06:09,130
+And so I'm not going to
+go through all the
+
+1226
+01:06:09,130 --> 01:06:10,060
+details of the code.
+
+1227
+01:06:10,060 --> 01:06:15,000
+But you can see that with this
+representation, literally, the
+
+1228
+01:06:15,000 --> 01:06:18,060
+inner loop of your program,
+which is testing whether
+
+1229
+01:06:18,060 --> 01:06:21,505
+queens fit on boards and then
+setting them if they do, you
+
+1230
+01:06:21,505 --> 01:06:25,040
+can do with just three words
+and a few operations.
+
+1231
+01:06:25,040 --> 01:06:25,856
+Question?
+
+1232
+01:06:25,856 --> 01:06:31,688
+AUDIENCE: Can you mask the three
+bits together and check
+
+1233
+01:06:31,688 --> 01:06:35,090
+if one position is taken up?
+
+1234
+01:06:35,090 --> 01:06:40,193
+You'd have to do some creative
+stuff with lining up the row
+
+1235
+01:06:40,193 --> 01:06:43,760
+and column vectors with
+the diagonals, but-
+
+1236
+01:06:43,760 --> 01:06:46,020
+PROFESSOR: So typically
+here you're looking at
+
+1237
+01:06:46,020 --> 01:06:48,410
+both row and column.
+
+1238
+01:06:48,410 --> 01:06:51,470
+So you're adding them, whereas
+on the previous one you were
+
+1239
+01:06:51,470 --> 01:06:53,480
+subtracting.
+
+1240
+01:06:53,480 --> 01:06:56,000
+And then the first one you
+didn't even care about what
+
+1241
+01:06:56,000 --> 01:06:57,120
+the column was.
+
+1242
+01:06:57,120 --> 01:07:00,940
+So I'm not sure I would know
+how to combine those.
+
+1243
+01:07:00,940 --> 01:07:02,995
+It's conceivable you
+could do it.
+
+1244
+01:07:02,995 --> 01:07:04,450
+AUDIENCE: [INAUDIBLE]
+
+1245
+01:07:04,450 --> 01:07:08,330
+column vector, you could add
+the two together and find
+
+1246
+01:07:08,330 --> 01:07:11,163
+specific positions
+that are free.
+
+1247
+01:07:11,163 --> 01:07:13,590
+PROFESSOR: Yeah so you could
+also do a generation that says
+
+1248
+01:07:13,590 --> 01:07:16,290
+here are the ones that are free
+and then use things like
+
+1249
+01:07:16,290 --> 01:07:19,470
+the least significant bit trick
+to pull out what is the
+
+1250
+01:07:19,470 --> 01:07:20,990
+positions I should
+bother to check.
+
+1251
+01:07:20,990 --> 01:07:24,060
+
+1252
+01:07:24,060 --> 01:07:25,670
+So here I can test
+that it's safe.
+
+1253
+01:07:25,670 --> 01:07:29,720
+But I could also generate using
+similar tricks, which is
+
+1254
+01:07:29,720 --> 01:07:33,270
+what you're saying, generate all
+of the bit positions on a
+
+1255
+01:07:33,270 --> 01:07:38,290
+given row where it would
+be safe to put a queen.
+
+1256
+01:07:38,290 --> 01:07:41,960
+Yep, yep, good.
+
+1257
+01:07:41,960 --> 01:07:47,130
+So fast programs use
+this technique.
+
+1258
+01:07:47,130 --> 01:07:50,560
+So you see that there's a lot
+of cleverness in these kinds
+
+1259
+01:07:50,560 --> 01:07:52,735
+of techniques.
+
+1260
+01:07:52,735 --> 01:07:55,600
+
+1261
+01:07:55,600 --> 01:08:01,490
+So there are a whole bunch of
+other bit hacking techniques.
+
+1262
+01:08:01,490 --> 01:08:06,760
+One really good resource
+for it is this webpage.
+
+1263
+01:08:06,760 --> 01:08:11,610
+And of course I'll put this up
+on the- called bit twiddling
+
+1264
+01:08:11,610 --> 01:08:14,070
+hacks, where he's compiled-
+there's a lot of people that
+
+1265
+01:08:14,070 --> 01:08:15,390
+have worked on different
+bit twiddling hacks.
+
+1266
+01:08:15,390 --> 01:08:18,439
+And he's done a very good job
+of compiling what he thinks
+
+1267
+01:08:18,439 --> 01:08:21,740
+are the best code sequences for
+a whole bunch of things,
+
+1268
+01:08:21,740 --> 01:08:25,065
+including things like reversing
+the bits in a word.
+
+1269
+01:08:25,065 --> 01:08:27,620
+If you think about it that
+could be kind of tricky.
+
+1270
+01:08:27,620 --> 01:08:29,210
+Actually turns out
+to be relevant to
+
+1271
+01:08:29,210 --> 01:08:32,880
+your homework as well.
+
+1272
+01:08:32,880 --> 01:08:37,770
+So on your homework, so lab
+one will be- it's posted I
+
+1273
+01:08:37,770 --> 01:08:40,740
+gather, right?
+
+1274
+01:08:40,740 --> 01:08:43,250
+It'll be posted shortly.
+
+1275
+01:08:43,250 --> 01:08:47,115
+We have you trying to take
+advantage of some of these bit
+
+1276
+01:08:47,115 --> 01:08:54,220
+tricks in a couple of warm
+up exercises and then a
+
+1277
+01:08:54,220 --> 01:08:56,819
+backtracking search algorithm.
+
+1278
+01:08:56,819 --> 01:09:00,680
+And so I think you'll find
+it's a lot of fun.
+
+1279
+01:09:00,680 --> 01:09:04,380
+You'll learn a lot about all the
+kinds of tricks you can do
+
+1280
+01:09:04,380 --> 01:09:08,380
+to make stuff go fast by using
+register operations locally,
+
+1281
+01:09:08,380 --> 01:09:10,775
+and using good representations
+for your storage.
+
+1282
+01:09:10,775 --> 01:09:13,430
+
+1283
+01:09:13,430 --> 01:09:14,880
+Yes, also, announcement.
+
+1284
+01:09:14,880 --> 01:09:24,819
+Tonight, at 7 o'clock, in 32,
+144, there is a primer on c.
+
+1285
+01:09:24,819 --> 01:09:27,470
+So if you want to brush up on
+your c or if you want to learn
+
+1286
+01:09:27,470 --> 01:09:32,210
+c, this is a good time to go.
+
+1287
+01:09:32,210 --> 01:09:41,750
+There's a lot of good nuggets
+of wisdom coming out for c.
+
+1288
+01:09:41,750 --> 01:09:42,750
+OK, thanks very much.
+
+1289
+01:09:42,750 --> 01:09:44,440
+See you Thursday.
+
+1290
+01:09:44,440 --> 01:09:46,048

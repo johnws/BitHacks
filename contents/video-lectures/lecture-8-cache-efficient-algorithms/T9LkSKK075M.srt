@@ -1,0 +1,6233 @@
+1
+00:00:00,000 --> 00:00:00,120
+
+2
+00:00:00,120 --> 00:00:02,500
+The following content is
+provided under a Creative
+
+3
+00:00:02,500 --> 00:00:03,910
+Commons license.
+
+4
+00:00:03,910 --> 00:00:06,950
+Your support will help MIT
+OpenCourseWare continue to
+
+5
+00:00:06,950 --> 00:00:10,600
+offer high quality educational
+resources for free.
+
+6
+00:00:10,600 --> 00:00:13,500
+To make a donation or view
+additional materials from
+
+7
+00:00:13,500 --> 00:00:17,430
+hundreds of MIT courses, visit
+MIT OpenCourseWare at
+
+8
+00:00:17,430 --> 00:00:18,680
+ocw.mit.edu.
+
+9
+00:00:18,680 --> 00:00:21,764
+
+10
+00:00:21,764 --> 00:00:24,590
+PROFESSOR: Good, we're going
+to take a detour today into
+
+11
+00:00:24,590 --> 00:00:26,657
+the realm of algorithms.
+
+12
+00:00:26,657 --> 00:00:30,860
+
+13
+00:00:30,860 --> 00:00:34,570
+So when you're trying to make
+code go fast, of course,
+
+14
+00:00:34,570 --> 00:00:36,470
+there's no holds barred.
+
+15
+00:00:36,470 --> 00:00:38,820
+You can use whatever you
+need to in order
+
+16
+00:00:38,820 --> 00:00:40,290
+to make it go fast.
+
+17
+00:00:40,290 --> 00:00:42,900
+Today we're going to talk
+a little bit in a more
+
+18
+00:00:42,900 --> 00:00:47,870
+principled way about the
+memory hierarchy.
+
+19
+00:00:47,870 --> 00:00:50,850
+And to do that we're going to
+introduce what we call the
+
+20
+00:00:50,850 --> 00:00:54,290
+ideal-cache model.
+
+21
+00:00:54,290 --> 00:01:01,880
+So as you know most caches are
+hacked together to try to
+
+22
+00:01:01,880 --> 00:01:04,660
+provide something that will
+cache well while still making
+
+23
+00:01:04,660 --> 00:01:08,530
+it easy to build and
+fast to build.
+
+24
+00:01:08,530 --> 00:01:13,850
+The ideal-cache model
+is a pretty nice
+
+25
+00:01:13,850 --> 00:01:16,720
+beast if we had them.
+
+26
+00:01:16,720 --> 00:01:19,760
+It's got a two-level
+hierarchy.
+
+27
+00:01:19,760 --> 00:01:23,810
+It's got a cache that has m
+bytes that are organized in to
+
+28
+00:01:23,810 --> 00:01:26,430
+b byte cache-lines.
+
+29
+00:01:26,430 --> 00:01:30,020
+So each block is b bytes.
+
+30
+00:01:30,020 --> 00:01:31,980
+And it's fully associative.
+
+31
+00:01:31,980 --> 00:01:34,840
+So you recall, that means
+that any line can
+
+32
+00:01:34,840 --> 00:01:37,720
+go anywhere in cache.
+
+33
+00:01:37,720 --> 00:01:40,900
+And probably the most impressive
+aspect of an
+
+34
+00:01:40,900 --> 00:01:44,950
+ideal-cache is that
+it has an optimal
+
+35
+00:01:44,950 --> 00:01:48,590
+omniscient replacement algorithm.
+
+36
+00:01:48,590 --> 00:01:52,920
+So what it does, is it figures
+out when it needs to kick
+
+37
+00:01:52,920 --> 00:01:56,110
+something out of cache, it says,
+what is the absolutely
+
+38
+00:01:56,110 --> 00:02:01,080
+best thing you could possibly
+kick out of cache.
+
+39
+00:02:01,080 --> 00:02:03,310
+And it does that one.
+
+40
+00:02:03,310 --> 00:02:05,400
+Looking into the future
+if need be.
+
+41
+00:02:05,400 --> 00:02:07,230
+It says, oh is this going
+to be accessed
+
+42
+00:02:07,230 --> 00:02:08,210
+a lot in the future?
+
+43
+00:02:08,210 --> 00:02:09,800
+I think I'll keep this one.
+
+44
+00:02:09,800 --> 00:02:10,810
+Let's throw out this one.
+
+45
+00:02:10,810 --> 00:02:12,920
+I know it's never going
+to be used again.
+
+46
+00:02:12,920 --> 00:02:18,090
+So it has that omniscient
+character to it.
+
+47
+00:02:18,090 --> 00:02:20,790
+
+48
+00:02:20,790 --> 00:02:24,120
+The performance measures we're
+going to look at in this
+
+49
+00:02:24,120 --> 00:02:28,180
+model, the first one is
+what we call the work.
+
+50
+00:02:28,180 --> 00:02:31,490
+And that's just the ordinary
+serial running time if you
+
+51
+00:02:31,490 --> 00:02:37,420
+just ran the code on one
+processor and counted up
+
+52
+00:02:37,420 --> 00:02:43,980
+essentially how many processor
+instructions you would do.
+
+53
+00:02:43,980 --> 00:02:46,530
+That's essentially the work.
+
+54
+00:02:46,530 --> 00:02:50,660
+The second measure, which is
+the one that's much more
+
+55
+00:02:50,660 --> 00:02:53,150
+interesting, is cache misses.
+
+56
+00:02:53,150 --> 00:02:56,080
+So the work has to do
+with the processor.
+
+57
+00:02:56,080 --> 00:02:59,650
+The cache misses has to do with
+what moves between these
+
+58
+00:02:59,650 --> 00:03:04,470
+two levels of memory.
+
+59
+00:03:04,470 --> 00:03:08,230
+So in this case, what we're
+interested in doing is, how
+
+60
+00:03:08,230 --> 00:03:10,620
+often do I try to access
+something.
+
+61
+00:03:10,620 --> 00:03:12,050
+It's not in the cache.
+
+62
+00:03:12,050 --> 00:03:16,480
+I have to go to main memory and
+bring it back into cache.
+
+63
+00:03:16,480 --> 00:03:19,090
+And so that's what we'll be
+counting in this model.
+
+64
+00:03:19,090 --> 00:03:22,460
+
+65
+00:03:22,460 --> 00:03:30,030
+So it's reasonable to ask how
+reasonable ideal caches are.
+
+66
+00:03:30,030 --> 00:03:36,830
+In particular the assumption
+of omniscient replacement,
+
+67
+00:03:36,830 --> 00:03:39,280
+that's pretty powerful stuff.
+
+68
+00:03:39,280 --> 00:03:42,070
+Well it turns out there's a
+great lemma due to Slater and
+
+69
+00:03:42,070 --> 00:03:46,760
+Tarjan that says essentially
+the following.
+
+70
+00:03:46,760 --> 00:03:50,800
+Suppose that you have an
+algorithm that incurs q cache
+
+71
+00:03:50,800 --> 00:03:56,220
+misses on an ideal
+cache of size n.
+
+72
+00:03:56,220 --> 00:03:58,190
+So you ran the algorithm on
+your machine, you had a
+
+73
+00:03:58,190 --> 00:04:00,870
+cache of size n.
+
+74
+00:04:00,870 --> 00:04:05,050
+Then, if instead of having an
+ideal cache, you have a fully
+
+75
+00:04:05,050 --> 00:04:09,970
+associative cache of size two
+m and use the least recently
+
+76
+00:04:09,970 --> 00:04:12,180
+used replacement policy.
+
+77
+00:04:12,180 --> 00:04:14,350
+So you always, whenever you're
+kicking something out of
+
+78
+00:04:14,350 --> 00:04:17,190
+cache, you kick out the thing
+that has been touched the
+
+79
+00:04:17,190 --> 00:04:18,729
+longest ago in the past.
+
+80
+00:04:18,729 --> 00:04:22,110
+
+81
+00:04:22,110 --> 00:04:28,290
+Then it incurs at most
+2Q cache misses.
+
+82
+00:04:28,290 --> 00:04:33,940
+So what that says is that LRU is
+to with it constant factors
+
+83
+00:04:33,940 --> 00:04:37,550
+essentially the same
+as optimal.
+
+84
+00:04:37,550 --> 00:04:39,060
+Really quite a remarkable
+result.
+
+85
+00:04:39,060 --> 00:04:42,170
+
+86
+00:04:42,170 --> 00:04:44,800
+Who's taking 6046?
+
+87
+00:04:44,800 --> 00:04:46,630
+You've just seen this, right?
+
+88
+00:04:46,630 --> 00:04:47,970
+Yeah, OK.
+
+89
+00:04:47,970 --> 00:04:51,810
+Just seen this result in 6046.
+
+90
+00:04:51,810 --> 00:04:55,830
+See, I do talk to my colleagues
+occasionally.
+
+91
+00:04:55,830 --> 00:04:59,720
+So then something about
+how this is proved.
+
+92
+00:04:59,720 --> 00:05:04,240
+And what's important here is
+that really it just says, OK,
+
+93
+00:05:04,240 --> 00:05:07,550
+Yeah you could dither on the
+constants, but basically
+
+94
+00:05:07,550 --> 00:05:12,440
+whether you choose LRU or choose
+ideal cache with the
+
+95
+00:05:12,440 --> 00:05:15,960
+omniscient replacement,
+asymptotically you're not
+
+96
+00:05:15,960 --> 00:05:19,110
+going to be off at all.
+
+97
+00:05:19,110 --> 00:05:21,900
+So for most asymptotic analyses,
+you can assume
+
+98
+00:05:21,900 --> 00:05:25,550
+optimal or LRU replacement
+as convenient.
+
+99
+00:05:25,550 --> 00:05:29,740
+And the typical way that you
+do convenience is if you're
+
+100
+00:05:29,740 --> 00:05:32,810
+looking at upper bounds.
+
+101
+00:05:32,810 --> 00:05:35,290
+So you're trying to show that
+a particular algorithm is
+
+102
+00:05:35,290 --> 00:05:40,970
+good, then what you do is you
+assume optimal replacement.
+
+103
+00:05:40,970 --> 00:05:45,070
+If you're trying to show that
+some algorithm is bad, then
+
+104
+00:05:45,070 --> 00:05:49,510
+what you do is assume that it's
+LRU to get a lower bound.
+
+105
+00:05:49,510 --> 00:05:51,930
+Because then you can reason
+more easily about what's
+
+106
+00:05:51,930 --> 00:05:53,450
+actually in memory.
+
+107
+00:05:53,450 --> 00:05:55,210
+Because you just say, oh we'll
+just keep the least
+
+108
+00:05:55,210 --> 00:05:57,960
+recently used one.
+
+109
+00:05:57,960 --> 00:06:03,230
+So you tend to use the two for
+upper bounds and lower bounds.
+
+110
+00:06:03,230 --> 00:06:06,610
+Now, the way this relates
+to software
+
+111
+00:06:06,610 --> 00:06:10,280
+engineering is as follows.
+
+112
+00:06:10,280 --> 00:06:14,530
+If you're developing a really
+fast algorithm, it's going to
+
+113
+00:06:14,530 --> 00:06:18,800
+start from a theoretically
+sound algorithm.
+
+114
+00:06:18,800 --> 00:06:22,790
+And from that then you have
+to engineer for detailed
+
+115
+00:06:22,790 --> 00:06:24,460
+performance.
+
+116
+00:06:24,460 --> 00:06:28,790
+So you have to take into account
+things like real
+
+117
+00:06:28,790 --> 00:06:31,630
+caches are not fully
+associative.
+
+118
+00:06:31,630 --> 00:06:34,240
+That loads and stores, for
+example, have different cost
+
+119
+00:06:34,240 --> 00:06:36,670
+with respect to bandwidth
+and latency.
+
+120
+00:06:36,670 --> 00:06:39,460
+So whether you miss some a
+load or miss on a store,
+
+121
+00:06:39,460 --> 00:06:42,200
+there's a different impact.
+
+122
+00:06:42,200 --> 00:06:44,800
+But these are all the tuning.
+
+123
+00:06:44,800 --> 00:06:47,570
+And as you know, those constant
+factors can sometimes
+
+124
+00:06:47,570 --> 00:06:54,550
+add up to dramatic numbers,
+orders of magnitude.
+
+125
+00:06:54,550 --> 00:06:56,560
+And so it's important to do
+that software engineering.
+
+126
+00:06:56,560 --> 00:06:59,800
+But starting from a good
+theoretical basis means that
+
+127
+00:06:59,800 --> 00:07:03,600
+you actually have an algorithm
+that is going to work well
+
+128
+00:07:03,600 --> 00:07:08,380
+across a large variety
+of real situations.
+
+129
+00:07:08,380 --> 00:07:11,370
+
+130
+00:07:11,370 --> 00:07:14,500
+Now, there's one other
+assumption we tend to make
+
+131
+00:07:14,500 --> 00:07:18,540
+when we're dealing with ideal
+caches, and that's called the
+
+132
+00:07:18,540 --> 00:07:22,080
+tall-cache assumption.
+
+133
+00:07:22,080 --> 00:07:27,100
+So what the tall-cache
+assumption says, is that I you
+
+134
+00:07:27,100 --> 00:07:33,230
+have at least as many lines of
+cache, essentially, in your
+
+135
+00:07:33,230 --> 00:07:36,470
+cache, as you have bytes
+in the line.
+
+136
+00:07:36,470 --> 00:07:39,130
+
+137
+00:07:39,130 --> 00:07:40,620
+So it says the cache is tall.
+
+138
+00:07:40,620 --> 00:07:45,310
+In other words, this dimension
+here is bigger than this
+
+139
+00:07:45,310 --> 00:07:48,040
+dimension here.
+
+140
+00:07:48,040 --> 00:07:51,070
+And in particular, you want that
+to be true for where we
+
+141
+00:07:51,070 --> 00:07:55,000
+have some constant here of slop
+that we can throw in.
+
+142
+00:07:55,000 --> 00:07:56,168
+Yes, question.
+
+143
+00:07:56,168 --> 00:07:58,976
+AUDIENCE: Does that
+[INAUDIBLE]
+
+144
+00:07:58,976 --> 00:08:02,090
+associatively make the
+cache shorter here.
+
+145
+00:08:02,090 --> 00:08:05,090
+PROFESSOR: Yes, so this
+is basically assuming
+
+146
+00:08:05,090 --> 00:08:07,310
+everything is ideal.
+
+147
+00:08:07,310 --> 00:08:08,420
+We're going to go back.
+
+148
+00:08:08,420 --> 00:08:10,880
+When you engineer things, you
+have to deal with the fact
+
+149
+00:08:10,880 --> 00:08:12,330
+that things aren't ideal.
+
+150
+00:08:12,330 --> 00:08:16,090
+But usually that's just a little
+bit of a tweak on the
+
+151
+00:08:16,090 --> 00:08:17,570
+actual ideal algorithm.
+
+152
+00:08:17,570 --> 00:08:21,640
+And for many programs, the
+ideal algorithm you don't
+
+153
+00:08:21,640 --> 00:08:25,170
+actually have to tweak
+at all to get a
+
+154
+00:08:25,170 --> 00:08:28,470
+good practical algorithm.
+
+155
+00:08:28,470 --> 00:08:30,555
+So here is just saying the
+cache should be tall.
+
+156
+00:08:30,555 --> 00:08:33,080
+
+157
+00:08:33,080 --> 00:08:38,710
+Now, just as an example, if we
+look at the machines that
+
+158
+00:08:38,710 --> 00:08:42,165
+we're using, the cache-line
+length is 64 bytes.
+
+159
+00:08:42,165 --> 00:08:46,420
+The L1 cache size
+is 32 kilobytes.
+
+160
+00:08:46,420 --> 00:08:52,260
+And of course, for L1 it's is
+32 kilobytes and for L2 and
+
+161
+00:08:52,260 --> 00:08:54,530
+L3, it's even bigger.
+
+162
+00:08:54,530 --> 00:08:55,710
+It's even taller.
+
+163
+00:08:55,710 --> 00:09:00,200
+Because they also
+have 64k line.
+
+164
+00:09:00,200 --> 00:09:03,730
+So this is a fairly reasonable
+assumption to make, that you
+
+165
+00:09:03,730 --> 00:09:10,040
+have more lines in your cache
+then essentially the length,
+
+166
+00:09:10,040 --> 00:09:14,780
+the number of items you can
+put on a cache line.
+
+167
+00:09:14,780 --> 00:09:18,310
+Now why is this an important
+assumption?
+
+168
+00:09:18,310 --> 00:09:21,030
+So what's wrong with
+short caches?
+
+169
+00:09:21,030 --> 00:09:25,330
+So we're going to look at,
+surprise, surprise, matrix
+
+170
+00:09:25,330 --> 00:09:26,580
+multiplication.
+
+171
+00:09:26,580 --> 00:09:28,950
+
+172
+00:09:28,950 --> 00:09:33,070
+Which, by the end of this class
+you will learn more
+
+173
+00:09:33,070 --> 00:09:34,890
+algorithms than matrix
+multiplication.
+
+174
+00:09:34,890 --> 00:09:37,940
+But it is a good one to
+illustrate things.
+
+175
+00:09:37,940 --> 00:09:40,190
+So the idea here is, suppose
+that you have an
+
+176
+00:09:40,190 --> 00:09:43,910
+n by n matrix here.
+
+177
+00:09:43,910 --> 00:09:49,220
+And you don't have this
+tall-cache assumption.
+
+178
+00:09:49,220 --> 00:09:51,890
+So where your cache is short.
+
+179
+00:09:51,890 --> 00:09:55,560
+You have a lot of bytes in a
+line, but very few lines.
+
+180
+00:09:55,560 --> 00:10:02,090
+Then even if the size of
+your matrix fits, in
+
+181
+00:10:02,090 --> 00:10:04,460
+principle, in the cache.
+
+182
+00:10:04,460 --> 00:10:08,010
+In other words, n squared is
+less than m by more than a
+
+183
+00:10:08,010 --> 00:10:09,270
+constant amount.
+
+184
+00:10:09,270 --> 00:10:11,620
+So you'd say, Oh gee, that
+ought to fit in.
+
+185
+00:10:11,620 --> 00:10:15,750
+If you have a short cache it
+doesn't necessarily fit in
+
+186
+00:10:15,750 --> 00:10:20,870
+because your length n here is
+going to be shorter than the
+
+187
+00:10:20,870 --> 00:10:23,220
+number of bytes on a line.
+
+188
+00:10:23,220 --> 00:10:26,200
+However, if you have a tall
+cache, it's always the case
+
+189
+00:10:26,200 --> 00:10:37,190
+that if the matrix size is
+smaller than the cache size by
+
+190
+00:10:37,190 --> 00:10:41,830
+a certain amount, then the
+matrix will fit in the cache.
+
+191
+00:10:41,830 --> 00:10:42,665
+OK, question?
+
+192
+00:10:42,665 --> 00:10:45,296
+AUDIENCE: Why wouldn't
+you fit more than one
+
+193
+00:10:45,296 --> 00:10:47,036
+row per cache line?
+
+194
+00:10:47,036 --> 00:10:49,750
+PROFESSOR: Well the issue is you
+may not have control over
+
+195
+00:10:49,750 --> 00:10:51,770
+the way this is laid out.
+
+196
+00:10:51,770 --> 00:10:55,490
+So, for example, if this is
+row-major order, and this is a
+
+197
+00:10:55,490 --> 00:11:00,280
+submatrix of a much bigger
+matrix, then you may not have
+
+198
+00:11:00,280 --> 00:11:03,020
+the freedom to be using these.
+
+199
+00:11:03,020 --> 00:11:06,540
+But if you have the tall-cache
+assumption, then any section
+
+200
+00:11:06,540 --> 00:11:08,130
+you pull out is going to fit.
+
+201
+00:11:08,130 --> 00:11:13,470
+As long as the data fits
+mathematically in the cache,
+
+202
+00:11:13,470 --> 00:11:15,620
+it will fit practically in
+the cache if you have the
+
+203
+00:11:15,620 --> 00:11:18,390
+tall-cache assumption.
+
+204
+00:11:18,390 --> 00:11:23,440
+Whereas if it's short, you
+basically end up with the
+
+205
+00:11:23,440 --> 00:11:27,060
+cache lines being long and you
+not having any flexibility as
+
+206
+00:11:27,060 --> 00:11:28,530
+to where the data goes.
+
+207
+00:11:28,530 --> 00:11:30,600
+So this is sort of a--
+
+208
+00:11:30,600 --> 00:11:33,270
+So any questions about
+that before we get
+
+209
+00:11:33,270 --> 00:11:36,310
+into the use of this?
+
+210
+00:11:36,310 --> 00:11:38,480
+We're going to see the use of
+this and where it comes up.
+
+211
+00:11:38,480 --> 00:11:42,430
+So one of the things is that,
+if it does fit in, then it
+
+212
+00:11:42,430 --> 00:11:49,470
+takes, at most, size of the
+matrix divided by the cache
+
+213
+00:11:49,470 --> 00:11:53,060
+line size misses
+to load it in.
+
+214
+00:11:53,060 --> 00:11:57,090
+So this is linear time
+in the cache world.
+
+215
+00:11:57,090 --> 00:12:00,740
+Linear time says, you should
+only take one cache fault for
+
+216
+00:12:00,740 --> 00:12:03,240
+every line of cache.
+
+217
+00:12:03,240 --> 00:12:06,040
+And so that's what you'll have
+here if you have a tall cache.
+
+218
+00:12:06,040 --> 00:12:09,870
+You'll have n squared over b
+cache misses to load in n
+
+219
+00:12:09,870 --> 00:12:11,390
+square data.
+
+220
+00:12:11,390 --> 00:12:12,870
+And that's good.
+
+221
+00:12:12,870 --> 00:12:16,096
+
+222
+00:12:16,096 --> 00:12:17,550
+OK, good.
+
+223
+00:12:17,550 --> 00:12:21,220
+So let's take on the problem
+of multiplying matrices.
+
+224
+00:12:21,220 --> 00:12:23,610
+We're going to look at square
+matrices because they're
+
+225
+00:12:23,610 --> 00:12:25,900
+easier to think about than
+rectangular ones.
+
+226
+00:12:25,900 --> 00:12:28,970
+But almost everything I say
+today will relate to
+
+227
+00:12:28,970 --> 00:12:30,860
+rectangular matrices as well.
+
+228
+00:12:30,860 --> 00:12:33,380
+
+229
+00:12:33,380 --> 00:12:35,660
+And it we'll generalize
+beyond matrices as
+
+230
+00:12:35,660 --> 00:12:38,450
+we'll see next time.
+
+231
+00:12:38,450 --> 00:12:40,900
+So here's a typical code for
+multiplying matrices.
+
+232
+00:12:40,900 --> 00:12:43,670
+It's not the most efficient code
+in the world, but it's
+
+233
+00:12:43,670 --> 00:12:48,180
+good enough to illustrate
+what I want to show you.
+
+234
+00:12:48,180 --> 00:12:54,270
+So the first thing is, what is
+the work of this algorithm?
+
+235
+00:12:54,270 --> 00:12:57,460
+
+236
+00:12:57,460 --> 00:13:01,240
+This is, by the way, the
+softball question.
+
+237
+00:13:01,240 --> 00:13:02,680
+What's the work?
+
+238
+00:13:02,680 --> 00:13:06,080
+So the work, remember, is just
+if you're analyzing it just
+
+239
+00:13:06,080 --> 00:13:10,284
+like processor forget about
+caches and so forth.
+
+240
+00:13:10,284 --> 00:13:11,526
+AUDIENCE: n cubed.
+
+241
+00:13:11,526 --> 00:13:14,110
+PROFESSOR: n cubed, right.
+
+242
+00:13:14,110 --> 00:13:17,910
+Because there's a triply nested
+loop going up to n and
+
+243
+00:13:17,910 --> 00:13:19,470
+you're doing constant
+work in the middle.
+
+244
+00:13:19,470 --> 00:13:20,720
+So it's n times n times 1.
+
+245
+00:13:20,720 --> 00:13:23,080
+
+246
+00:13:23,080 --> 00:13:24,920
+n cubed work.
+
+247
+00:13:24,920 --> 00:13:26,620
+That was easy.
+
+248
+00:13:26,620 --> 00:13:29,460
+Now let's analyze caches.
+
+249
+00:13:29,460 --> 00:13:30,800
+So we're going to look
+at row major.
+
+250
+00:13:30,800 --> 00:13:34,080
+I'm only going to illustrate the
+cache lines on this side
+
+251
+00:13:34,080 --> 00:13:37,310
+because B is where all
+the action is.
+
+252
+00:13:37,310 --> 00:13:41,270
+So we're going to analyze two
+cases when the matrix doesn't
+
+253
+00:13:41,270 --> 00:13:41,990
+fit in the cache.
+
+254
+00:13:41,990 --> 00:13:45,140
+If the matrix fits in the cache,
+then there's nothing to
+
+255
+00:13:45,140 --> 00:13:48,160
+analyze, at some level.
+
+256
+00:13:48,160 --> 00:13:50,280
+So we're going to look at the
+cases where the matrix doesn't
+
+257
+00:13:50,280 --> 00:13:51,440
+fit in the cache.
+
+258
+00:13:51,440 --> 00:13:54,320
+And the first one is going to be
+when the side of the matrix
+
+259
+00:13:54,320 --> 00:13:56,585
+is bigger than m over b.
+
+260
+00:13:56,585 --> 00:13:59,940
+So remember, m over b is the
+height of our cache, the
+
+261
+00:13:59,940 --> 00:14:01,430
+number of lines in our cache.
+
+262
+00:14:01,430 --> 00:14:08,320
+
+263
+00:14:08,320 --> 00:14:13,480
+So let's assume for this, now
+I have a choice of assuming
+
+264
+00:14:13,480 --> 00:14:16,760
+optimal omniscient replacement
+or assuming LRU.
+
+265
+00:14:16,760 --> 00:14:21,800
+Since I want to show this is
+bad, I'm going to assume LRU.
+
+266
+00:14:21,800 --> 00:14:25,010
+Could somebody please close
+the back door there?
+
+267
+00:14:25,010 --> 00:14:29,300
+Because it's we're getting some
+noise in from out there.
+
+268
+00:14:29,300 --> 00:14:31,350
+Thank you.
+
+269
+00:14:31,350 --> 00:14:32,530
+So let's assume LRU.
+
+270
+00:14:32,530 --> 00:14:37,280
+So what happens in the code is
+basically I go across a row of
+
+271
+00:14:37,280 --> 00:14:43,650
+A, while I go down a column of
+B. And now if I'm using LRU,
+
+272
+00:14:43,650 --> 00:14:44,830
+what's happening?
+
+273
+00:14:44,830 --> 00:14:47,600
+I read in this cache
+block and this one,
+
+274
+00:14:47,600 --> 00:14:49,080
+then this one et cetera.
+
+275
+00:14:49,080 --> 00:14:53,800
+And if n is bigger than M/B and
+I'm using least recently
+
+276
+00:14:53,800 --> 00:14:56,470
+used, by the time I get down
+to the bottom here, what's
+
+277
+00:14:56,470 --> 00:15:00,030
+happened the first cache line?
+
+278
+00:15:00,030 --> 00:15:02,300
+First cache block?
+
+279
+00:15:02,300 --> 00:15:04,960
+It's out of there.
+
+280
+00:15:04,960 --> 00:15:06,330
+It's out of there
+if I used LRU.
+
+281
+00:15:06,330 --> 00:15:09,490
+
+282
+00:15:09,490 --> 00:15:12,270
+So therefore, what happens
+is I took a miss on
+
+283
+00:15:12,270 --> 00:15:13,860
+every one of those.
+
+284
+00:15:13,860 --> 00:15:16,790
+And then when I go to the second
+one, I take a miss on
+
+285
+00:15:16,790 --> 00:15:18,040
+every one again.
+
+286
+00:15:18,040 --> 00:15:21,070
+
+287
+00:15:21,070 --> 00:15:26,500
+And so as I keep going through,
+every access to B
+
+288
+00:15:26,500 --> 00:15:30,250
+causes a miss throughout the
+whole accessing of B. Now go
+
+289
+00:15:30,250 --> 00:15:33,530
+on to the second row A and I
+had the same thing repeats.
+
+290
+00:15:33,530 --> 00:15:36,280
+
+291
+00:15:36,280 --> 00:15:44,730
+So therefore, the number of
+cache misses is order n cubed
+
+292
+00:15:44,730 --> 00:15:50,690
+since we miss on matrix
+B on every access.
+
+293
+00:15:50,690 --> 00:15:51,868
+OK, question.
+
+294
+00:15:51,868 --> 00:15:54,856
+AUDIENCE: I know that
+you said it's e.
+
+295
+00:15:54,856 --> 00:15:56,350
+Does B push out due to conflict
+
+296
+00:15:56,350 --> 00:15:58,342
+misses or capacity misses?
+
+297
+00:15:58,342 --> 00:16:03,930
+PROFESSOR: So in this case
+they're capacity misses that
+
+298
+00:16:03,930 --> 00:16:04,820
+we're talking about here.
+
+299
+00:16:04,820 --> 00:16:07,940
+So there's no conflict misses in
+a fully associative cache.
+
+300
+00:16:07,940 --> 00:16:10,490
+
+301
+00:16:10,490 --> 00:16:13,070
+Conflict misses occurs because
+of direct mapping.
+
+302
+00:16:13,070 --> 00:16:15,890
+So there's no conflict misses
+in what I'm going to be
+
+303
+00:16:15,890 --> 00:16:17,030
+talking about today.
+
+304
+00:16:17,030 --> 00:16:20,790
+That is an extra concern that
+you have for real caches, not
+
+305
+00:16:20,790 --> 00:16:23,060
+a concern when you have a
+fully associative cache.
+
+306
+00:16:23,060 --> 00:16:25,425
+AUDIENCE: [INAUDIBLE]
+
+307
+00:16:25,425 --> 00:16:28,736
+n needs to be bigger than B?
+
+308
+00:16:28,736 --> 00:16:34,310
+PROFESSOR: So the number of
+lines to fit in my cache is m
+
+309
+00:16:34,310 --> 00:16:36,720
+over b, right?
+
+310
+00:16:36,720 --> 00:16:39,490
+AUDIENCE: So can't you put
+multiple units of data--
+
+311
+00:16:39,490 --> 00:16:41,690
+PROFESSOR: Well there are
+multiple units of data.
+
+312
+00:16:41,690 --> 00:16:44,830
+But notice this is row major,
+what's stored here
+
+313
+00:16:44,830 --> 00:16:49,060
+is B11, B12, B13.
+
+314
+00:16:49,060 --> 00:16:50,110
+That's stored here.
+
+315
+00:16:50,110 --> 00:16:52,600
+The way I'm going through the
+access, I'm going down the
+
+316
+00:16:52,600 --> 00:16:58,570
+columns of B. So by the time
+to get up to the top again,
+
+317
+00:16:58,570 --> 00:17:01,320
+that cache block is
+no longer there.
+
+318
+00:17:01,320 --> 00:17:06,800
+And so when I access B12,
+assuming indexing from one or
+
+319
+00:17:06,800 --> 00:17:12,220
+whatever, this block is
+no longer in cache.
+
+320
+00:17:12,220 --> 00:17:15,480
+Because LRU would say, somewhere
+along here I hit the
+
+321
+00:17:15,480 --> 00:17:19,109
+limit of my size of cache,
+let's say around here.
+
+322
+00:17:19,109 --> 00:17:21,609
+Then when this one goes
+in, that one goes out.
+
+323
+00:17:21,609 --> 00:17:24,349
+When the next one goes in, the
+next one goes out et cetera
+
+324
+00:17:24,349 --> 00:17:27,660
+using the least recently
+used replacement.
+
+325
+00:17:27,660 --> 00:17:28,329
+So my--
+
+326
+00:17:28,329 --> 00:17:29,520
+AUDIENCE: Spatial locality.
+
+327
+00:17:29,520 --> 00:17:30,930
+PROFESSOR: I'm sorry?
+
+328
+00:17:30,930 --> 00:17:33,300
+You don't have any spatial
+locality here.
+
+329
+00:17:33,300 --> 00:17:37,710
+AUDIENCE: I'm just wondering
+why they can't hold units.
+
+330
+00:17:37,710 --> 00:17:41,140
+I guess this is the question,
+why can't they hold multiple
+
+331
+00:17:41,140 --> 00:17:42,610
+addresses per cache line.
+
+332
+00:17:42,610 --> 00:17:45,550
+So why is it even pushed out?
+
+333
+00:17:45,550 --> 00:17:47,020
+It's being pushed out
+[UNINTELLIGIBLE] one per cache
+
+334
+00:17:47,020 --> 00:17:48,010
+line, right?
+
+335
+00:17:48,010 --> 00:17:51,370
+PROFESSOR: No, so it's getting
+pushed out because the cache
+
+336
+00:17:51,370 --> 00:17:56,820
+can hold M/B blocks, right?
+
+337
+00:17:56,820 --> 00:18:00,730
+So once it's accessed m over b
+blocks, if I want to access
+
+338
+00:18:00,730 --> 00:18:03,820
+anything else, something
+has to go out.
+
+339
+00:18:03,820 --> 00:18:05,480
+It's a capacity issue.
+
+340
+00:18:05,480 --> 00:18:08,550
+I access m over b blocks,
+something has to go out.
+
+341
+00:18:08,550 --> 00:18:13,790
+LRU says, the latest thing that
+I accessed, well that was
+
+342
+00:18:13,790 --> 00:18:16,610
+the first one, gets
+knocked out.
+
+343
+00:18:16,610 --> 00:18:20,030
+So what happens is every
+one causes a miss.
+
+344
+00:18:20,030 --> 00:18:24,900
+Even though I may access that
+very nearby in the future, it
+
+345
+00:18:24,900 --> 00:18:27,040
+doesn't take advantage
+of that.
+
+346
+00:18:27,040 --> 00:18:29,342
+Because LRU says knock it out.
+
+347
+00:18:29,342 --> 00:18:31,552
+AUDIENCE: [INAUDIBLE]
+
+348
+00:18:31,552 --> 00:18:34,880
+PROFESSOR: Is it row major
+that's the confusion?
+
+349
+00:18:34,880 --> 00:18:37,300
+This is the way we've been
+dealing with are matrices.
+
+350
+00:18:37,300 --> 00:18:41,490
+So in row major, there's
+a good--
+
+351
+00:18:41,490 --> 00:18:43,180
+that's nice, there's
+no chalk here.
+
+352
+00:18:43,180 --> 00:18:47,320
+
+353
+00:18:47,320 --> 00:18:48,730
+Oh, there's a big one
+there, great.
+
+354
+00:18:48,730 --> 00:18:53,520
+
+355
+00:18:53,520 --> 00:19:00,600
+Yeah, so here's B. So the order
+that B is stored is like
+
+356
+00:19:00,600 --> 00:19:04,290
+this in memory.
+
+357
+00:19:04,290 --> 00:19:08,790
+So basically we're storing these
+elements in this order.
+
+358
+00:19:08,790 --> 00:19:11,900
+So it's a linear block
+of memory, right?
+
+359
+00:19:11,900 --> 00:19:16,250
+And it's being stored row
+by row as we go through.
+
+360
+00:19:16,250 --> 00:19:20,030
+So actually if I do it like
+this, let me do this
+
+361
+00:19:20,030 --> 00:19:22,950
+a little bit more.
+
+362
+00:19:22,950 --> 00:19:28,320
+So the idea is that the first
+element is going to be here,
+
+363
+00:19:28,320 --> 00:19:31,680
+and then we get up to n minus 1,
+and then we get to n minus
+
+364
+00:19:31,680 --> 00:19:33,270
+2 is stored here.
+
+365
+00:19:33,270 --> 00:19:35,956
+
+366
+00:19:35,956 --> 00:19:42,150
+n plus 1, n plus
+2, 2n minus 1.
+
+367
+00:19:42,150 --> 00:19:44,270
+So that's the order that
+they're stored
+
+368
+00:19:44,270 --> 00:19:45,830
+in linear and memory.
+
+369
+00:19:45,830 --> 00:19:49,750
+Now these guys will all be on
+the same cache line if it's in
+
+370
+00:19:49,750 --> 00:19:52,020
+row-major storage.
+
+371
+00:19:52,020 --> 00:19:55,680
+So when I'm accessing B, I'm
+going and I'm accessing zero,
+
+372
+00:19:55,680 --> 00:20:00,390
+then I'm accessing the
+thing at location n.
+
+373
+00:20:00,390 --> 00:20:01,820
+And I'm going down like this.
+
+374
+00:20:01,820 --> 00:20:07,180
+At some point here I reach
+the limit of my cache.
+
+375
+00:20:07,180 --> 00:20:12,050
+This is M/B. Notice it's
+a different B--
+
+376
+00:20:12,050 --> 00:20:13,840
+script B verses--
+
+377
+00:20:13,840 --> 00:20:15,990
+so when I get to m over b.
+
+378
+00:20:15,990 --> 00:20:17,880
+Now all these things
+are sitting in
+
+379
+00:20:17,880 --> 00:20:20,590
+cache, that's great.
+
+380
+00:20:20,590 --> 00:20:25,770
+However, now I go to one more,
+and it says OK, all those
+
+381
+00:20:25,770 --> 00:20:29,440
+things are sitting in cache,
+which one do I kick out?
+
+382
+00:20:29,440 --> 00:20:31,970
+And the answer is the least
+recently used one.
+
+383
+00:20:31,970 --> 00:20:33,380
+That's this guy goes out.
+
+384
+00:20:33,380 --> 00:20:35,595
+AUDIENCE: Do you only use one
+element per cache link?
+
+385
+00:20:35,595 --> 00:20:38,260
+PROFESSOR: And I've only used
+one element from each cache
+
+386
+00:20:38,260 --> 00:20:39,680
+line at this point.
+
+387
+00:20:39,680 --> 00:20:43,330
+Then I go to the next one and it
+knocks out the second one.
+
+388
+00:20:43,330 --> 00:20:46,270
+By the time I get to the bottom
+and then I go up to the
+
+389
+00:20:46,270 --> 00:20:49,930
+top to access 1 here,
+it's not in cache.
+
+390
+00:20:49,930 --> 00:20:52,250
+And so it repeats the same
+process, missing
+
+391
+00:20:52,250 --> 00:20:53,400
+every single time.
+
+392
+00:20:53,400 --> 00:20:54,100
+We have a question.
+
+393
+00:20:54,100 --> 00:21:00,320
+AUDIENCE: Yeah,so my question
+is why does the cache know
+
+394
+00:21:00,320 --> 00:21:01,370
+where each row is?
+
+395
+00:21:01,370 --> 00:21:05,798
+To us, we draw the matrix,
+but the computer
+
+396
+00:21:05,798 --> 00:21:07,274
+doesn't know it's a matrix.
+
+397
+00:21:07,274 --> 00:21:09,250
+To the computer, its a linear
+array of numbers.
+
+398
+00:21:09,250 --> 00:21:10,370
+PROFESSOR: That's correct.
+
+399
+00:21:10,370 --> 00:21:16,016
+AUDIENCE: So why would it load
+the first couple elements in
+
+400
+00:21:16,016 --> 00:21:17,776
+the first row, and the second
+column is an extended row the
+
+401
+00:21:17,776 --> 00:21:19,026
+second time.
+
+402
+00:21:19,026 --> 00:21:21,455
+
+403
+00:21:21,455 --> 00:21:25,730
+PROFESSOR: So the cache blocks
+are determined by the locality
+
+404
+00:21:25,730 --> 00:21:27,415
+and memory.
+
+405
+00:21:27,415 --> 00:21:30,472
+AUDIENCE: So my assumption
+would be the first
+
+406
+00:21:30,472 --> 00:21:32,255
+cache line for say--
+
+407
+00:21:32,255 --> 00:21:34,330
+PROFESSOR: Let's say
+0 through 3.
+
+408
+00:21:34,330 --> 00:21:35,680
+AUDIENCE: So yeah,
+0 through 3.
+
+409
+00:21:35,680 --> 00:21:37,980
+PROFESSOR: Let's say we have
+four items on that cache line.
+
+410
+00:21:37,980 --> 00:21:39,040
+AUDIENCE: 4 to 6.
+
+411
+00:21:39,040 --> 00:21:42,664
+PROFESSOR: The next one the
+hold 4 to 7, I think.
+
+412
+00:21:42,664 --> 00:21:44,086
+AUDIENCE: 4 to 7, yeah.
+
+413
+00:21:44,086 --> 00:21:45,034
+So that is a--
+
+414
+00:21:45,034 --> 00:21:48,010
+PROFESSOR: So that would
+be the next one, right?
+
+415
+00:21:48,010 --> 00:21:48,715
+4 to 7.
+
+416
+00:21:48,715 --> 00:21:50,476
+AUDIENCE: When you
+get cache line.
+
+417
+00:21:50,476 --> 00:21:52,250
+You are not using the
+fully cache line.
+
+418
+00:21:52,250 --> 00:21:53,620
+There is no spatial locale.
+
+419
+00:21:53,620 --> 00:21:55,062
+You are using one from
+the cache line.
+
+420
+00:21:55,062 --> 00:22:00,020
+PROFESSOR: So this code
+is using this one
+
+421
+00:22:00,020 --> 00:22:00,820
+and then this one.
+
+422
+00:22:00,820 --> 00:22:01,870
+It's not using the rest.
+
+423
+00:22:01,870 --> 00:22:03,690
+So it's not very
+efficient code.
+
+424
+00:22:03,690 --> 00:22:07,946
+AUDIENCE: So the cache line
+is holding the 0 to 3
+
+425
+00:22:07,946 --> 00:22:09,874
+and the 4 to 7.
+
+426
+00:22:09,874 --> 00:22:11,320
+[INAUDIBLE]
+
+427
+00:22:11,320 --> 00:22:13,320
+n plus 2 just reading--
+
+428
+00:22:13,320 --> 00:22:14,955
+[INTERPOSING VOICES]
+
+429
+00:22:14,955 --> 00:22:15,990
+PROFESSOR: Right.
+
+430
+00:22:15,990 --> 00:22:17,340
+And those are fixed.
+
+431
+00:22:17,340 --> 00:22:21,315
+So if you just a dice up memory
+in our machine into 64
+
+432
+00:22:21,315 --> 00:22:26,050
+byte sizes, those are the things
+that come in together
+
+433
+00:22:26,050 --> 00:22:28,220
+whenever you access anything
+on that line.
+
+434
+00:22:28,220 --> 00:22:31,671
+AUDIENCE: And on this particular
+axis, you never
+
+435
+00:22:31,671 --> 00:22:34,136
+actually get the 4
+to the 7 in the--
+
+436
+00:22:34,136 --> 00:22:36,390
+PROFESSOR: Well we
+eventually do.
+
+437
+00:22:36,390 --> 00:22:38,410
+Until we get there,
+yes, that's right.
+
+438
+00:22:38,410 --> 00:22:40,130
+Until we get there.
+
+439
+00:22:40,130 --> 00:22:43,600
+Now, of course, we're also
+accessing A and C, but turns
+
+440
+00:22:43,600 --> 00:22:47,010
+out to this analysis it
+sufficient to show that we're
+
+441
+00:22:47,010 --> 00:22:54,780
+getting n cubed misses just on
+the matrix B. In order to say
+
+442
+00:22:54,780 --> 00:22:57,270
+hey, we've got a lot
+of misses here.
+
+443
+00:22:57,270 --> 00:23:00,170
+
+444
+00:23:00,170 --> 00:23:03,270
+So this was the case where
+n was bigger than
+
+445
+00:23:03,270 --> 00:23:05,290
+the size of a cache.
+
+446
+00:23:05,290 --> 00:23:10,630
+So the situation is a little
+bit different if n is large
+
+447
+00:23:10,630 --> 00:23:17,560
+but still actually less
+than m over b.
+
+448
+00:23:17,560 --> 00:23:24,410
+So in this case, we suppose it
+n squared is bigger than m.
+
+449
+00:23:24,410 --> 00:23:27,520
+So the matrix doesn't
+fit in memory.
+
+450
+00:23:27,520 --> 00:23:29,804
+So that's what this part of the
+equation is, m to the 1/2
+
+451
+00:23:29,804 --> 00:23:34,210
+less than n is the same as n
+squared is bigger than memory.
+
+452
+00:23:34,210 --> 00:23:38,290
+So we still don't fit in memory,
+but in fact it's less
+
+453
+00:23:38,290 --> 00:23:41,320
+than some constant
+times m over b.
+
+454
+00:23:41,320 --> 00:23:44,600
+And now let's look at the
+difference with what happens
+
+455
+00:23:44,600 --> 00:23:48,290
+with the caches as we go
+through the algorithm.
+
+456
+00:23:48,290 --> 00:23:49,960
+So we essentially do
+the same thing.
+
+457
+00:23:49,960 --> 00:23:52,270
+Once again, we're going
+to assume LRU.
+
+458
+00:23:52,270 --> 00:23:54,570
+And so what happens is we're
+going to go down
+
+459
+00:23:54,570 --> 00:23:56,320
+a single row there.
+
+460
+00:23:56,320 --> 00:24:08,870
+But now, notice that by the time
+I get down to the bottom,
+
+461
+00:24:08,870 --> 00:24:11,513
+basically I've accessed fewer
+than some constant times m
+
+462
+00:24:11,513 --> 00:24:14,410
+over b locations.
+
+463
+00:24:14,410 --> 00:24:17,460
+And so nothing has gotten
+kicked out yet.
+
+464
+00:24:17,460 --> 00:24:24,880
+So when I go back to the top for
+the next access to B, all
+
+465
+00:24:24,880 --> 00:24:26,380
+these things are still
+in memory.
+
+466
+00:24:26,380 --> 00:24:29,150
+
+467
+00:24:29,150 --> 00:24:35,030
+So I don't take a cache fall,
+a cache miss in those cases.
+
+468
+00:24:35,030 --> 00:24:36,470
+And so we keep going through.
+
+469
+00:24:36,470 --> 00:24:41,040
+And basically this is much
+better because we're actually
+
+470
+00:24:41,040 --> 00:24:44,310
+getting to take advantage
+of the spatial locality.
+
+471
+00:24:44,310 --> 00:24:45,910
+So this algorithm
+takes advantage
+
+472
+00:24:45,910 --> 00:24:48,580
+of the spatial locality.
+
+473
+00:24:48,580 --> 00:24:57,040
+If n is really big it doesn't,
+but if n is just kind of big,
+
+474
+00:24:57,040 --> 00:24:59,300
+then it does.
+
+475
+00:24:59,300 --> 00:25:03,510
+And then if n is small enough,
+of course, it all fits in
+
+476
+00:25:03,510 --> 00:25:06,170
+cache and there's no misses
+other than those needed to
+
+477
+00:25:06,170 --> 00:25:07,420
+bring it in once.
+
+478
+00:25:07,420 --> 00:25:09,820
+
+479
+00:25:09,820 --> 00:25:12,610
+And then the same thing happens
+once you go through
+
+480
+00:25:12,610 --> 00:25:13,820
+the next one.
+
+481
+00:25:13,820 --> 00:25:18,610
+So in this case, what's
+happening is we have n squared
+
+482
+00:25:18,610 --> 00:25:27,130
+over b misses per run through
+the matrix B, and then we have
+
+483
+00:25:27,130 --> 00:25:28,510
+n times that we go through.
+
+484
+00:25:28,510 --> 00:25:32,506
+Once for every row of A. So the
+total then is n cubed over
+
+485
+00:25:32,506 --> 00:25:37,700
+b the cache block size.
+
+486
+00:25:37,700 --> 00:25:43,050
+So depending upon the size, we
+can analyze with this, that
+
+487
+00:25:43,050 --> 00:25:47,730
+this is better because we get
+a factor of B improvement.
+
+488
+00:25:47,730 --> 00:25:49,550
+But it's still not particularly
+good.
+
+489
+00:25:49,550 --> 00:25:58,280
+And it only works, of course,
+if my side of my matrix fits
+
+490
+00:25:58,280 --> 00:26:02,780
+in the number of lines
+of cache that I have.
+
+491
+00:26:02,780 --> 00:26:03,345
+Yeah, question.
+
+492
+00:26:03,345 --> 00:26:05,129
+AUDIENCE: Can you explain in--
+
+493
+00:26:05,129 --> 00:26:07,494
+I don't understand why you
+have n cubed over b?
+
+494
+00:26:07,494 --> 00:26:12,590
+PROFESSOR: OK, so we're going
+through this matrix n times.
+
+495
+00:26:12,590 --> 00:26:14,100
+And for each one of those,
+we're running
+
+496
+00:26:14,100 --> 00:26:16,440
+through this thing.
+
+497
+00:26:16,440 --> 00:26:22,170
+So this thing basically, I get
+to go b times through, because
+
+498
+00:26:22,170 --> 00:26:24,890
+all these things are going to be
+in memory when I come back
+
+499
+00:26:24,890 --> 00:26:26,580
+to do them again.
+
+500
+00:26:26,580 --> 00:26:32,740
+And so it's only once every B
+columns that I take a miss.
+
+501
+00:26:32,740 --> 00:26:36,910
+I take a miss and then I get to
+the other b minus 1 access
+
+502
+00:26:36,910 --> 00:26:40,120
+is that I get cache hit.
+
+503
+00:26:40,120 --> 00:26:44,790
+And so the total here is
+then n squared over b.
+
+504
+00:26:44,790 --> 00:26:46,040
+So therefore a total
+of n cubed over b.
+
+505
+00:26:46,040 --> 00:26:49,120
+
+506
+00:26:49,120 --> 00:26:52,630
+So even this is not very good
+compared to what we can
+
+507
+00:26:52,630 --> 00:26:54,435
+actually do if we exploit
+the cache well.
+
+508
+00:26:54,435 --> 00:26:57,780
+
+509
+00:26:57,780 --> 00:26:59,150
+So let's go on and
+take a look.
+
+510
+00:26:59,150 --> 00:27:00,660
+We saw this before.
+
+511
+00:27:00,660 --> 00:27:03,710
+Let's use tiling.
+
+512
+00:27:03,710 --> 00:27:09,950
+So the idea of tiling is to say,
+let's break our matrix
+
+513
+00:27:09,950 --> 00:27:14,510
+into blocks of s times s size.
+
+514
+00:27:14,510 --> 00:27:23,540
+And essentially what we do is we
+treat our big matrix as if
+
+515
+00:27:23,540 --> 00:27:25,960
+we're doing block matrix
+multiplications of things of
+
+516
+00:27:25,960 --> 00:27:28,300
+size s by s.
+
+517
+00:27:28,300 --> 00:27:32,360
+So the inner loop here is doing
+essentially the matrix
+
+518
+00:27:32,360 --> 00:27:33,710
+multiplication.
+
+519
+00:27:33,710 --> 00:27:39,020
+It's actually matrix
+multiply and add.
+
+520
+00:27:39,020 --> 00:27:41,500
+The inner three loops are just
+doing ordinary matrix
+
+521
+00:27:41,500 --> 00:27:45,210
+multiplication, but on
+s-sized matrices.
+
+522
+00:27:45,210 --> 00:27:54,490
+And the outer loop is jumping
+over matrix by matrix for each
+
+523
+00:27:54,490 --> 00:27:56,350
+of those doing a matrix
+multiply as
+
+524
+00:27:56,350 --> 00:27:58,450
+its elemental piece.
+
+525
+00:27:58,450 --> 00:28:01,430
+So this is the tiling solution
+that you've seen before.
+
+526
+00:28:01,430 --> 00:28:03,920
+We can analyze it in
+this model to see,
+
+527
+00:28:03,920 --> 00:28:07,250
+is this a good solution.
+
+528
+00:28:07,250 --> 00:28:10,740
+So everybody clear on
+what the code does?
+
+529
+00:28:10,740 --> 00:28:14,737
+So it's a lot of four
+loops, right?
+
+530
+00:28:14,737 --> 00:28:15,226
+Yeah.
+
+531
+00:28:15,226 --> 00:28:19,138
+AUDIENCE: There should be
+less than n somewhere?
+
+532
+00:28:19,138 --> 00:28:20,610
+There's like an and something.
+
+533
+00:28:20,610 --> 00:28:22,354
+PROFESSOR: Oh yeah.
+
+534
+00:28:22,354 --> 00:28:25,100
+That must have happened
+when I coped it.
+
+535
+00:28:25,100 --> 00:28:27,490
+That should be j less
+than n here.
+
+536
+00:28:27,490 --> 00:28:29,732
+It should just follow
+this pattern.
+
+537
+00:28:29,732 --> 00:28:31,770
+i less than n, k less than
+n, that should be
+
+538
+00:28:31,770 --> 00:28:33,020
+j less than n there.
+
+539
+00:28:33,020 --> 00:28:35,830
+
+540
+00:28:35,830 --> 00:28:37,880
+Good catch.
+
+541
+00:28:37,880 --> 00:28:39,270
+I did execute this.
+
+542
+00:28:39,270 --> 00:28:40,520
+That must have happened
+when I was editing.
+
+543
+00:28:40,520 --> 00:28:43,520
+
+544
+00:28:43,520 --> 00:28:45,870
+So here's the analysis
+of work.
+
+545
+00:28:45,870 --> 00:28:48,990
+So what's going on
+in the work?
+
+546
+00:28:48,990 --> 00:28:55,120
+So here we have, basically the
+outer loop is going n over s
+
+547
+00:28:55,120 --> 00:28:57,880
+times, each loop.
+
+548
+00:28:57,880 --> 00:29:01,110
+So there's cube there times the
+inner loops here which are
+
+549
+00:29:01,110 --> 00:29:03,430
+going each s times.
+
+550
+00:29:03,430 --> 00:29:04,790
+So times s cubed.
+
+551
+00:29:04,790 --> 00:29:07,250
+Multiply that through,
+n cubed operations.
+
+552
+00:29:07,250 --> 00:29:08,500
+That's kind of what
+you'd expect.
+
+553
+00:29:08,500 --> 00:29:10,810
+
+554
+00:29:10,810 --> 00:29:12,210
+What about cache misses?
+
+555
+00:29:12,210 --> 00:29:15,320
+
+556
+00:29:15,320 --> 00:29:19,520
+So the whole idea here is that
+s becomes a tuning parameter.
+
+557
+00:29:19,520 --> 00:29:24,060
+And whether we choose s well or
+poorly influences how well
+
+558
+00:29:24,060 --> 00:29:27,430
+this algorithm works.
+
+559
+00:29:27,430 --> 00:29:31,620
+So the idea here is we want tune
+s so that the submatrices
+
+560
+00:29:31,620 --> 00:29:33,570
+just fit into cache.
+
+561
+00:29:33,570 --> 00:29:37,230
+So in this case, if I want a
+matrix to fit into cache, I
+
+562
+00:29:37,230 --> 00:29:39,830
+want to be about the size
+of the square root
+
+563
+00:29:39,830 --> 00:29:43,350
+of the cache size.
+
+564
+00:29:43,350 --> 00:29:45,250
+And this is where we're going
+to use the tall-cache
+
+565
+00:29:45,250 --> 00:29:47,090
+assumption now.
+
+566
+00:29:47,090 --> 00:29:52,620
+Because I want to say, it fits
+in cache, therefore I can just
+
+567
+00:29:52,620 --> 00:29:54,220
+assume it all fits in cache.
+
+568
+00:29:54,220 --> 00:29:58,220
+It's not like the size fits but
+the actual data doesn't,
+
+569
+00:29:58,220 --> 00:30:01,900
+which is what happens with
+the short cache.
+
+570
+00:30:01,900 --> 00:30:05,320
+So the tall-cache assumption
+implies that when I'm
+
+571
+00:30:05,320 --> 00:30:09,660
+executing one of these inner
+loops, what's happening?
+
+572
+00:30:09,660 --> 00:30:12,110
+When I'm executing one of these
+linear loops, all of the
+
+573
+00:30:12,110 --> 00:30:14,600
+matrices are going
+to fit in cache.
+
+574
+00:30:14,600 --> 00:30:18,610
+So all I have is my
+cold misses, if
+
+575
+00:30:18,610 --> 00:30:22,520
+any, on that submatrix.
+
+576
+00:30:22,520 --> 00:30:24,820
+And how many cold misses
+can I have?
+
+577
+00:30:24,820 --> 00:30:29,300
+Well the size of the matrix is
+s squared and I get to bring
+
+578
+00:30:29,300 --> 00:30:33,500
+in b bytes of the matrix
+each time.
+
+579
+00:30:33,500 --> 00:30:37,820
+So I get s squared over b
+misses per submatrix.
+
+580
+00:30:37,820 --> 00:30:40,150
+So that was a little bit fast,
+but I just want to make sure--
+
+581
+00:30:40,150 --> 00:30:43,520
+
+582
+00:30:43,520 --> 00:30:45,790
+it's at one level
+straightforward, and the other
+
+583
+00:30:45,790 --> 00:30:48,300
+level it's a little bit fast.
+
+584
+00:30:48,300 --> 00:30:51,680
+So the point is that the inner
+three loops I can analyze if I
+
+585
+00:30:51,680 --> 00:30:53,990
+know that s is fitting
+in cache.
+
+586
+00:30:53,990 --> 00:30:57,340
+The inner three loops I can
+analyze by saying, look it's s
+
+587
+00:30:57,340 --> 00:30:58,610
+squared data.
+
+588
+00:30:58,610 --> 00:31:01,400
+Once I get the data in cache,
+if I'm using an optimal
+
+589
+00:31:01,400 --> 00:31:06,480
+replacement, then it's going
+to stay in there.
+
+590
+00:31:06,480 --> 00:31:10,460
+And so it will cost me s squared
+over b misses to bring
+
+591
+00:31:10,460 --> 00:31:14,410
+that matrix in for each
+of the three matrices.
+
+592
+00:31:14,410 --> 00:31:17,960
+But once it's in there, I can
+keep going over and over it as
+
+593
+00:31:17,960 --> 00:31:19,480
+the algorithm does.
+
+594
+00:31:19,480 --> 00:31:21,190
+I don't get any cache misses.
+
+595
+00:31:21,190 --> 00:31:25,720
+Because those all fitting
+in the cache.
+
+596
+00:31:25,720 --> 00:31:28,050
+Question?
+
+597
+00:31:28,050 --> 00:31:29,770
+Everybody with me?
+
+598
+00:31:29,770 --> 00:31:31,890
+OK.
+
+599
+00:31:31,890 --> 00:31:36,020
+So then I basically have
+the outer three loops.
+
+600
+00:31:36,020 --> 00:31:38,360
+And here I don't make any
+assumptions whatsoever.
+
+601
+00:31:38,360 --> 00:31:43,120
+There's n over s iterations
+for each loop.
+
+602
+00:31:43,120 --> 00:31:43,940
+And there's three loops.
+
+603
+00:31:43,940 --> 00:31:45,690
+So that's n over s cubed.
+
+604
+00:31:45,690 --> 00:31:48,840
+And then the cost of the misses
+in the inner loop is s
+
+605
+00:31:48,840 --> 00:31:50,440
+squared over b.
+
+606
+00:31:50,440 --> 00:31:56,210
+And that gives me n cubed over
+bm to the 1/2 if you plug in s
+
+607
+00:31:56,210 --> 00:31:57,460
+being m to the 1/2.
+
+608
+00:31:57,460 --> 00:32:01,110
+
+609
+00:32:01,110 --> 00:32:08,530
+So this is radically better
+because m is usually big.
+
+610
+00:32:08,530 --> 00:32:14,800
+Especially for a higher level
+cache, for an L2 or an L3. m
+
+611
+00:32:14,800 --> 00:32:15,980
+is really big.
+
+612
+00:32:15,980 --> 00:32:19,180
+What was the value we had before
+for the best case for
+
+613
+00:32:19,180 --> 00:32:22,260
+the other algorithm when it
+didn't fit in matrix?
+
+614
+00:32:22,260 --> 00:32:25,280
+It was n cubed over b.
+
+615
+00:32:25,280 --> 00:32:28,570
+b is like 64 bytes.
+
+616
+00:32:28,570 --> 00:32:36,160
+m is like the small L1 cache
+is 32 kilobytes.
+
+617
+00:32:36,160 --> 00:32:39,460
+So you get to square root
+the 32 kilobytes.
+
+618
+00:32:39,460 --> 00:32:40,710
+What's that?
+
+619
+00:32:40,710 --> 00:32:47,470
+
+620
+00:32:47,470 --> 00:32:52,670
+So that's 32 kilobytes
+is 2 to the 15th.
+
+621
+00:32:52,670 --> 00:32:55,590
+So it's 2 to the 7.5.
+
+622
+00:32:55,590 --> 00:32:59,120
+2 to the 7 is 128.
+
+623
+00:32:59,120 --> 00:33:08,020
+So it's somewhere between
+128 and 256.
+
+624
+00:33:08,020 --> 00:33:13,130
+So if we said 128, I've got a 64
+and a 128 multiplier there.
+
+625
+00:33:13,130 --> 00:33:15,400
+Much, much better in terms
+of calculating.
+
+626
+00:33:15,400 --> 00:33:20,920
+In fact, this is such that if we
+tune this properly and then
+
+627
+00:33:20,920 --> 00:33:25,470
+we say, well what was the cost
+of the cache misses here,
+
+628
+00:33:25,470 --> 00:33:28,880
+you're not going to see the cost
+of the cache misses when
+
+629
+00:33:28,880 --> 00:33:31,300
+you do your performance
+analysis.
+
+630
+00:33:31,300 --> 00:33:33,590
+It's all going to be the work.
+
+631
+00:33:33,590 --> 00:33:37,080
+Because the work is
+still n cubed.
+
+632
+00:33:37,080 --> 00:33:40,050
+The work is still n cubed,
+but now the misses are so
+
+633
+00:33:40,050 --> 00:33:45,180
+infrequent, because we're
+only getting one every--
+
+634
+00:33:45,180 --> 00:33:50,375
+on the order of 64 times 128,
+which is 2 to the 6th times 2
+
+635
+00:33:50,375 --> 00:33:54,200
+to the 7th is 2 to
+the 13th is 8K.
+
+636
+00:33:54,200 --> 00:33:58,490
+Every 8,000 or so accesses
+there's a constant factor in
+
+637
+00:33:58,490 --> 00:34:02,150
+there or whatever, but every
+8,000 or so accesses we're
+
+638
+00:34:02,150 --> 00:34:03,370
+getting a cache miss.
+
+639
+00:34:03,370 --> 00:34:05,700
+Uh, too bad.
+
+640
+00:34:05,700 --> 00:34:08,380
+If it's L1, that cost is four
+cycles rather than one.
+
+641
+00:34:08,380 --> 00:34:11,350
+
+642
+00:34:11,350 --> 00:34:15,170
+Or that cost us 10 cycles if I
+had to go to L2 rather than
+
+643
+00:34:15,170 --> 00:34:17,030
+one, or whatever.
+
+644
+00:34:17,030 --> 00:34:20,190
+So is to the point is, that's
+a great multiplier to have.
+
+645
+00:34:20,190 --> 00:34:22,940
+
+646
+00:34:22,940 --> 00:34:26,190
+So this is a really
+good algorithm.
+
+647
+00:34:26,190 --> 00:34:28,750
+And in fact, this is the optimal
+behavior you can get
+
+648
+00:34:28,750 --> 00:34:30,000
+for matrix multiplication.
+
+649
+00:34:30,000 --> 00:34:33,420
+
+650
+00:34:33,420 --> 00:34:37,989
+Hong and Kung proved back in
+1981 that this particular
+
+651
+00:34:37,989 --> 00:34:40,750
+strategy and this bound was
+the best you could do for
+
+652
+00:34:40,750 --> 00:34:44,010
+matrix multiplication.
+
+653
+00:34:44,010 --> 00:34:45,310
+So that's great.
+
+654
+00:34:45,310 --> 00:34:47,489
+I want you to remember this
+number because we're going to
+
+655
+00:34:47,489 --> 00:34:50,130
+come back to it.
+
+656
+00:34:50,130 --> 00:34:52,802
+So remember it's b times n to
+the 1/2, b times square root
+
+657
+00:34:52,802 --> 00:34:54,634
+of m in the denominator.
+
+658
+00:34:54,634 --> 00:34:57,990
+
+659
+00:34:57,990 --> 00:35:06,390
+Now there's one hitch
+in this story.
+
+660
+00:35:06,390 --> 00:35:08,400
+And that is, what do I
+have to do for this
+
+661
+00:35:08,400 --> 00:35:09,650
+algorithm to work well?
+
+662
+00:35:09,650 --> 00:35:12,720
+
+663
+00:35:12,720 --> 00:35:14,170
+It says right up there
+on the slide.
+
+664
+00:35:14,170 --> 00:35:17,630
+
+665
+00:35:17,630 --> 00:35:19,560
+Tune s.
+
+666
+00:35:19,560 --> 00:35:21,660
+I've got to tune s.
+
+667
+00:35:21,660 --> 00:35:22,910
+How do I do that?
+
+668
+00:35:22,910 --> 00:35:25,130
+
+669
+00:35:25,130 --> 00:35:26,380
+How do I tune s?
+
+670
+00:35:26,380 --> 00:35:28,950
+
+671
+00:35:28,950 --> 00:35:30,810
+How would you suggest
+we tune s?
+
+672
+00:35:30,810 --> 00:35:33,995
+AUDIENCE: Just run a
+binary [INAUDIBLE].
+
+673
+00:35:33,995 --> 00:35:39,160
+PROFESSOR: Yeah, do binary
+search on s to find out what's
+
+674
+00:35:39,160 --> 00:35:41,990
+the best value for s.
+
+675
+00:35:41,990 --> 00:35:44,490
+Good strategy.
+
+676
+00:35:44,490 --> 00:35:45,740
+What if we guess wrong?
+
+677
+00:35:45,740 --> 00:35:48,500
+
+678
+00:35:48,500 --> 00:35:53,000
+What happens if, say, we tune
+s, we get some value for it.
+
+679
+00:35:53,000 --> 00:35:56,690
+Let's say the value is 100.
+
+680
+00:35:56,690 --> 00:35:57,670
+So we've turned it.
+
+681
+00:35:57,670 --> 00:35:59,970
+We find 100 is our best value.
+
+682
+00:35:59,970 --> 00:36:03,570
+We run it on our workstation,
+and somebody else has another
+
+683
+00:36:03,570 --> 00:36:04,820
+job running.
+
+684
+00:36:04,820 --> 00:36:06,770
+
+685
+00:36:06,770 --> 00:36:09,730
+What happens then?
+
+686
+00:36:09,730 --> 00:36:13,520
+That other job starts sharing
+part of that cache.
+
+687
+00:36:13,520 --> 00:36:17,450
+So the effective cache size is
+going to be smaller than what
+
+688
+00:36:17,450 --> 00:36:18,410
+we turned it for.
+
+689
+00:36:18,410 --> 00:36:19,660
+And what's going to happen?
+
+690
+00:36:19,660 --> 00:36:23,740
+
+691
+00:36:23,740 --> 00:36:24,990
+What's going to happen
+in that case?
+
+692
+00:36:24,990 --> 00:36:27,700
+
+693
+00:36:27,700 --> 00:36:30,540
+If I've tuned in for a given
+size and then I actually have
+
+694
+00:36:30,540 --> 00:36:36,340
+to run with something that's
+effectively a smaller cache,
+
+695
+00:36:36,340 --> 00:36:37,710
+does it matter or
+doesn't matter?
+
+696
+00:36:37,710 --> 00:36:39,030
+AUDIENCE: Is it still tall?
+
+697
+00:36:39,030 --> 00:36:41,601
+PROFESSOR: Still tall.
+
+698
+00:36:41,601 --> 00:36:42,851
+AUDIENCE: [INAUDIBLE]
+
+699
+00:36:42,851 --> 00:36:46,958
+
+700
+00:36:46,958 --> 00:36:50,600
+PROFESSOR: So if you imagine
+this fit exactly into cache,
+
+701
+00:36:50,600 --> 00:36:52,960
+and now I only have
+half that amount.
+
+702
+00:36:52,960 --> 00:36:58,090
+Then the assumption that these
+three inner loops is running
+
+703
+00:36:58,090 --> 00:37:02,280
+with only s squared over b
+misses is going to be totally
+
+704
+00:37:02,280 --> 00:37:04,410
+out the window.
+
+705
+00:37:04,410 --> 00:37:10,870
+In fact, it's going to be just
+like the case of the first
+
+706
+00:37:10,870 --> 00:37:14,460
+algorithm, the naive algorithm
+that I gave.
+
+707
+00:37:14,460 --> 00:37:18,180
+Because the size of matrix that
+I'm feeding it, s by s,
+
+708
+00:37:18,180 --> 00:37:21,850
+isn't fitting in the cache.
+
+709
+00:37:21,850 --> 00:37:25,850
+And so rather than it being s
+squared over b accesses, it's
+
+710
+00:37:25,850 --> 00:37:27,100
+going to be much bigger.
+
+711
+00:37:27,100 --> 00:37:29,290
+
+712
+00:37:29,290 --> 00:37:36,720
+I'm going to end up with
+essentially s cubed accesses
+
+713
+00:37:36,720 --> 00:37:38,575
+if the cache, in fact,
+gets enough smaller.
+
+714
+00:37:38,575 --> 00:37:44,590
+
+715
+00:37:44,590 --> 00:37:48,130
+It's also one thing you have to
+put in there is what I like
+
+716
+00:37:48,130 --> 00:37:51,770
+to call voodoo.
+
+717
+00:37:51,770 --> 00:37:56,190
+Whenever you have a program and
+you've got some parameters
+
+718
+00:37:56,190 --> 00:37:59,940
+that, oh good we've got these
+parameters we get to tweak to
+
+719
+00:37:59,940 --> 00:38:02,170
+make it go better.
+
+720
+00:38:02,170 --> 00:38:04,970
+I call those voodoo
+parameters.
+
+721
+00:38:04,970 --> 00:38:10,320
+Because typically setting them
+is not straightforward.
+
+722
+00:38:10,320 --> 00:38:11,590
+Now there are different
+strategies.
+
+723
+00:38:11,590 --> 00:38:14,270
+One, as you say, is to do binary
+search by doing it.
+
+724
+00:38:14,270 --> 00:38:18,360
+There are some programs, in
+fact, which when you start
+
+725
+00:38:18,360 --> 00:38:21,350
+them up you call an
+initialization routine.
+
+726
+00:38:21,350 --> 00:38:25,920
+And what they will do is
+automatically check to see
+
+727
+00:38:25,920 --> 00:38:29,700
+what size is my cache and what's
+the best size should I
+
+728
+00:38:29,700 --> 00:38:33,050
+do something on and then use
+that when you actually run it
+
+729
+00:38:33,050 --> 00:38:34,430
+later in the program.
+
+730
+00:38:34,430 --> 00:38:37,670
+So it does an automatic
+adaptation
+
+731
+00:38:37,670 --> 00:38:39,470
+automatically when you start.
+
+732
+00:38:39,470 --> 00:38:42,280
+But the more parameters
+you get, the more
+
+733
+00:38:42,280 --> 00:38:44,640
+troublesome it becomes.
+
+734
+00:38:44,640 --> 00:38:45,580
+So let's take a look.
+
+735
+00:38:45,580 --> 00:38:48,290
+For example, suppose we have a
+two-level cache rather than a
+
+736
+00:38:48,290 --> 00:38:51,500
+one-level cache.
+
+737
+00:38:51,500 --> 00:38:55,430
+Now I need to have something
+that I tune in for L1 and
+
+738
+00:38:55,430 --> 00:38:56,990
+something that I tune for L2.
+
+739
+00:38:56,990 --> 00:39:01,210
+
+740
+00:39:01,210 --> 00:39:06,660
+So it turns out that if I want
+to optimize s and t, I can't
+
+741
+00:39:06,660 --> 00:39:08,910
+do it in more with binary search
+because I have two
+
+742
+00:39:08,910 --> 00:39:11,090
+parameters.
+
+743
+00:39:11,090 --> 00:39:13,550
+And binary search won't suffice
+for figuring out
+
+744
+00:39:13,550 --> 00:39:16,430
+what's the best combination
+of s and t.
+
+745
+00:39:16,430 --> 00:39:20,170
+And generally multidimensional
+searches are much harder than
+
+746
+00:39:20,170 --> 00:39:24,720
+one-dimensional searches
+for optimizing.
+
+747
+00:39:24,720 --> 00:39:26,590
+Moreover, here's what
+the code looks like.
+
+748
+00:39:26,590 --> 00:39:31,290
+
+749
+00:39:31,290 --> 00:39:34,530
+So now I've got, how
+many four loops?
+
+750
+00:39:34,530 --> 00:39:37,860
+1,2,3,4,5,6,7,8,9 nested
+for loops.
+
+751
+00:39:37,860 --> 00:39:41,160
+
+752
+00:39:41,160 --> 00:39:45,130
+So you can see the voodoo
+is starting to
+
+753
+00:39:45,130 --> 00:39:46,160
+make this stuff run.
+
+754
+00:39:46,160 --> 00:39:49,720
+You really have to be a magician
+to tune these things
+
+755
+00:39:49,720 --> 00:39:51,900
+appropriately.
+
+756
+00:39:51,900 --> 00:39:53,410
+I mean, if you can can
+do it that's great.
+
+757
+00:39:53,410 --> 00:39:56,110
+But if you don't do it, OK.
+
+758
+00:39:56,110 --> 00:39:59,940
+So now what about three
+levels of cache?
+
+759
+00:39:59,940 --> 00:40:04,650
+So now we need three
+tuning parameters.
+
+760
+00:40:04,650 --> 00:40:08,190
+Here s, t and u, we have
+12 nested four loops.
+
+761
+00:40:08,190 --> 00:40:12,040
+I didn't have the heart to
+actually write out the code
+
+762
+00:40:12,040 --> 00:40:13,400
+for the 12 nested for loops.
+
+763
+00:40:13,400 --> 00:40:15,940
+That just seemed overhead.
+
+764
+00:40:15,940 --> 00:40:17,160
+But our new halo machines,
+they have
+
+765
+00:40:17,160 --> 00:40:18,800
+three levels of caches.
+
+766
+00:40:18,800 --> 00:40:22,750
+So let's tune for all the
+levels of caches.
+
+767
+00:40:22,750 --> 00:40:24,690
+And as we mentioned, in a
+multi-program environment, you
+
+768
+00:40:24,690 --> 00:40:26,720
+don't actually know what the
+cache size is, what other
+
+769
+00:40:26,720 --> 00:40:27,960
+programs are running.
+
+770
+00:40:27,960 --> 00:40:29,985
+So it's really easy to mistune
+these parameters.
+
+771
+00:40:29,985 --> 00:40:33,464
+
+772
+00:40:33,464 --> 00:40:36,733
+AUDIENCE: [INAUDIBLE] don't
+you have a problem because
+
+773
+00:40:36,733 --> 00:40:41,078
+you're running the program for
+a particular n, and you don't
+
+774
+00:40:41,078 --> 00:40:42,737
+necessarily know whether your
+program is going to run faster
+
+775
+00:40:42,737 --> 00:40:43,922
+or slower--
+
+776
+00:40:43,922 --> 00:40:46,090
+PROFESSOR: Well what you're
+usually doing, is you're
+
+777
+00:40:46,090 --> 00:40:48,030
+tuning for s not n, right?
+
+778
+00:40:48,030 --> 00:40:49,040
+So you're assuming--
+
+779
+00:40:49,040 --> 00:40:51,515
+AUDIENCE: No, no
+a particular n.
+
+780
+00:40:51,515 --> 00:40:54,990
+PROFESSOR: But the tuning of
+this is only dependent on s.
+
+781
+00:40:54,990 --> 00:40:56,480
+It doesn't depend on n.
+
+782
+00:40:56,480 --> 00:40:58,800
+So if you run it for a
+sufficiently large n, I think
+
+783
+00:40:58,800 --> 00:41:02,110
+it's reasonable to assume that
+the s you get would be a good
+
+784
+00:41:02,110 --> 00:41:05,300
+s for any large n.
+
+785
+00:41:05,300 --> 00:41:08,830
+Because the real question is,
+what's fitting in cache?
+
+786
+00:41:08,830 --> 00:41:09,190
+Yeah--
+
+787
+00:41:09,190 --> 00:41:13,519
+AUDIENCE: How long does it
+take to fill up the cache
+
+788
+00:41:13,519 --> 00:41:17,848
+relative to the context
+each time?
+
+789
+00:41:17,848 --> 00:41:21,510
+PROFESSOR: Generally you can
+do it pretty quickly.
+
+790
+00:41:21,510 --> 00:41:22,810
+AUDIENCE: Right.
+
+791
+00:41:22,810 --> 00:41:25,450
+So why does it matter if your
+have multiple users, if you
+
+792
+00:41:25,450 --> 00:41:27,610
+can fill it [INAUDIBLE].
+
+793
+00:41:27,610 --> 00:41:30,130
+PROFESSOR: No because, he
+may not be using all
+
+794
+00:41:30,130 --> 00:41:31,850
+of the cache, right?
+
+795
+00:41:31,850 --> 00:41:36,320
+So when you come back, you're
+going to have it polluted with
+
+796
+00:41:36,320 --> 00:41:40,080
+a certain amount of stuff.
+
+797
+00:41:40,080 --> 00:41:42,830
+
+798
+00:41:42,830 --> 00:41:44,280
+I think it's a good question.
+
+799
+00:41:44,280 --> 00:41:45,530
+AUDIENCE: [INAUDIBLE]
+
+800
+00:41:45,530 --> 00:41:49,836
+
+801
+00:41:49,836 --> 00:41:53,000
+PROFESSOR: OK, so anyway, so
+this is the-- yeah question.
+
+802
+00:41:53,000 --> 00:41:58,240
+AUDIENCE: So if n is really
+large, is it possible that the
+
+803
+00:41:58,240 --> 00:42:01,984
+second row of the matrix
+never loaded?
+
+804
+00:42:01,984 --> 00:42:04,115
+PROFESSOR: If n is
+really large--
+
+805
+00:42:04,115 --> 00:42:07,228
+AUDIENCE: Because n is
+really large, right?
+
+806
+00:42:07,228 --> 00:42:08,906
+Just the first row of
+the matrix will
+
+807
+00:42:08,906 --> 00:42:10,156
+fill up all the caches.
+
+808
+00:42:10,156 --> 00:42:13,620
+
+809
+00:42:13,620 --> 00:42:16,420
+PROFESSOR: It's LRU and in B
+you're going down this way.
+
+810
+00:42:16,420 --> 00:42:19,210
+
+811
+00:42:19,210 --> 00:42:23,010
+You're accessing things
+going down.
+
+812
+00:42:23,010 --> 00:42:25,480
+OK, good.
+
+813
+00:42:25,480 --> 00:42:28,690
+So let's look at a solution
+to these alternatives.
+
+814
+00:42:28,690 --> 00:42:33,950
+What I want to in particular
+take a look at is recursive
+
+815
+00:42:33,950 --> 00:42:35,200
+matrix multiplication.
+
+816
+00:42:35,200 --> 00:42:38,510
+
+817
+00:42:38,510 --> 00:42:43,460
+So the idea is you can do
+divide and conquer on
+
+818
+00:42:43,460 --> 00:42:47,530
+multiplying matrices because if
+I divide each of these into
+
+819
+00:42:47,530 --> 00:42:54,573
+four pieces, then essentially
+I have 8 multiply adds of n
+
+820
+00:42:54,573 --> 00:42:57,450
+over 2 by n over 2 matrices.
+
+821
+00:42:57,450 --> 00:43:00,250
+Because I basically do these
+eight multiplies each going
+
+822
+00:43:00,250 --> 00:43:01,880
+into the correct result.
+
+823
+00:43:01,880 --> 00:43:06,090
+So multiply A11 B11 and
+add it into C11.
+
+824
+00:43:06,090 --> 00:43:09,540
+Multiply A12 B21 add it
+into C11 and so forth.
+
+825
+00:43:09,540 --> 00:43:12,310
+
+826
+00:43:12,310 --> 00:43:14,690
+So I can basically do
+divide and conquer.
+
+827
+00:43:14,690 --> 00:43:15,770
+And then each of those I
+
+828
+00:43:15,770 --> 00:43:17,250
+recursively divide and conquer.
+
+829
+00:43:17,250 --> 00:43:20,480
+
+830
+00:43:20,480 --> 00:43:22,720
+So what's the intuition
+by why this might a
+
+831
+00:43:22,720 --> 00:43:23,970
+good scheme to use?
+
+832
+00:43:23,970 --> 00:43:27,624
+
+833
+00:43:27,624 --> 00:43:30,492
+AUDIENCE: [INAUDIBLE]
+
+834
+00:43:30,492 --> 00:43:33,730
+PROFESSOR: Well, we're not
+going to do parallel yet.
+
+835
+00:43:33,730 --> 00:43:37,028
+Just why is this going to
+use the cache well?
+
+836
+00:43:37,028 --> 00:43:39,408
+AUDIENCE: [INAUDIBLE]
+
+837
+00:43:39,408 --> 00:43:45,580
+PROFESSOR: Yeah eventually I get
+down to a size where the
+
+838
+00:43:45,580 --> 00:43:49,380
+matrix that I'm working on fits
+into cache, and then all
+
+839
+00:43:49,380 --> 00:43:51,710
+the rest of the operations
+I do are all
+
+840
+00:43:51,710 --> 00:43:54,240
+going to be cache hits.
+
+841
+00:43:54,240 --> 00:43:59,260
+It is taking something and it
+it's doing what the tiling is
+
+842
+00:43:59,260 --> 00:44:01,440
+doing but doing it blindly.
+
+843
+00:44:01,440 --> 00:44:04,210
+
+844
+00:44:04,210 --> 00:44:04,980
+So let's take a look.
+
+845
+00:44:04,980 --> 00:44:08,000
+Here's the recursive code.
+
+846
+00:44:08,000 --> 00:44:13,890
+So here I have the base case if
+n is 1, I basically have a
+
+847
+00:44:13,890 --> 00:44:16,800
+one by one matrix and I
+just simply update c,
+
+848
+00:44:16,800 --> 00:44:19,460
+with a times b.
+
+849
+00:44:19,460 --> 00:44:21,770
+And otherwise what I do, is
+I'm going to do this by
+
+850
+00:44:21,770 --> 00:44:22,890
+computing offsets.
+
+851
+00:44:22,890 --> 00:44:25,590
+So generally when you're
+dealing with matrices,
+
+852
+00:44:25,590 --> 00:44:28,810
+especially if you want fast
+code, I usually don't rely on
+
+853
+00:44:28,810 --> 00:44:32,680
+two-dimensional addressing, but
+rather do the addressing
+
+854
+00:44:32,680 --> 00:44:36,620
+myself and rely on the
+compiler to do common
+
+855
+00:44:36,620 --> 00:44:38,470
+subexpression elimination.
+
+856
+00:44:38,470 --> 00:44:40,280
+So, for example, here
+what I'm going to do
+
+857
+00:44:40,280 --> 00:44:42,890
+is compute the offsets.
+
+858
+00:44:42,890 --> 00:44:44,240
+So here's how I do it.
+
+859
+00:44:44,240 --> 00:44:46,770
+So first of all, in practice
+what you do, is you don't go
+
+860
+00:44:46,770 --> 00:44:48,360
+down to n equals 1.
+
+861
+00:44:48,360 --> 00:44:50,300
+You have some cutoff.
+
+862
+00:44:50,300 --> 00:44:52,220
+Maybe n is 8 or something.
+
+863
+00:44:52,220 --> 00:44:55,760
+And at that point you go into
+a specialized routine that
+
+864
+00:44:55,760 --> 00:44:58,490
+does a really good
+8 by 8 multiply.
+
+865
+00:44:58,490 --> 00:45:00,820
+And the reason for that is you
+don't want to have the
+
+866
+00:45:00,820 --> 00:45:02,200
+function call overheads.
+
+867
+00:45:02,200 --> 00:45:05,900
+This function call is expensive
+to do two floating
+
+868
+00:45:05,900 --> 00:45:08,040
+point operations here.
+
+869
+00:45:08,040 --> 00:45:11,200
+So you'd like to have a function
+call and then do 100
+
+870
+00:45:11,200 --> 00:45:13,380
+floating point operations
+or something.
+
+871
+00:45:13,380 --> 00:45:15,040
+So that you get a
+better balance.
+
+872
+00:45:15,040 --> 00:45:16,370
+Do people understand that?
+
+873
+00:45:16,370 --> 00:45:18,920
+So normally to write recursive
+codes you want a
+
+874
+00:45:18,920 --> 00:45:22,210
+course in the recursion.
+
+875
+00:45:22,210 --> 00:45:23,660
+Make it so you're not going
+all go the into way
+
+876
+00:45:23,660 --> 00:45:24,760
+down to n equals 1.
+
+877
+00:45:24,760 --> 00:45:28,590
+But rather are stopping short
+and then doing something that
+
+878
+00:45:28,590 --> 00:45:33,200
+doesn't involve a lot of
+overhead in the base case of
+
+879
+00:45:33,200 --> 00:45:34,230
+your recursion.
+
+880
+00:45:34,230 --> 00:45:37,260
+But here I'll explain it as
+if we went all the way
+
+881
+00:45:37,260 --> 00:45:38,510
+down to n equals 1.
+
+882
+00:45:38,510 --> 00:45:40,590
+
+883
+00:45:40,590 --> 00:45:45,490
+So then what we do is, if this
+is a submatrix, which is
+
+884
+00:45:45,490 --> 00:45:46,650
+basically what I'm
+showing here.
+
+885
+00:45:46,650 --> 00:45:48,310
+We have an n by n submatrix.
+
+886
+00:45:48,310 --> 00:45:52,070
+And it's being pulled out on a
+matrix of size row size, of
+
+887
+00:45:52,070 --> 00:45:54,690
+width row size.
+
+888
+00:45:54,690 --> 00:45:59,330
+So what I can do is, if I want
+to know where the elements of
+
+889
+00:45:59,330 --> 00:46:03,000
+the beginning of matrices are,
+well the first one is exactly
+
+890
+00:46:03,000 --> 00:46:06,770
+the same place that the
+input matrix is.
+
+891
+00:46:06,770 --> 00:46:11,950
+The second one is basically I
+have to add n over 2 to the
+
+892
+00:46:11,950 --> 00:46:14,990
+location in the array.
+
+893
+00:46:14,990 --> 00:46:20,950
+The third one here, 21, I have
+to basically add n over 2 rows
+
+894
+00:46:20,950 --> 00:46:23,440
+to get the starting point
+of that matrix.
+
+895
+00:46:23,440 --> 00:46:27,870
+And for the last one I have to
+add n over 2 and n over 2 rows
+
+896
+00:46:27,870 --> 00:46:31,070
+and n over 2 plus 1 rows
+to get to that point.
+
+897
+00:46:31,070 --> 00:46:35,690
+So I compute those and now I can
+recursively multiply with
+
+898
+00:46:35,690 --> 00:46:42,620
+sizes of n over 2 and perform
+the program recursively.
+
+899
+00:46:42,620 --> 00:46:43,870
+Yeah--
+
+900
+00:46:43,870 --> 00:46:48,883
+
+901
+00:46:48,883 --> 00:46:50,380
+AUDIENCE: So you said
+it rightly.
+
+902
+00:46:50,380 --> 00:46:53,706
+You're blindly dividing the
+matrix up til you get
+
+903
+00:46:53,706 --> 00:46:54,380
+something to fit the cache.
+
+904
+00:46:54,380 --> 00:46:55,230
+So essentially--
+
+905
+00:46:55,230 --> 00:46:56,520
+PROFESSOR: Well and
+you're continuing.
+
+906
+00:46:56,520 --> 00:46:59,460
+The algorithm is completely
+blind all the way
+
+907
+00:46:59,460 --> 00:47:00,710
+down to n equals 1.
+
+908
+00:47:00,710 --> 00:47:03,418
+
+909
+00:47:03,418 --> 00:47:07,690
+AUDIENCE: This could never be
+better if the other one-- your
+
+910
+00:47:07,690 --> 00:47:09,334
+computer's version
+is well-tuned.
+
+911
+00:47:09,334 --> 00:47:11,429
+Because the applications are
+the same, but this one you
+
+912
+00:47:11,429 --> 00:47:13,278
+have all the overhead from
+the [INAUDIBLE].
+
+913
+00:47:13,278 --> 00:47:14,757
+PROFESSOR: Could be.
+
+914
+00:47:14,757 --> 00:47:17,222
+AUDIENCE: At the end, you
+still need to make a
+
+915
+00:47:17,222 --> 00:47:19,610
+multiplication and then go back
+and look at all of the--
+
+916
+00:47:19,610 --> 00:47:20,430
+PROFESSOR: Could be.
+
+917
+00:47:20,430 --> 00:47:28,930
+So let's discuss that later at
+the end when we talk about the
+
+918
+00:47:28,930 --> 00:47:29,420
+differences between
+the algorithms.
+
+919
+00:47:29,420 --> 00:47:32,240
+Let's at this point, just try to
+understand what's going on
+
+920
+00:47:32,240 --> 00:47:33,230
+in the algorithm.
+
+921
+00:47:33,230 --> 00:47:34,572
+Question--
+
+922
+00:47:34,572 --> 00:47:35,822
+AUDIENCE: [INAUDIBLE]
+
+923
+00:47:35,822 --> 00:47:46,476
+
+924
+00:47:46,476 --> 00:47:50,900
+PROFESSOR: n over 2 times
+row size plus--
+
+925
+00:47:50,900 --> 00:47:51,070
+plus n over 2.
+
+926
+00:47:51,070 --> 00:47:54,040
+It should be row size plus 1.
+
+927
+00:47:54,040 --> 00:47:54,920
+You're right.
+
+928
+00:47:54,920 --> 00:47:57,470
+Good, bug.
+
+929
+00:47:57,470 --> 00:47:59,000
+Should be n over 2 times
+row size plus 1.
+
+930
+00:47:59,000 --> 00:48:03,940
+
+931
+00:48:03,940 --> 00:48:06,040
+So let's analyze the work
+assuming the code
+
+932
+00:48:06,040 --> 00:48:07,290
+actually did work.
+
+933
+00:48:07,290 --> 00:48:09,780
+
+934
+00:48:09,780 --> 00:48:14,430
+So the work we can write
+a recurrence for.
+
+935
+00:48:14,430 --> 00:48:18,500
+So here we have the
+work to solve an
+
+936
+00:48:18,500 --> 00:48:20,980
+n by n matrix problem.
+
+937
+00:48:20,980 --> 00:48:25,510
+Well if n is 1, then it's
+just order one work--
+
+938
+00:48:25,510 --> 00:48:28,270
+constant amount of work.
+
+939
+00:48:28,270 --> 00:48:31,810
+But if n is bigger than 1,
+then I'm solving eight
+
+940
+00:48:31,810 --> 00:48:36,890
+problems of size n over 2, plus
+doing a constant amount
+
+941
+00:48:36,890 --> 00:48:41,090
+of work to divide
+all those up.
+
+942
+00:48:41,090 --> 00:48:43,580
+So everybody understand where
+I get this recurrence?
+
+943
+00:48:43,580 --> 00:48:50,360
+Now normally, as you know, when
+you do algorithmic work,
+
+944
+00:48:50,360 --> 00:48:55,210
+we usually omit this first line
+because we assume a base
+
+945
+00:48:55,210 --> 00:48:58,260
+case of constant if it's one.
+
+946
+00:48:58,260 --> 00:48:59,650
+I'm actually going to keep it.
+
+947
+00:48:59,650 --> 00:49:02,540
+And the reason is because when
+we do caching the basic cases
+
+948
+00:49:02,540 --> 00:49:03,790
+are important.
+
+949
+00:49:03,790 --> 00:49:05,890
+
+950
+00:49:05,890 --> 00:49:09,530
+So everybody understand where
+this recurrence came from?
+
+951
+00:49:09,530 --> 00:49:13,600
+So I can use the master theorem
+or something like that
+
+952
+00:49:13,600 --> 00:49:14,380
+to solve this.
+
+953
+00:49:14,380 --> 00:49:17,060
+In which case the answer
+for this is what?
+
+954
+00:49:17,060 --> 00:49:18,760
+Those of you who
+have the master
+
+955
+00:49:18,760 --> 00:49:20,010
+theorem in your hip pocket.
+
+956
+00:49:20,010 --> 00:49:23,170
+
+957
+00:49:23,170 --> 00:49:24,420
+What's the solution of
+this recurrence?
+
+958
+00:49:24,420 --> 00:49:27,890
+
+959
+00:49:27,890 --> 00:49:28,500
+People remember?
+
+960
+00:49:28,500 --> 00:49:31,920
+Who's has heard of the
+master theorem?
+
+961
+00:49:31,920 --> 00:49:34,345
+I thought that was kind of a
+prerequisite or something of
+
+962
+00:49:34,345 --> 00:49:35,595
+this class, right?
+
+963
+00:49:35,595 --> 00:49:38,770
+
+964
+00:49:38,770 --> 00:49:41,290
+So you might want to brush up on
+the master theorem for the
+
+965
+00:49:41,290 --> 00:49:42,540
+quiz next week.
+
+966
+00:49:42,540 --> 00:49:45,230
+
+967
+00:49:45,230 --> 00:49:48,916
+So basically it's a n over
+b, so it's n to the
+
+968
+00:49:48,916 --> 00:49:50,166
+log base 2 of 8.
+
+969
+00:49:50,166 --> 00:49:53,080
+
+970
+00:49:53,080 --> 00:49:54,752
+So that's n cubed, n to
+the log base 2 of 8
+
+971
+00:49:54,752 --> 00:49:56,002
+is n to the n cubed.
+
+972
+00:49:56,002 --> 00:49:58,180
+
+973
+00:49:58,180 --> 00:50:00,780
+And that's bigger than the order
+one here, so the answer
+
+974
+00:50:00,780 --> 00:50:02,080
+is order n cubed.
+
+975
+00:50:02,080 --> 00:50:03,700
+Which is a relief, right?
+
+976
+00:50:03,700 --> 00:50:09,140
+Because if weren't order n cubed
+we would be doing a lot
+
+977
+00:50:09,140 --> 00:50:15,260
+more work than one of the
+looping algorithms.
+
+978
+00:50:15,260 --> 00:50:18,270
+However, let's actually go
+through and understand where
+
+979
+00:50:18,270 --> 00:50:21,120
+that n cubed comes from.
+
+980
+00:50:21,120 --> 00:50:23,680
+And to do that I'm going to
+use the technique of a
+
+981
+00:50:23,680 --> 00:50:27,380
+recursive tree, which I think
+all of you have seen.
+
+982
+00:50:27,380 --> 00:50:30,060
+But let me go through it slowly
+here to make sure,
+
+983
+00:50:30,060 --> 00:50:32,780
+because we're going to do it
+again when we do cache misses
+
+984
+00:50:32,780 --> 00:50:35,940
+and it's going to be
+more complicated.
+
+985
+00:50:35,940 --> 00:50:37,080
+So here's the idea.
+
+986
+00:50:37,080 --> 00:50:42,160
+I write down the left hand side
+the recurrence, w of n.
+
+987
+00:50:42,160 --> 00:50:44,610
+And now what I do is
+I substitute, and I
+
+988
+00:50:44,610 --> 00:50:46,040
+draw it out as a tree.
+
+989
+00:50:46,040 --> 00:50:49,580
+I have eight problems
+of size n over 2.
+
+990
+00:50:49,580 --> 00:50:54,350
+So what I do is I replace that
+with the thing that's on the
+
+991
+00:50:54,350 --> 00:50:58,170
+right hand side, I've dropped
+the theta here, but basically
+
+992
+00:50:58,170 --> 00:50:59,640
+put just a constant one here.
+
+993
+00:50:59,640 --> 00:51:02,440
+Because I'll take into account
+the thetas at the end.
+
+994
+00:51:02,440 --> 00:51:08,510
+So I have a one here, and
+then I have, loops
+
+995
+00:51:08,510 --> 00:51:10,870
+that should be a w.
+
+996
+00:51:10,870 --> 00:51:13,110
+Should be w n over 2.
+
+997
+00:51:13,110 --> 00:51:16,060
+That's a bug there.
+
+998
+00:51:16,060 --> 00:51:17,625
+And then I replace
+each of those.
+
+999
+00:51:17,625 --> 00:51:21,420
+
+1000
+00:51:21,420 --> 00:51:27,795
+OK, wn over 2, sorry that
+should be wn over 4.
+
+1001
+00:51:27,795 --> 00:51:30,240
+Ah, more bugs.
+
+1002
+00:51:30,240 --> 00:51:33,240
+I'll fix them up on
+after lecture.
+
+1003
+00:51:33,240 --> 00:51:35,760
+So this should be
+w of n over 4.
+
+1004
+00:51:35,760 --> 00:51:39,260
+And we go all the way down to
+the bottom to where I hit the
+
+1005
+00:51:39,260 --> 00:51:44,410
+base case of theta 1.
+
+1006
+00:51:44,410 --> 00:51:48,020
+So I built out this big tree
+that represents, if you think
+
+1007
+00:51:48,020 --> 00:51:50,350
+about it, that's exactly what
+the algorithm is going to do.
+
+1008
+00:51:50,350 --> 00:51:53,140
+It's going to walk this
+tree doing the work.
+
+1009
+00:51:53,140 --> 00:51:55,450
+And what I've just simply put up
+here is to work it does at
+
+1010
+00:51:55,450 --> 00:51:56,700
+every level.
+
+1011
+00:51:56,700 --> 00:52:00,450
+
+1012
+00:52:00,450 --> 00:52:03,320
+So the first thing we want to
+do is figure out what's the
+
+1013
+00:52:03,320 --> 00:52:04,480
+height of this tree.
+
+1014
+00:52:04,480 --> 00:52:06,551
+Can somebody tell me what the
+height of the tree is?
+
+1015
+00:52:06,551 --> 00:52:10,479
+
+1016
+00:52:10,479 --> 00:52:11,830
+It is a log n.
+
+1017
+00:52:11,830 --> 00:52:13,830
+What's the base?
+
+1018
+00:52:13,830 --> 00:52:16,950
+Log base 2 of n, base because
+at every level if I hadn't
+
+1019
+00:52:16,950 --> 00:52:21,280
+made a mistake here, I'm
+actually having the argument.
+
+1020
+00:52:21,280 --> 00:52:24,250
+So I'm having the argument
+at each level.
+
+1021
+00:52:24,250 --> 00:52:26,610
+So the height is log
+base 2 of n.
+
+1022
+00:52:26,610 --> 00:52:29,070
+So LG is notation
+for log base 2.
+
+1023
+00:52:29,070 --> 00:52:31,720
+
+1024
+00:52:31,720 --> 00:52:34,930
+So if I have log base 2 of n,
+I can count how many leaves
+
+1025
+00:52:34,930 --> 00:52:36,940
+there are to this tree.
+
+1026
+00:52:36,940 --> 00:52:40,350
+So how many leaves are there?
+
+1027
+00:52:40,350 --> 00:52:45,200
+Well I'm branching a factor
+of eight at every level.
+
+1028
+00:52:45,200 --> 00:52:49,030
+And if I'm going log base 2
+levels, the number of leaves
+
+1029
+00:52:49,030 --> 00:52:52,030
+is 8 to the log base 2.
+
+1030
+00:52:52,030 --> 00:52:54,550
+So 8 to the log base 2 of n.
+
+1031
+00:52:54,550 --> 00:52:57,100
+And then with a little bit of
+algebraic magic that turns out
+
+1032
+00:52:57,100 --> 00:52:58,360
+that's the same as n to
+the log base 2 of 8.
+
+1033
+00:52:58,360 --> 00:53:02,140
+
+1034
+00:53:02,140 --> 00:53:05,710
+And that is equal to n cubed.
+
+1035
+00:53:05,710 --> 00:53:08,820
+So I end up with
+n cubed leaves.
+
+1036
+00:53:08,820 --> 00:53:12,750
+Now let's add up all the
+work that's in here.
+
+1037
+00:53:12,750 --> 00:53:14,940
+So what I do is I add
+across the rows.
+
+1038
+00:53:14,940 --> 00:53:18,020
+So the top level I've
+got work of one.
+
+1039
+00:53:18,020 --> 00:53:20,220
+The next level I
+work of eight.
+
+1040
+00:53:20,220 --> 00:53:22,690
+The next I have work of 64.
+
+1041
+00:53:22,690 --> 00:53:25,340
+Do people see the pattern?
+
+1042
+00:53:25,340 --> 00:53:28,830
+The work is growing how?
+
+1043
+00:53:28,830 --> 00:53:31,190
+Geometrically.
+
+1044
+00:53:31,190 --> 00:53:34,160
+And at this level I know that
+if I add up all the leaves
+
+1045
+00:53:34,160 --> 00:53:39,000
+I've got work of n cubed.
+
+1046
+00:53:39,000 --> 00:53:40,700
+Because I've got n cubed
+leaves, each of
+
+1047
+00:53:40,700 --> 00:53:42,270
+them taking a constant.
+
+1048
+00:53:42,270 --> 00:53:44,840
+And so this is geometrically
+increasing, which means that
+
+1049
+00:53:44,840 --> 00:53:46,570
+it's all born in the leaves.
+
+1050
+00:53:46,570 --> 00:53:48,480
+So the total work is
+order n cubed.
+
+1051
+00:53:48,480 --> 00:53:51,600
+
+1052
+00:53:51,600 --> 00:53:52,430
+And that's nice.
+
+1053
+00:53:52,430 --> 00:53:55,220
+It's the same work is the
+looping versions.
+
+1054
+00:53:55,220 --> 00:53:56,650
+Because we don't want
+to increase that.
+
+1055
+00:53:56,650 --> 00:54:01,140
+
+1056
+00:54:01,140 --> 00:54:01,730
+Questions?
+
+1057
+00:54:01,730 --> 00:54:03,600
+Because now we're going to do
+cache misses and it's going to
+
+1058
+00:54:03,600 --> 00:54:07,420
+get hairy, not too hairy,
+but hairier.
+
+1059
+00:54:07,420 --> 00:54:13,810
+
+1060
+00:54:13,810 --> 00:54:15,540
+So here we're going
+to cache misses.
+
+1061
+00:54:15,540 --> 00:54:17,690
+So the first thing is coming
+up with a recurrence.
+
+1062
+00:54:17,690 --> 00:54:21,960
+And this is probably the hardest
+part, except for the
+
+1063
+00:54:21,960 --> 00:54:23,675
+other hard part which is
+solving the recurrence.
+
+1064
+00:54:23,675 --> 00:54:26,270
+
+1065
+00:54:26,270 --> 00:54:29,910
+So here what we're doing is, we
+have the same thing is that
+
+1066
+00:54:29,910 --> 00:54:35,570
+I'm solving eight problems of
+size n over 2 and to do the
+
+1067
+00:54:35,570 --> 00:54:36,360
+work in here.
+
+1068
+00:54:36,360 --> 00:54:39,580
+I'm taking basically order
+one cache misses.
+
+1069
+00:54:39,580 --> 00:54:44,440
+However I do, those
+things work out.
+
+1070
+00:54:44,440 --> 00:54:46,920
+Plus the cache misses
+I have in there.
+
+1071
+00:54:46,920 --> 00:54:51,060
+But then at some point, when I'm
+claiming is that I'm going
+
+1072
+00:54:51,060 --> 00:54:53,680
+to bottom out the
+recursion early.
+
+1073
+00:54:53,680 --> 00:54:59,260
+Not when I get to n equals 1,
+but in fact when n squared is
+
+1074
+00:54:59,260 --> 00:55:03,960
+less than some constant
+times the cache size.
+
+1075
+00:55:03,960 --> 00:55:07,010
+For some sufficiently
+small concept.
+
+1076
+00:55:07,010 --> 00:55:10,200
+And what I claim, at that point,
+is that the number of
+
+1077
+00:55:10,200 --> 00:55:13,540
+cache misses I'm going to take
+at that point, I can just,
+
+1078
+00:55:13,540 --> 00:55:17,450
+without doing any more recursive
+stuff, I can just
+
+1079
+00:55:17,450 --> 00:55:18,700
+say it's n squared over b.
+
+1080
+00:55:18,700 --> 00:55:21,140
+
+1081
+00:55:21,140 --> 00:55:23,080
+So where does that come from?
+
+1082
+00:55:23,080 --> 00:55:27,450
+So this basically comes from
+the tall-cache assumption.
+
+1083
+00:55:27,450 --> 00:55:30,460
+So the idea is that when n
+squared is less than a
+
+1084
+00:55:30,460 --> 00:55:35,660
+constant times the size of your
+cache, constant times the
+
+1085
+00:55:35,660 --> 00:55:39,410
+size of m, then that means
+that this fits into--
+
+1086
+00:55:39,410 --> 00:55:42,120
+the n by n matrices
+fit within m.
+
+1087
+00:55:42,120 --> 00:55:42,960
+I've got three of them.
+
+1088
+00:55:42,960 --> 00:55:48,660
+I've got C, A and B. So that's
+where I need a constant here.
+
+1089
+00:55:48,660 --> 00:55:53,220
+So they're all going
+to fit in memory.
+
+1090
+00:55:53,220 --> 00:55:56,640
+And so if I look at it, all I
+have to do is count up the
+
+1091
+00:55:56,640 --> 00:56:05,840
+cold misses for bringing in
+those submatrices at the time
+
+1092
+00:56:05,840 --> 00:56:10,970
+that n hits this threshold here
+of some constant times m.
+
+1093
+00:56:10,970 --> 00:56:13,685
+And to bring in those matrices
+is only going to cost me n
+
+1094
+00:56:13,685 --> 00:56:16,580
+squared over b cache misses.
+
+1095
+00:56:16,580 --> 00:56:19,430
+And once I've done that, all of
+the rest of the recursion
+
+1096
+00:56:19,430 --> 00:56:24,350
+that's going on down below is
+all operating out of cache.
+
+1097
+00:56:24,350 --> 00:56:29,510
+It's not taking any misses
+if I have an
+
+1098
+00:56:29,510 --> 00:56:32,450
+optimal replacement algorithm.
+
+1099
+00:56:32,450 --> 00:56:36,540
+it's not taking any more misses
+as I get further down.
+
+1100
+00:56:36,540 --> 00:56:45,470
+Questions about this part
+of the recurrence here?
+
+1101
+00:56:45,470 --> 00:56:51,510
+
+1102
+00:56:51,510 --> 00:56:52,760
+So people with me?
+
+1103
+00:56:52,760 --> 00:56:55,690
+
+1104
+00:56:55,690 --> 00:56:58,550
+So when I get down to something
+of size n squared,
+
+1105
+00:56:58,550 --> 00:57:02,990
+where the submatrix is size n
+squared, the point is that
+
+1106
+00:57:02,990 --> 00:57:05,300
+I'll bring in the entire
+submatrix.
+
+1107
+00:57:05,300 --> 00:57:08,640
+But all the stuff that I have to
+do in there is never going
+
+1108
+00:57:08,640 --> 00:57:10,610
+to get kicked out, because
+it's small
+
+1109
+00:57:10,610 --> 00:57:12,340
+enough that it all fits.
+
+1110
+00:57:12,340 --> 00:57:14,960
+And an optimal algorithm for
+replacement is going to make
+
+1111
+00:57:14,960 --> 00:57:17,200
+sure that stuff stays in there,
+because there's plenty
+
+1112
+00:57:17,200 --> 00:57:19,160
+of room in the cache
+at that point.
+
+1113
+00:57:19,160 --> 00:57:22,350
+There's room for three matrices
+in the cache and a
+
+1114
+00:57:22,350 --> 00:57:24,970
+couple of other variables that
+I might need and that's
+
+1115
+00:57:24,970 --> 00:57:26,220
+basically it.
+
+1116
+00:57:26,220 --> 00:57:30,400
+
+1117
+00:57:30,400 --> 00:57:33,610
+Any questions about that?
+
+1118
+00:57:33,610 --> 00:57:37,540
+So let's then solve
+this recurrence.
+
+1119
+00:57:37,540 --> 00:57:39,480
+So we're going to go about it
+very much the same way.
+
+1120
+00:57:39,480 --> 00:57:41,230
+We make draw a recursion tree.
+
+1121
+00:57:41,230 --> 00:57:44,470
+So those of you are rusty in
+drawing recursion trees, I can
+
+1122
+00:57:44,470 --> 00:57:47,430
+promise you there will be a
+recursion tree on the quiz
+
+1123
+00:57:47,430 --> 00:57:49,350
+next Thursday.
+
+1124
+00:57:49,350 --> 00:57:50,570
+I think I can promise that.
+
+1125
+00:57:50,570 --> 00:57:51,250
+Can I promise that?
+
+1126
+00:57:51,250 --> 00:57:52,560
+Yeah, OK I can promise that.
+
+1127
+00:57:52,560 --> 00:57:55,970
+
+1128
+00:57:55,970 --> 00:57:58,450
+The way I like to do it, by the
+way, is not to try to just
+
+1129
+00:57:58,450 --> 00:58:02,020
+brought out all at once.
+
+1130
+00:58:02,020 --> 00:58:05,500
+In my own notes when I do this I
+always draw it step by step.
+
+1131
+00:58:05,500 --> 00:58:07,980
+I copy over and just
+do a step by step.
+
+1132
+00:58:07,980 --> 00:58:09,290
+You might think that
+that's extensive.
+
+1133
+00:58:09,290 --> 00:58:12,680
+Gee, why do I have to draw
+every one along the way?
+
+1134
+00:58:12,680 --> 00:58:16,060
+Well the answer is, it's
+a geometric process.
+
+1135
+00:58:16,060 --> 00:58:20,130
+All the ones going up to the
+last one are a small amount of
+
+1136
+00:58:20,130 --> 00:58:23,710
+the work to draw out
+the last one.
+
+1137
+00:58:23,710 --> 00:58:27,520
+And they help you get it
+correct the first time.
+
+1138
+00:58:27,520 --> 00:58:32,550
+So let me encourage you
+to draw out the tree
+
+1139
+00:58:32,550 --> 00:58:33,620
+iteration by iteration.
+
+1140
+00:58:33,620 --> 00:58:36,200
+Here I'm going to just
+do replacement.
+
+1141
+00:58:36,200 --> 00:58:39,940
+So what we do is we replace with
+the right hand side to do
+
+1142
+00:58:39,940 --> 00:58:41,890
+the recursion.
+
+1143
+00:58:41,890 --> 00:58:42,940
+And replace that.
+
+1144
+00:58:42,940 --> 00:58:46,890
+And once again I made the bug,
+that should be in over 8.
+
+1145
+00:58:46,890 --> 00:58:48,600
+Sorry, n over 4 here.
+
+1146
+00:58:48,600 --> 00:58:50,140
+n over 4.
+
+1147
+00:58:50,140 --> 00:58:55,570
+And then we keep going down
+until I get to the base case,
+
+1148
+00:58:55,570 --> 00:58:58,780
+which is this case here.
+
+1149
+00:58:58,780 --> 00:59:02,120
+Now comes the first hard part.
+
+1150
+00:59:02,120 --> 00:59:03,800
+How tall is this tree?
+
+1151
+00:59:03,800 --> 00:59:04,130
+Yeah--
+
+1152
+00:59:04,130 --> 00:59:06,300
+AUDIENCE: [INAUDIBLE]
+
+1153
+00:59:06,300 --> 00:59:08,038
+square root of n over b.
+
+1154
+00:59:08,038 --> 00:59:11,635
+You want n squared to be
+cm, not [INAUDIBLE].
+
+1155
+00:59:11,635 --> 00:59:14,830
+PROFESSOR: So here's the thing,
+let's discuss, first of
+
+1156
+00:59:14,830 --> 00:59:17,090
+all, why this is what it is.
+
+1157
+00:59:17,090 --> 00:59:22,850
+So at the point where n squared
+is less than cm, that
+
+1158
+00:59:22,850 --> 00:59:28,066
+says that it's going to cost
+us n squared over b.
+
+1159
+00:59:28,066 --> 00:59:33,720
+But n squared is just less than
+cm, so therefore, this is
+
+1160
+00:59:33,720 --> 00:59:34,970
+effectively m over b.
+
+1161
+00:59:34,970 --> 00:59:37,420
+
+1162
+00:59:37,420 --> 00:59:39,230
+Good question.
+
+1163
+00:59:39,230 --> 00:59:40,580
+So everybody see that?
+
+1164
+00:59:40,580 --> 00:59:43,020
+So when I get down to the
+bottom, it's basically costing
+
+1165
+00:59:43,020 --> 00:59:45,630
+me something that's about the
+number of lines I have in my
+
+1166
+00:59:45,630 --> 00:59:51,640
+cache, number of misses
+to fill things up.
+
+1167
+00:59:51,640 --> 00:59:53,820
+The tricky thing is,
+what's the height?
+
+1168
+00:59:53,820 --> 00:59:56,280
+Because this is crucial to
+getting this kind of
+
+1169
+00:59:56,280 --> 00:59:58,110
+calculation right.
+
+1170
+00:59:58,110 --> 01:00:00,610
+So what is the height
+of this tree?
+
+1171
+01:00:00,610 --> 01:00:04,690
+
+1172
+01:00:04,690 --> 01:00:07,730
+So I'm having every time.
+
+1173
+01:00:07,730 --> 01:00:11,506
+So one way to think about it is,
+it's going to be log bas 2
+
+1174
+01:00:11,506 --> 01:00:17,120
+of n, just as before, minus the
+height of the tree that is
+
+1175
+01:00:17,120 --> 01:00:19,510
+hidden here that I didn't have
+to actually go into because
+
+1176
+01:00:19,510 --> 01:00:20,760
+there are no cache
+misses in it.
+
+1177
+01:00:20,760 --> 01:00:23,210
+
+1178
+01:00:23,210 --> 01:00:31,980
+So that's going to occur when
+n is approximately m, cm,
+
+1179
+01:00:31,980 --> 01:00:36,560
+sorry when n is approximately
+square root of cm.
+
+1180
+01:00:36,560 --> 01:00:39,120
+So I end up with log of
+n minus 1/2 log of cm.
+
+1181
+01:00:39,120 --> 01:00:44,600
+
+1182
+01:00:44,600 --> 01:00:45,340
+That's the height here.
+
+1183
+01:00:45,340 --> 01:00:47,880
+Because the height at this
+point of the tree that's
+
+1184
+01:00:47,880 --> 01:00:51,000
+missing because they're no
+cache, I don't have to account
+
+1185
+01:00:51,000 --> 01:00:56,880
+for any cache misses in there,
+is log of cm to the one half,
+
+1186
+01:00:56,880 --> 01:00:58,130
+based on this.
+
+1187
+01:00:58,130 --> 01:01:01,610
+
+1188
+01:01:01,610 --> 01:01:03,400
+Does that follow
+for everybody?
+
+1189
+01:01:03,400 --> 01:01:04,650
+People comfortable?
+
+1190
+01:01:04,650 --> 01:01:07,080
+
+1191
+01:01:07,080 --> 01:01:08,060
+Yeah?
+
+1192
+01:01:08,060 --> 01:01:10,090
+OK, good.
+
+1193
+01:01:10,090 --> 01:01:11,950
+So now what do we do?
+
+1194
+01:01:11,950 --> 01:01:15,430
+We count up how many
+leaves there are.
+
+1195
+01:01:15,430 --> 01:01:17,930
+So the number of leaves is 8,
+because I have a branching
+
+1196
+01:01:17,930 --> 01:01:21,150
+factor of 8, 2 whatever
+the height is.
+
+1197
+01:01:21,150 --> 01:01:22,400
+Log n minus 1/2 log of cm.
+
+1198
+01:01:22,400 --> 01:01:24,760
+
+1199
+01:01:24,760 --> 01:01:27,760
+And then if I do my matrix
+magic, well that part is n
+
+1200
+01:01:27,760 --> 01:01:31,126
+cubed, the minus becomes a
+divide, and now 8 to the 1/2
+
+1201
+01:01:31,126 --> 01:01:40,180
+log of cm is the square
+root of n cubed,
+
+1202
+01:01:40,180 --> 01:01:41,430
+which is m to the 3/2.
+
+1203
+01:01:41,430 --> 01:01:46,561
+
+1204
+01:01:46,561 --> 01:01:49,090
+Is that good?
+
+1205
+01:01:49,090 --> 01:01:52,050
+The rest of it is very similar
+to what we did before.
+
+1206
+01:01:52,050 --> 01:01:57,570
+At every level I have a certain
+number of things that
+
+1207
+01:01:57,570 --> 01:01:58,710
+I'm adding up.
+
+1208
+01:01:58,710 --> 01:02:02,850
+And on the bottom level, I take
+the cost here, m over b,
+
+1209
+01:02:02,850 --> 01:02:06,620
+and I multiply it by
+a number of leaves.
+
+1210
+01:02:06,620 --> 01:02:09,440
+When I do that I get, what?
+
+1211
+01:02:09,440 --> 01:02:13,470
+I get n cubed over b
+times m to the 1/2.
+
+1212
+01:02:13,470 --> 01:02:16,660
+
+1213
+01:02:16,660 --> 01:02:18,200
+This is geometric.
+
+1214
+01:02:18,200 --> 01:02:20,300
+So the answer is going, in this
+case, just going to be
+
+1215
+01:02:20,300 --> 01:02:27,860
+the sum of a constant factor
+times the large thing.
+
+1216
+01:02:27,860 --> 01:02:29,110
+And why does this
+look familiar?
+
+1217
+01:02:29,110 --> 01:02:31,630
+
+1218
+01:02:31,630 --> 01:02:36,180
+That was the optimal result
+we got from tiling.
+
+1219
+01:02:36,180 --> 01:02:37,570
+But where's the tuning
+parameters?
+
+1220
+01:02:37,570 --> 01:02:40,670
+
+1221
+01:02:40,670 --> 01:02:41,920
+No tuning parameters.
+
+1222
+01:02:41,920 --> 01:02:44,380
+
+1223
+01:02:44,380 --> 01:02:46,440
+No tuning parameters.
+
+1224
+01:02:46,440 --> 01:02:48,970
+So that means that this analysis
+that I did for one
+
+1225
+01:02:48,970 --> 01:02:54,550
+level of caching, it applies
+even if you have three levels
+
+1226
+01:02:54,550 --> 01:02:55,950
+of caching.
+
+1227
+01:02:55,950 --> 01:03:03,885
+At every level you're getting
+near optimal cache behavior.
+
+1228
+01:03:03,885 --> 01:03:06,070
+So it's got the same cache
+misses as with tiling.
+
+1229
+01:03:06,070 --> 01:03:16,450
+
+1230
+01:03:16,450 --> 01:03:19,510
+These are called cache-oblivious
+algorithms.
+
+1231
+01:03:19,510 --> 01:03:22,680
+Because the algorithm itself
+has no tuning parameters
+
+1232
+01:03:22,680 --> 01:03:23,700
+related to cache.
+
+1233
+01:03:23,700 --> 01:03:26,670
+Unlike the tiling algorithm.
+
+1234
+01:03:26,670 --> 01:03:28,895
+That's a cache-aware
+algorithm.
+
+1235
+01:03:28,895 --> 01:03:33,830
+The cache-oblivious algorithm
+has no tuning parameters.
+
+1236
+01:03:33,830 --> 01:03:36,950
+And if it's an efficient one.
+
+1237
+01:03:36,950 --> 01:03:38,740
+So, by the way, our first
+algorithm was
+
+1238
+01:03:38,740 --> 01:03:40,550
+cache-oblivious as well.
+
+1239
+01:03:40,550 --> 01:03:41,260
+The naive one.
+
+1240
+01:03:41,260 --> 01:03:42,510
+It's just not efficient.
+
+1241
+01:03:42,510 --> 01:03:45,260
+
+1242
+01:03:45,260 --> 01:03:48,132
+So in this case we have
+an efficient one.
+
+1243
+01:03:48,132 --> 01:03:51,970
+It's got no voodoo turning of
+parameters, no explicit
+
+1244
+01:03:51,970 --> 01:03:57,980
+knowledge of caches, and it
+passively autotunes itself.
+
+1245
+01:03:57,980 --> 01:04:01,180
+As it goes down when it fits
+things into cache it fits them
+
+1246
+01:04:01,180 --> 01:04:02,890
+and uses things locally.
+
+1247
+01:04:02,890 --> 01:04:04,990
+And then it goes down and it
+fits into the next level of
+
+1248
+01:04:04,990 --> 01:04:09,080
+cache and uses things locally
+and so forth.
+
+1249
+01:04:09,080 --> 01:04:13,260
+It handles multi-level
+caches automatically.
+
+1250
+01:04:13,260 --> 01:04:16,660
+And it's good in
+multi-programmed environments.
+
+1251
+01:04:16,660 --> 01:04:20,410
+Because if you end up taking
+away some of the cache it
+
+1252
+01:04:20,410 --> 01:04:22,650
+doesn't matter.
+
+1253
+01:04:22,650 --> 01:04:26,510
+It still will end up using
+whatever cache is available
+
+1254
+01:04:26,510 --> 01:04:36,160
+nearly as well as any other
+program could use that cache.
+
+1255
+01:04:36,160 --> 01:04:38,585
+So these are very good in
+multi-programmed environments.
+
+1256
+01:04:38,585 --> 01:04:43,930
+
+1257
+01:04:43,930 --> 01:04:46,600
+The best cache-oblivious matrix
+multiplication, in fact
+
+1258
+01:04:46,600 --> 01:04:50,430
+doesn't do an eight way split
+as I described here.
+
+1259
+01:04:50,430 --> 01:04:54,060
+That was easier to analyze
+and so forth.
+
+1260
+01:04:54,060 --> 01:04:56,030
+The best one that
+I know work on
+
+1261
+01:04:56,030 --> 01:04:57,610
+arbitrary rectangular matrix.
+
+1262
+01:04:57,610 --> 01:05:00,500
+And what they do, is they
+do binary splitting.
+
+1263
+01:05:00,500 --> 01:05:08,440
+So you would take your matrix,
+i times j, So if you take a
+
+1264
+01:05:08,440 --> 01:05:11,470
+matrix, let's say it's
+something like this.
+
+1265
+01:05:11,470 --> 01:05:14,640
+
+1266
+01:05:14,640 --> 01:05:22,590
+So here we have i, k, k, j.
+
+1267
+01:05:22,590 --> 01:05:24,210
+And you're going to get
+something of shape.
+
+1268
+01:05:24,210 --> 01:05:29,160
+
+1269
+01:05:29,160 --> 01:05:33,190
+i times j, right?
+
+1270
+01:05:33,190 --> 01:05:36,250
+
+1271
+01:05:36,250 --> 01:05:37,940
+What it does, is it
+takes whatever
+
+1272
+01:05:37,940 --> 01:05:39,750
+is the largest dimension.
+
+1273
+01:05:39,750 --> 01:05:42,560
+In this case k is the
+largest dimension.
+
+1274
+01:05:42,560 --> 01:05:45,890
+And it partitions either
+one or both of the
+
+1275
+01:05:45,890 --> 01:05:48,560
+matrices along k.
+
+1276
+01:05:48,560 --> 01:05:50,280
+In this case, it doesn't
+do that.
+
+1277
+01:05:50,280 --> 01:05:53,020
+And then it recursively
+solves the two
+
+1278
+01:05:53,020 --> 01:05:55,210
+sub-rectangular problems.
+
+1279
+01:05:55,210 --> 01:05:58,150
+And that ends up being a very,
+very efficient fast code if
+
+1280
+01:05:58,150 --> 01:06:00,650
+you code that up tightly.
+
+1281
+01:06:00,650 --> 01:06:02,590
+So it does binary splitting
+rather than--
+
+1282
+01:06:02,590 --> 01:06:03,660
+and it's general.
+
+1283
+01:06:03,660 --> 01:06:08,290
+And if you analyze this, it's
+got the same behavior as the
+
+1284
+01:06:08,290 --> 01:06:09,130
+eight way division.
+
+1285
+01:06:09,130 --> 01:06:11,630
+It's just more efficient.
+
+1286
+01:06:11,630 --> 01:06:16,060
+
+1287
+01:06:16,060 --> 01:06:16,790
+So questions?
+
+1288
+01:06:16,790 --> 01:06:20,590
+We had a question about
+now comparing
+
+1289
+01:06:20,590 --> 01:06:23,750
+with the tiled algorithm.
+
+1290
+01:06:23,750 --> 01:06:25,145
+Do you want to reprise
+your question?
+
+1291
+01:06:25,145 --> 01:06:28,458
+AUDIENCE: What I was
+saying was, I guess
+
+1292
+01:06:28,458 --> 01:06:29,725
+this answers my question.
+
+1293
+01:06:29,725 --> 01:06:34,742
+If you were to tune the previous
+algorithm properly,
+
+1294
+01:06:34,742 --> 01:06:37,634
+and you're assuming it's
+not in a multi-program
+
+1295
+01:06:37,634 --> 01:06:41,900
+environment, the recursive one,
+it will never be the one
+
+1296
+01:06:41,900 --> 01:06:43,550
+that is locked.
+
+1297
+01:06:43,550 --> 01:06:44,050
+[INAUDIBLE]
+
+1298
+01:06:44,050 --> 01:06:50,010
+PROFESSOR: So at some level
+that's true, and at some level
+
+1299
+01:06:50,010 --> 01:06:51,260
+it's not true.
+
+1300
+01:06:51,260 --> 01:06:54,400
+
+1301
+01:06:54,400 --> 01:07:02,590
+So it is true in that if it's
+cache-oblivious you can't take
+
+1302
+01:07:02,590 --> 01:07:05,550
+advantage of all the corner
+cases that you would might be
+
+1303
+01:07:05,550 --> 01:07:08,140
+able to take advantage of
+in a tiling algorithm.
+
+1304
+01:07:08,140 --> 01:07:09,900
+So from that point of
+view, that's true.
+
+1305
+01:07:09,900 --> 01:07:14,050
+On the other hand, these
+algorithms work even as you go
+
+1306
+01:07:14,050 --> 01:07:16,705
+into paging and disks
+and so forth.
+
+1307
+01:07:16,705 --> 01:07:19,090
+And the interesting thing about
+a disk, if you start
+
+1308
+01:07:19,090 --> 01:07:22,290
+having a big problem that
+doesn't fit in memory and, in
+
+1309
+01:07:22,290 --> 01:07:26,060
+fact, is out of core as they
+call it, and is paging to
+
+1310
+01:07:26,060 --> 01:07:33,680
+disk, is that the disk sizes of
+sectors that can be brought
+
+1311
+01:07:33,680 --> 01:07:36,050
+efficiently off of
+a disk, vary.
+
+1312
+01:07:36,050 --> 01:07:40,430
+
+1313
+01:07:40,430 --> 01:07:47,770
+And the reason is because in
+a disk, if you read a track
+
+1314
+01:07:47,770 --> 01:07:52,300
+around the outside you can get
+two or three times as much
+
+1315
+01:07:52,300 --> 01:07:57,510
+data off the disk as a track
+that you read near the inside.
+
+1316
+01:07:57,510 --> 01:08:02,960
+So the head moves in and out
+of the disk like this.
+
+1317
+01:08:02,960 --> 01:08:05,920
+It's typically on a pivot
+and pivots in and out.
+
+1318
+01:08:05,920 --> 01:08:08,940
+If it's reading towards the
+inside, you get blocks that
+
+1319
+01:08:08,940 --> 01:08:11,810
+are small versus blocks
+that are large.
+
+1320
+01:08:11,810 --> 01:08:14,950
+This is effectively a
+cache line size that
+
+1321
+01:08:14,950 --> 01:08:16,160
+gets brought in.
+
+1322
+01:08:16,160 --> 01:08:22,569
+And so the thing is that there
+are actually programs in
+
+1323
+01:08:22,569 --> 01:08:27,189
+which, when you run them on
+disk, there is no fixed size
+
+1324
+01:08:27,189 --> 01:08:33,529
+tuning parameter that beats
+the cache-oblivious one.
+
+1325
+01:08:33,529 --> 01:08:36,240
+So the cache-oblivious one will
+beat every fixed-size
+
+1326
+01:08:36,240 --> 01:08:38,090
+tuning parameters you put in.
+
+1327
+01:08:38,090 --> 01:08:41,859
+Because you don't have any
+control over where your file
+
+1328
+01:08:41,859 --> 01:08:47,130
+got laid out on disk and how
+much it's bringing in and how
+
+1329
+01:08:47,130 --> 01:08:49,720
+much it isn't varies.
+
+1330
+01:08:49,720 --> 01:08:53,439
+On the other hand, for in-core
+thing, you're exactly right.
+
+1331
+01:08:53,439 --> 01:08:57,240
+That, in principle, you could
+tune it up more if you make it
+
+1332
+01:08:57,240 --> 01:08:58,710
+more cache aware.
+
+1333
+01:08:58,710 --> 01:09:02,229
+But then, of course, you suffer
+from portability loss
+
+1334
+01:09:02,229 --> 01:09:03,964
+and from, if you're in a
+multi-programmed environment
+
+1335
+01:09:03,964 --> 01:09:04,840
+and so forth.
+
+1336
+01:09:04,840 --> 01:09:07,790
+So the answer is, that there
+are situations where you're
+
+1337
+01:09:07,790 --> 01:09:14,340
+doing some kind of embedded or
+dedicated type of application,
+
+1338
+01:09:14,340 --> 01:09:17,990
+you can take advantage of a lot
+of things that you want.
+
+1339
+01:09:17,990 --> 01:09:19,180
+There are other times
+where you're doing a
+
+1340
+01:09:19,180 --> 01:09:24,109
+multi-programmed environment,
+or where you want to be able
+
+1341
+01:09:24,109 --> 01:09:27,279
+to move something from one
+platform to another without
+
+1342
+01:09:27,279 --> 01:09:30,590
+having to re-engineer all of
+the tuning and testing.
+
+1343
+01:09:30,590 --> 01:09:34,189
+In which case it's better to
+use the cache oblivious.
+
+1344
+01:09:34,189 --> 01:09:38,410
+So as I mentioned, my view
+of these things is that
+
+1345
+01:09:38,410 --> 01:09:41,069
+performance is like
+a currency.
+
+1346
+01:09:41,069 --> 01:09:43,540
+It's a universal medium
+of exchange.
+
+1347
+01:09:43,540 --> 01:09:45,490
+So one place you might want
+to pay a little bit of
+
+1348
+01:09:45,490 --> 01:09:48,300
+performance is to make it so
+it's very portable as for the
+
+1349
+01:09:48,300 --> 01:09:50,240
+cache-oblivious stuff.
+
+1350
+01:09:50,240 --> 01:09:54,210
+So you get nearly good
+performance, but now I don't
+
+1351
+01:09:54,210 --> 01:09:57,760
+have that headache
+to worry about.
+
+1352
+01:09:57,760 --> 01:10:01,740
+And then sometimes, in fact,
+it actually does as well or
+
+1353
+01:10:01,740 --> 01:10:02,880
+better than the one.
+
+1354
+01:10:02,880 --> 01:10:06,090
+For matrix multiplication, the
+best algorithms are the cache
+
+1355
+01:10:06,090 --> 01:10:07,450
+oblivious ones that
+I'm aware of.
+
+1356
+01:10:07,450 --> 01:10:10,348
+AUDIENCE: [INAUDIBLE]
+
+1357
+01:10:10,348 --> 01:10:12,763
+currency and all the different
+currencies.
+
+1358
+01:10:12,763 --> 01:10:13,729
+Single currency.
+
+1359
+01:10:13,729 --> 01:10:15,670
+PROFESSOR: You want
+a currency for--
+
+1360
+01:10:15,670 --> 01:10:20,210
+so in fact the performance for
+this is people who have
+
+1361
+01:10:20,210 --> 01:10:22,580
+engineered it to take advantage
+of exactly the cache
+
+1362
+01:10:22,580 --> 01:10:26,470
+size, we can do just as well
+with the cache oblivious one.
+
+1363
+01:10:26,470 --> 01:10:28,450
+And particularly, if you think
+about it, when you've got
+
+1364
+01:10:28,450 --> 01:10:32,565
+three levels hierarchy,
+you've got 12 loops.
+
+1365
+01:10:32,565 --> 01:10:36,380
+
+1366
+01:10:36,380 --> 01:10:39,550
+And now you're going
+to tune that.
+
+1367
+01:10:39,550 --> 01:10:40,800
+It's hard to get it all right.
+
+1368
+01:10:40,800 --> 01:10:44,310
+
+1369
+01:10:44,310 --> 01:10:46,940
+So next time we're going to see
+a bunch of other examples
+
+1370
+01:10:46,940 --> 01:10:52,080
+of cache-oblivious algorithms
+that are optimal in terms of
+
+1371
+01:10:52,080 --> 01:10:53,110
+their use of cache.
+
+1372
+01:10:53,110 --> 01:10:55,790
+Of course, by the way, those
+people who are familiar with
+
+1373
+01:10:55,790 --> 01:10:59,420
+Strassen's algorithm, that's a
+cache-oblivious algorithm.
+
+1374
+01:10:59,420 --> 01:11:01,500
+Takes advantage the same
+kind of thing.
+
+1375
+01:11:01,500 --> 01:11:05,530
+And in fact you can analyze it
+and come up with good bounds
+
+1376
+01:11:05,530 --> 01:11:10,670
+on performance for Strassen's
+algorithm just the same.
+
+1377
+01:11:10,670 --> 01:11:11,920
+Just as we've done here.
+
+1378
+01:11:11,920 --> 01:11:13,131

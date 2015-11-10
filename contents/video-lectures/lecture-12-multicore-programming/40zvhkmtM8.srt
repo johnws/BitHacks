@@ -1,0 +1,8129 @@
+1
+00:00:00,000 --> 00:00:00,120
+
+2
+00:00:00,120 --> 00:00:02,500
+The following content is
+provided under a Creative
+
+3
+00:00:02,500 --> 00:00:03,910
+Commons license.
+
+4
+00:00:03,910 --> 00:00:06,950
+Your support will help MIT
+OpenCourseWare continue to
+
+5
+00:00:06,950 --> 00:00:10,600
+offer high quality educational
+resources for free.
+
+6
+00:00:10,600 --> 00:00:13,500
+To make a donation or view
+additional materials from
+
+7
+00:00:13,500 --> 00:00:18,480
+hundreds of MIT courses, visit
+MIT OpenCourseWare at
+
+8
+00:00:18,480 --> 00:00:19,730
+ocw.mit.edu.
+
+9
+00:00:19,730 --> 00:00:30,430
+
+10
+00:00:30,430 --> 00:00:35,490
+PROFESSOR: So John is going to
+present project three, beta.
+
+11
+00:00:35,490 --> 00:00:35,900
+JOHN: All right.
+
+12
+00:00:35,900 --> 00:00:38,410
+So here's the performance
+grades.
+
+13
+00:00:38,410 --> 00:00:41,180
+In general, the submission went
+a lot better than last
+
+14
+00:00:41,180 --> 00:00:44,950
+time in that things were on
+time and nobody failed to
+
+15
+00:00:44,950 --> 00:00:50,020
+build, or forgot to add files
+to their project, or so on.
+
+16
+00:00:50,020 --> 00:00:54,280
+We did change the scoring
+mechanism a little bit.
+
+17
+00:00:54,280 --> 00:00:56,430
+In the [? mdriver ?]
+
+18
+00:00:56,430 --> 00:00:59,550
+that we gave you, if your
+validator failed you on any of
+
+19
+00:00:59,550 --> 00:01:02,460
+your traces, your
+score is a zero.
+
+20
+00:01:02,460 --> 00:01:04,400
+In this one, we decided
+to be nicer.
+
+21
+00:01:04,400 --> 00:01:08,080
+We replaced your validator with
+our correct validator.
+
+22
+00:01:08,080 --> 00:01:11,100
+And for traces that you failed,
+you get a zero for the
+
+23
+00:01:11,100 --> 00:01:12,950
+points that those traces
+contribute.
+
+24
+00:01:12,950 --> 00:01:16,000
+But you did get an overall
+partial score, even if you
+
+25
+00:01:16,000 --> 00:01:17,920
+failed a couple traces.
+
+26
+00:01:17,920 --> 00:01:23,330
+So on that note, the reference
+implementation does get a 56
+
+27
+00:01:23,330 --> 00:01:24,370
+on this score.
+
+28
+00:01:24,370 --> 00:01:27,240
+And there were people who had
+slower than reference
+
+29
+00:01:27,240 --> 00:01:30,750
+implementations that
+landed below 56.
+
+30
+00:01:30,750 --> 00:01:32,970
+So that might be something to
+think about for your final
+
+31
+00:01:32,970 --> 00:01:34,610
+submission.
+
+32
+00:01:34,610 --> 00:01:36,540
+The high score was a 96.
+
+33
+00:01:36,540 --> 00:01:39,430
+And there were actually quite
+a few groups in the 90s.
+
+34
+00:01:39,430 --> 00:01:43,330
+So overall, people did
+really well on this.
+
+35
+00:01:43,330 --> 00:01:49,160
+With that said, your validators
+didn't really--
+
+36
+00:01:49,160 --> 00:01:50,920
+I guess they were OK.
+
+37
+00:01:50,920 --> 00:01:56,800
+But there's some people whose
+validators failed projects
+
+38
+00:01:56,800 --> 00:01:59,470
+that were correct, and other
+people whose validators failed
+
+39
+00:01:59,470 --> 00:02:01,620
+to detect certain situations.
+
+40
+00:02:01,620 --> 00:02:04,650
+So that's also something to
+work on for the final.
+
+41
+00:02:04,650 --> 00:02:06,730
+We won't be releasing the
+stock validators.
+
+42
+00:02:06,730 --> 00:02:09,434
+So it'll be up to you guys to
+find out what's wrong with
+
+43
+00:02:09,434 --> 00:02:11,750
+your validators and fix them.
+
+44
+00:02:11,750 --> 00:02:15,090
+And along the same lines of
+correctness, once again, for
+
+45
+00:02:15,090 --> 00:02:16,850
+the final submission,
+we'll be running--
+
+46
+00:02:16,850 --> 00:02:19,270
+actually even for the beta,
+I believe, we're going to
+
+47
+00:02:19,270 --> 00:02:22,610
+Valgrind your projects and
+look for memory errors.
+
+48
+00:02:22,610 --> 00:02:25,760
+So do that to your own projects
+and investigate any
+
+49
+00:02:25,760 --> 00:02:27,010
+messages you get.
+
+50
+00:02:27,010 --> 00:02:32,267
+
+51
+00:02:32,267 --> 00:02:34,710
+AUDIENCE: [INAUDIBLE]
+
+52
+00:02:34,710 --> 00:02:35,310
+JOHN: OK.
+
+53
+00:02:35,310 --> 00:02:40,890
+So the highlighted column
+number 31 refers to the
+
+54
+00:02:40,890 --> 00:02:43,550
+reference implementation
+of the validator.
+
+55
+00:02:43,550 --> 00:02:45,000
+So that's the authority.
+
+56
+00:02:45,000 --> 00:02:48,110
+If that's green, then your
+implementation is correct.
+
+57
+00:02:48,110 --> 00:02:51,660
+And so hopefully, a correct
+validator would
+
+58
+00:02:51,660 --> 00:02:53,015
+agree with column 31.
+
+59
+00:02:53,015 --> 00:02:56,210
+
+60
+00:02:56,210 --> 00:02:57,460
+AUDIENCE: [INAUDIBLE]
+
+61
+00:02:57,460 --> 00:02:59,580
+
+62
+00:02:59,580 --> 00:03:00,560
+JOHN: Yes.
+
+63
+00:03:00,560 --> 00:03:01,862
+AUDIENCE: [INAUDIBLE]
+
+64
+00:03:01,862 --> 00:03:02,730
+question.
+
+65
+00:03:02,730 --> 00:03:05,120
+How can it be that most of--
+
+66
+00:03:05,120 --> 00:03:08,725
+so an implementation is
+vertical, so tests are
+
+67
+00:03:08,725 --> 00:03:09,120
+[UNINTELLIGIBLE]?
+
+68
+00:03:09,120 --> 00:03:10,000
+JOHN: No.
+
+69
+00:03:10,000 --> 00:03:11,700
+The implementations are
+horizontal, and
+
+70
+00:03:11,700 --> 00:03:15,074
+the tests are vertical.
+
+71
+00:03:15,074 --> 00:03:17,484
+AUDIENCE: So we want our column
+to look like column 31?
+
+72
+00:03:17,484 --> 00:03:18,230
+Or we want--
+
+73
+00:03:18,230 --> 00:03:20,820
+JOHN: You want-- your validators
+correctness score
+
+74
+00:03:20,820 --> 00:03:27,590
+will be determined by whether
+or not your column number
+
+75
+00:03:27,590 --> 00:03:29,950
+corresponds with column 31.
+
+76
+00:03:29,950 --> 00:03:33,130
+And then, your implementations
+correctness will purely be
+
+77
+00:03:33,130 --> 00:03:37,098
+determined by whether 31 marks
+your row red or green.
+
+78
+00:03:37,098 --> 00:03:39,910
+
+79
+00:03:39,910 --> 00:03:41,160
+Does that make sense?
+
+80
+00:03:41,160 --> 00:03:43,955
+
+81
+00:03:43,955 --> 00:03:45,452
+AUDIENCE: [INAUDIBLE PHRASE]
+
+82
+00:03:45,452 --> 00:03:47,947
+columns that are all green,
+our validators are not
+
+83
+00:03:47,947 --> 00:03:48,446
+[UNINTELLIGIBLE]?
+
+84
+00:03:48,446 --> 00:03:48,950
+Is that what you're saying?
+
+85
+00:03:48,950 --> 00:03:49,630
+PROFESSOR: That's right.
+
+86
+00:03:49,630 --> 00:03:51,500
+JOHN: That's correct.
+
+87
+00:03:51,500 --> 00:03:53,500
+PROFESSOR: Whereas the rows that
+are green, that's what we
+
+88
+00:03:53,500 --> 00:03:56,230
+like to see.
+
+89
+00:03:56,230 --> 00:03:57,520
+We like green rows.
+
+90
+00:03:57,520 --> 00:04:00,950
+And then, we like columns
+that match column 31.
+
+91
+00:04:00,950 --> 00:04:02,200
+AUDIENCE: [INAUDIBLE PHRASE].
+
+92
+00:04:02,200 --> 00:04:04,359
+
+93
+00:04:04,359 --> 00:04:06,307
+The first row should
+be all red.
+
+94
+00:04:06,307 --> 00:04:10,210
+And right now, [INAUDIBLE].
+
+95
+00:04:10,210 --> 00:04:10,370
+JOHN: Right.
+
+96
+00:04:10,370 --> 00:04:11,170
+PROFESSOR: That's correct.
+
+97
+00:04:11,170 --> 00:04:14,280
+JOHN: Whatever error this
+person had, very few
+
+98
+00:04:14,280 --> 00:04:16,209
+validators seems to
+have caught them.
+
+99
+00:04:16,209 --> 00:04:18,930
+Which is very surprising,
+because what we did for your
+
+100
+00:04:18,930 --> 00:04:23,220
+validator.c is that we removed
+the line of code that it
+
+101
+00:04:23,220 --> 00:04:25,750
+contained, and we added the
+comment that explained in
+
+102
+00:04:25,750 --> 00:04:29,070
+English exactly what that
+line of code did.
+
+103
+00:04:29,070 --> 00:04:32,620
+So it was kind of interesting to
+see that not everybody came
+
+104
+00:04:32,620 --> 00:04:35,200
+up with the validator that's
+identical to reference one.
+
+105
+00:04:35,200 --> 00:04:39,110
+
+106
+00:04:39,110 --> 00:04:39,415
+PROFESSOR: OK--
+
+107
+00:04:39,415 --> 00:04:39,720
+JOHN:JOHN: Yeah.
+
+108
+00:04:39,720 --> 00:04:42,630
+So please run Valgrind on your
+code before the final
+
+109
+00:04:42,630 --> 00:04:43,930
+submission.
+
+110
+00:04:43,930 --> 00:04:47,670
+And we'll be posting your
+personalized results to your
+
+111
+00:04:47,670 --> 00:04:50,220
+repose sometime probably by
+the end of the day, either
+
+112
+00:04:50,220 --> 00:04:53,480
+today or tomorrow.
+
+113
+00:04:53,480 --> 00:04:53,970
+PROFESSOR: Great.
+
+114
+00:04:53,970 --> 00:04:55,164
+All right, you can take
+this [UNINTELLIGIBLE].
+
+115
+00:04:55,164 --> 00:04:56,976
+Or you can [UNINTELLIGIBLE].
+
+116
+00:04:56,976 --> 00:04:58,060
+Here you go.
+
+117
+00:04:58,060 --> 00:05:00,520
+You guys can have it here, in
+case you need to chip in.
+
+118
+00:05:00,520 --> 00:05:05,550
+
+119
+00:05:05,550 --> 00:05:06,930
+OK.
+
+120
+00:05:06,930 --> 00:05:11,960
+So today, we're going to talk
+about programming in parallel.
+
+121
+00:05:11,960 --> 00:05:13,380
+Parallel programming
+and so forth.
+
+122
+00:05:13,380 --> 00:05:16,480
+So this is I'm sure what you've
+all been waiting for.
+
+123
+00:05:16,480 --> 00:05:18,060
+Oops.
+
+124
+00:05:18,060 --> 00:05:20,512
+Oh, we have no power here.
+
+125
+00:05:20,512 --> 00:05:21,898
+There we go.
+
+126
+00:05:21,898 --> 00:05:30,710
+
+127
+00:05:30,710 --> 00:05:33,240
+There we go.
+
+128
+00:05:33,240 --> 00:05:34,490
+Now I've got power.
+
+129
+00:05:34,490 --> 00:05:37,170
+
+130
+00:05:37,170 --> 00:05:39,160
+OK.
+
+131
+00:05:39,160 --> 00:05:42,070
+Let's see here.
+
+132
+00:05:42,070 --> 00:05:42,420
+How's that?
+
+133
+00:05:42,420 --> 00:05:42,890
+Good.
+
+134
+00:05:42,890 --> 00:05:43,800
+OK.
+
+135
+00:05:43,800 --> 00:05:46,650
+So we talk about multicore
+programming.
+
+136
+00:05:46,650 --> 00:05:52,990
+And let me start with a
+little bit of history.
+
+137
+00:05:52,990 --> 00:05:57,690
+
+138
+00:05:57,690 --> 00:06:03,890
+So since the mid
+to late 1960s--
+
+139
+00:06:03,890 --> 00:06:06,420
+so how many years is that?
+
+140
+00:06:06,420 --> 00:06:07,270
+50 years.
+
+141
+00:06:07,270 --> 00:06:08,520
+Wow.
+
+142
+00:06:08,520 --> 00:06:11,230
+
+143
+00:06:11,230 --> 00:06:15,650
+Semiconductor density
+has been increasing
+
+144
+00:06:15,650 --> 00:06:17,812
+at the rate of about--
+
+145
+00:06:17,812 --> 00:06:22,510
+it's been doubling about
+every 18 to 24 months.
+
+146
+00:06:22,510 --> 00:06:22,790
+OK.
+
+147
+00:06:22,790 --> 00:06:34,100
+So every year, every one to two
+years, every year and a
+
+148
+00:06:34,100 --> 00:06:37,280
+half to two years, we
+get a doubling of
+
+149
+00:06:37,280 --> 00:06:40,410
+density on the chips.
+
+150
+00:06:40,410 --> 00:06:44,220
+And that's a trend that
+still is continuing.
+
+151
+00:06:44,220 --> 00:06:44,480
+OK.
+
+152
+00:06:44,480 --> 00:06:47,620
+So that's called Moore's law,
+the doubling of density of
+
+153
+00:06:47,620 --> 00:06:48,940
+integrated circuits.
+
+154
+00:06:48,940 --> 00:06:53,890
+And so, this is basically a
+curve showing how transistor
+
+155
+00:06:53,890 --> 00:06:56,110
+count is rising.
+
+156
+00:06:56,110 --> 00:06:56,550
+OK.
+
+157
+00:06:56,550 --> 00:07:01,060
+So all these green things are
+Intel CPUs and what the
+
+158
+00:07:01,060 --> 00:07:03,460
+transistor count is on them.
+
+159
+00:07:03,460 --> 00:07:04,350
+Yeah, question?
+
+160
+00:07:04,350 --> 00:07:06,210
+AUDIENCE: [INAUDIBLE PHRASE]
+
+161
+00:07:06,210 --> 00:07:10,120
+the lines in [INAUDIBLE]?
+
+162
+00:07:10,120 --> 00:07:12,150
+PROFESSOR: So there have
+been some technology
+
+163
+00:07:12,150 --> 00:07:14,550
+changes along the way.
+
+164
+00:07:14,550 --> 00:07:19,530
+So in particular, the
+[UNINTELLIGIBLE] transition is
+
+165
+00:07:19,530 --> 00:07:21,800
+back down here I think.
+
+166
+00:07:21,800 --> 00:07:24,812
+I don't remember which
+one that is.
+
+167
+00:07:24,812 --> 00:07:26,590
+Well, this is actually
+a different one.
+
+168
+00:07:26,590 --> 00:07:29,050
+What we're looking at right now
+is the transistors, which
+
+169
+00:07:29,050 --> 00:07:31,590
+have been very smooth.
+
+170
+00:07:31,590 --> 00:07:32,180
+OK.
+
+171
+00:07:32,180 --> 00:07:34,090
+So I'll explain this
+curve in a minute.
+
+172
+00:07:34,090 --> 00:07:36,330
+So there's two things
+plotted on here.
+
+173
+00:07:36,330 --> 00:07:42,000
+One is the Intel CPU density,
+and the other is what the
+
+174
+00:07:42,000 --> 00:07:45,090
+clock speed of those
+processes is.
+
+175
+00:07:45,090 --> 00:07:48,450
+And so these are the clock
+speed numbers.
+
+176
+00:07:48,450 --> 00:07:54,890
+And so, the integrated circuit
+technology has been--
+
+177
+00:07:54,890 --> 00:07:56,430
+the density has been doubling.
+
+178
+00:07:56,430 --> 00:08:00,400
+And it's really an unbelievable
+sort of social
+
+179
+00:08:00,400 --> 00:08:04,460
+and economic process, that
+this has basically
+
+180
+00:08:04,460 --> 00:08:06,790
+been called a law.
+
+181
+00:08:06,790 --> 00:08:11,470
+Because what happens is if a--
+
+182
+00:08:11,470 --> 00:08:14,020
+there's so many people that
+contribute to making
+
+183
+00:08:14,020 --> 00:08:15,880
+integrated circuits be dense.
+
+184
+00:08:15,880 --> 00:08:18,970
+There's so many pieces of
+technology that go into that.
+
+185
+00:08:18,970 --> 00:08:21,360
+And what happens is if you
+decide that you're going to
+
+186
+00:08:21,360 --> 00:08:24,980
+try to jump and try to make
+something that goes faster
+
+187
+00:08:24,980 --> 00:08:28,490
+than Moore's law, what happens
+is it's more expensive
+
+188
+00:08:28,490 --> 00:08:29,440
+for you to do it.
+
+189
+00:08:29,440 --> 00:08:33,860
+And none of the other
+participants in that economy
+
+190
+00:08:33,860 --> 00:08:34,500
+can keep up.
+
+191
+00:08:34,500 --> 00:08:36,100
+And you're just going to
+be more expensive.
+
+192
+00:08:36,100 --> 00:08:41,159
+So people will op for the
+cheapest thing that gets the
+
+193
+00:08:41,159 --> 00:08:45,730
+factor of two every
+18 to 24 months.
+
+194
+00:08:45,730 --> 00:08:51,020
+Whereas if you're behind, then
+nobody uses your stuff.
+
+195
+00:08:51,020 --> 00:08:55,790
+So everybody's got this sort
+of self-fulfilling prophecy
+
+196
+00:08:55,790 --> 00:08:59,610
+that the rate at which the
+density is increasing has just
+
+197
+00:08:59,610 --> 00:09:03,190
+been extremely stable
+for over 50 years.
+
+198
+00:09:03,190 --> 00:09:04,180
+It's remarkable.
+
+199
+00:09:04,180 --> 00:09:05,544
+Yeah, question?
+
+200
+00:09:05,544 --> 00:09:06,794
+AUDIENCE: [INAUDIBLE PHRASE]
+
+201
+00:09:06,794 --> 00:09:09,234
+
+202
+00:09:09,234 --> 00:09:11,118
+every six months.
+
+203
+00:09:11,118 --> 00:09:13,473
+And somehow, [INAUDIBLE]
+
+204
+00:09:13,473 --> 00:09:15,360
+you would have self-replicated?
+
+205
+00:09:15,360 --> 00:09:16,500
+PROFESSOR: No, I'm
+not saying that.
+
+206
+00:09:16,500 --> 00:09:22,230
+What I'm saying is that there
+is some amount of everybody
+
+207
+00:09:22,230 --> 00:09:24,140
+expecting that this
+is the point that
+
+208
+00:09:24,140 --> 00:09:25,990
+everybody's going to be at.
+
+209
+00:09:25,990 --> 00:09:30,720
+And so if you try to go more
+aggressively than that, you
+
+210
+00:09:30,720 --> 00:09:33,690
+can get burned because you'll
+be more expensive.
+
+211
+00:09:33,690 --> 00:09:35,860
+If you don't go that fast,
+you're going to get burned
+
+212
+00:09:35,860 --> 00:09:38,390
+because nobody's going to adopt
+your particular piece of
+
+213
+00:09:38,390 --> 00:09:39,960
+the technology.
+
+214
+00:09:39,960 --> 00:09:43,500
+And so, what happens is
+everybody sort of settles for
+
+215
+00:09:43,500 --> 00:09:46,270
+this regular repeating.
+
+216
+00:09:46,270 --> 00:09:50,540
+It's a remarkable social and
+economic phenomenon.
+
+217
+00:09:50,540 --> 00:09:53,320
+It's got very little to do at
+some level of technology.
+
+218
+00:09:53,320 --> 00:09:56,530
+It's just that we know that
+we can improve things.
+
+219
+00:09:56,530 --> 00:09:59,060
+But what's amazing is this
+growth has gone through many
+
+220
+00:09:59,060 --> 00:10:01,360
+transitions.
+
+221
+00:10:01,360 --> 00:10:03,120
+At one point, they said we
+aren't going to be able to
+
+222
+00:10:03,120 --> 00:10:08,680
+build integrated circuits any
+more densely because all of
+
+223
+00:10:08,680 --> 00:10:11,190
+the masks that were made--
+
+224
+00:10:11,190 --> 00:10:13,970
+it's basically, you make
+computers with a photographic
+
+225
+00:10:13,970 --> 00:10:20,110
+process of exposing and
+using masks that
+
+226
+00:10:20,110 --> 00:10:22,000
+you shine light through.
+
+227
+00:10:22,000 --> 00:10:23,610
+It's the way they
+used to do it.
+
+228
+00:10:23,610 --> 00:10:26,360
+And what happened was the wave
+lengths of light were such
+
+229
+00:10:26,360 --> 00:10:28,020
+that you were just simply not
+going to be able to get the
+
+230
+00:10:28,020 --> 00:10:29,070
+resolutions.
+
+231
+00:10:29,070 --> 00:10:29,680
+So what did they do?
+
+232
+00:10:29,680 --> 00:10:32,160
+They switched to eBeams.
+
+233
+00:10:32,160 --> 00:10:32,430
+OK.
+
+234
+00:10:32,430 --> 00:10:38,180
+Electrons rather than photons
+to expose the silicon wafers
+
+235
+00:10:38,180 --> 00:10:39,100
+and so forth.
+
+236
+00:10:39,100 --> 00:10:42,120
+And so, they've gone through a
+whole bunch of transitions and
+
+237
+00:10:42,120 --> 00:10:42,910
+different technologies.
+
+238
+00:10:42,910 --> 00:10:47,020
+And yet, throughout all of that,
+it's been just a very
+
+239
+00:10:47,020 --> 00:10:51,630
+steady progress at about the
+rate of 18 to 24 months per
+
+240
+00:10:51,630 --> 00:10:53,240
+doubling of density.
+
+241
+00:10:53,240 --> 00:10:56,530
+And that is still going on,
+and is projected to go on
+
+242
+00:10:56,530 --> 00:10:59,980
+maybe for 10 years more.
+
+243
+00:10:59,980 --> 00:11:02,955
+It's going to run out, I
+hope in my lifetime.
+
+244
+00:11:02,955 --> 00:11:06,000
+
+245
+00:11:06,000 --> 00:11:10,680
+And certainly within
+your lifetimes.
+
+246
+00:11:10,680 --> 00:11:12,710
+So that has been going.
+
+247
+00:11:12,710 --> 00:11:15,080
+Then, there's second phenomenon
+that has been going
+
+248
+00:11:15,080 --> 00:11:22,200
+on since about mid-1980s.
+
+249
+00:11:22,200 --> 00:11:26,450
+And that is that the clock
+speed has actually been
+
+250
+00:11:26,450 --> 00:11:30,730
+growing on a similar curve,
+where basically, we've been
+
+251
+00:11:30,730 --> 00:11:38,540
+getting 30% faster
+processors, clock
+
+252
+00:11:38,540 --> 00:11:42,210
+speed, since the mid-1980s.
+
+253
+00:11:42,210 --> 00:11:47,140
+But something happened there,
+which was in around 2003, it
+
+254
+00:11:47,140 --> 00:11:48,390
+flattened out.
+
+255
+00:11:48,390 --> 00:11:51,370
+
+256
+00:11:51,370 --> 00:11:57,320
+And the reason is, as a
+practical matter, clock speed
+
+257
+00:11:57,320 --> 00:11:59,950
+for air cooled systems
+is bounded at
+
+258
+00:11:59,950 --> 00:12:01,730
+somewhere around 5 gigahertz.
+
+259
+00:12:01,730 --> 00:12:07,450
+If you want to liquid cool
+it or nitrogen cool it or
+
+260
+00:12:07,450 --> 00:12:09,500
+something, you could
+make it go faster.
+
+261
+00:12:09,500 --> 00:12:15,240
+But basically, the problem is
+that things get too hot.
+
+262
+00:12:15,240 --> 00:12:18,000
+And they cannot convey
+the heat out.
+
+263
+00:12:18,000 --> 00:12:20,680
+So for a while, if you have
+greater density, the
+
+264
+00:12:20,680 --> 00:12:22,010
+transistors get smaller.
+
+265
+00:12:22,010 --> 00:12:23,460
+They switch faster.
+
+266
+00:12:23,460 --> 00:12:26,030
+And you can make the clock
+speed go faster.
+
+267
+00:12:26,030 --> 00:12:28,710
+But at some point, they
+hit the wall.
+
+268
+00:12:28,710 --> 00:12:30,790
+And so there the vendors were.
+
+269
+00:12:30,790 --> 00:12:35,150
+People like Intel,
+AMD, Motorola.
+
+270
+00:12:35,150 --> 00:12:37,350
+A variety of the semiconductor
+manufacturers.
+
+271
+00:12:37,350 --> 00:12:41,860
+And what's happened is they
+can still make integrated
+
+272
+00:12:41,860 --> 00:12:44,340
+circuits more and more dense.
+
+273
+00:12:44,340 --> 00:12:47,820
+But they can't clock
+them any faster.
+
+274
+00:12:47,820 --> 00:12:49,460
+OK.
+
+275
+00:12:49,460 --> 00:12:53,230
+So here's what's going
+on in the circuits.
+
+276
+00:12:53,230 --> 00:12:58,150
+So here's essentially how much
+power was being dissipated by
+
+277
+00:12:58,150 --> 00:13:01,960
+a variety of Intel processors
+along the way, and what they
+
+278
+00:13:01,960 --> 00:13:02,280
+[INAUDIBLE]
+
+279
+00:13:02,280 --> 00:13:03,910
+2000.
+
+280
+00:13:03,910 --> 00:13:07,020
+They started getting hot and
+hotter, until if they just
+
+281
+00:13:07,020 --> 00:13:15,610
+continued this trend, they were
+going to be trying to
+
+282
+00:13:15,610 --> 00:13:17,720
+have junction temperatures that
+are as hot as the surface
+
+283
+00:13:17,720 --> 00:13:19,500
+of the sun.
+
+284
+00:13:19,500 --> 00:13:22,140
+Well, they clearly
+couldn't do that.
+
+285
+00:13:22,140 --> 00:13:22,900
+OK.
+
+286
+00:13:22,900 --> 00:13:25,590
+So you might say, well, let's
+put it off a few years.
+
+287
+00:13:25,590 --> 00:13:28,200
+Yeah, but how many years are
+you going to put this off?
+
+288
+00:13:28,200 --> 00:13:30,920
+And so, what happened
+was they got stuck.
+
+289
+00:13:30,920 --> 00:13:37,620
+They simply could not make chips
+get clocked in faster.
+
+290
+00:13:37,620 --> 00:13:39,370
+So what did they decide to do?
+
+291
+00:13:39,370 --> 00:13:43,110
+They got all the silicon area,
+but they can't make the
+
+292
+00:13:43,110 --> 00:13:45,810
+processors faster with it.
+
+293
+00:13:45,810 --> 00:13:51,720
+So their solution was to scale
+performance to put many
+
+294
+00:13:51,720 --> 00:13:55,130
+processing cores on the
+microprocessor chip.
+
+295
+00:13:55,130 --> 00:13:57,895
+So this is an example
+of a Core i7.
+
+296
+00:13:57,895 --> 00:13:58,780
+It's a four core.
+
+297
+00:13:58,780 --> 00:14:02,180
+One, two, three, four
+cores processor.
+
+298
+00:14:02,180 --> 00:14:04,020
+We actually have six
+core machines now.
+
+299
+00:14:04,020 --> 00:14:08,290
+But I didn't update
+the figure.
+
+300
+00:14:08,290 --> 00:14:11,700
+And what's going to happen now
+is Moore's law is going to
+
+301
+00:14:11,700 --> 00:14:14,080
+continue for a few more years.
+
+302
+00:14:14,080 --> 00:14:17,180
+And so it looks like each new
+generation of Moore's law is
+
+303
+00:14:17,180 --> 00:14:21,860
+going to potentially double the
+number of cores per chip.
+
+304
+00:14:21,860 --> 00:14:25,090
+So you folks are using
+12 core machines.
+
+305
+00:14:25,090 --> 00:14:29,090
+Two six core chips.
+
+306
+00:14:29,090 --> 00:14:32,210
+Well, that's going to basically
+keep increasing.
+
+307
+00:14:32,210 --> 00:14:35,220
+And so, we're going to get more
+and more cores per chip.
+
+308
+00:14:35,220 --> 00:14:35,470
+OK.
+
+309
+00:14:35,470 --> 00:14:36,770
+That's all well and good.
+
+310
+00:14:36,770 --> 00:14:42,110
+But it turns out that there's
+a major issue.
+
+311
+00:14:42,110 --> 00:14:44,480
+And that's software.
+
+312
+00:14:44,480 --> 00:14:46,620
+Everybody has written
+their software.
+
+313
+00:14:46,620 --> 00:14:50,050
+And there's billions and
+billions and billions of
+
+314
+00:14:50,050 --> 00:14:54,620
+dollars invested in existing
+legacy software that's written
+
+315
+00:14:54,620 --> 00:14:57,040
+for how many cores?
+
+316
+00:14:57,040 --> 00:14:58,910
+One.
+
+317
+00:14:58,910 --> 00:15:04,220
+And moving it to multicore is a
+
+318
+00:15:04,220 --> 00:15:06,160
+nightmare for these companies.
+
+319
+00:15:06,160 --> 00:15:06,760
+OK.
+
+320
+00:15:06,760 --> 00:15:09,850
+And it's potentially a nightmare
+for these vendors.
+
+321
+00:15:09,850 --> 00:15:13,100
+Because if people say, gee, you
+can't make the processors
+
+322
+00:15:13,100 --> 00:15:16,770
+go any faster, why should
+I buy a new processor?
+
+323
+00:15:16,770 --> 00:15:20,100
+My old processor is as
+good as my new one.
+
+324
+00:15:20,100 --> 00:15:20,530
+OK.
+
+325
+00:15:20,530 --> 00:15:25,100
+And so, anyway, so that's
+sometimes been called the
+
+326
+00:15:25,100 --> 00:15:26,990
+multicore challenge.
+
+327
+00:15:26,990 --> 00:15:29,890
+The multicore menace.
+
+328
+00:15:29,890 --> 00:15:33,860
+The multicore revolution.
+
+329
+00:15:33,860 --> 00:15:34,430
+Whatever.
+
+330
+00:15:34,430 --> 00:15:35,680
+But that's what it's
+all about.
+
+331
+00:15:35,680 --> 00:15:39,260
+It's all about the issue of the
+frequency scaling of the
+
+332
+00:15:39,260 --> 00:15:43,390
+clocks, verses, Moore's law.
+
+333
+00:15:43,390 --> 00:15:46,300
+Which talks about what
+the density is.
+
+334
+00:15:46,300 --> 00:15:47,310
+OK.
+
+335
+00:15:47,310 --> 00:15:49,870
+So their solution is to do--
+
+336
+00:15:49,870 --> 00:15:52,130
+and so what we're going to talk
+about for a bunch of the
+
+337
+00:15:52,130 --> 00:15:55,900
+rest of the term is going to
+be, how do you actually
+
+338
+00:15:55,900 --> 00:15:58,300
+program multicore processors?
+
+339
+00:15:58,300 --> 00:16:00,640
+We're going to look at some
+fairly new software technology
+
+340
+00:16:00,640 --> 00:16:03,110
+for doing that.
+
+341
+00:16:03,110 --> 00:16:08,170
+So here's an abstract multicore
+architecture.
+
+342
+00:16:08,170 --> 00:16:10,310
+It's not precise.
+
+343
+00:16:10,310 --> 00:16:12,160
+This is only showing
+one level of cache.
+
+344
+00:16:12,160 --> 00:16:14,850
+So we have processors connected
+to a cache.
+
+345
+00:16:14,850 --> 00:16:18,360
+In fact, of course, you
+know that there are
+
+346
+00:16:18,360 --> 00:16:21,070
+multiple levels of cache.
+
+347
+00:16:21,070 --> 00:16:24,490
+Yeah, this is the international
+symbol for cache
+
+348
+00:16:24,490 --> 00:16:25,740
+if you live in the US.
+
+349
+00:16:25,740 --> 00:16:29,310
+
+350
+00:16:29,310 --> 00:16:32,130
+So the processors have
+their cache.
+
+351
+00:16:32,130 --> 00:16:34,610
+Of course, you know that what
+actually happens is you have
+
+352
+00:16:34,610 --> 00:16:35,900
+multiple levels of cache.
+
+353
+00:16:35,900 --> 00:16:38,390
+And it's shared cache
+at some levels.
+
+354
+00:16:38,390 --> 00:16:38,660
+OK.
+
+355
+00:16:38,660 --> 00:16:40,120
+So it's more complex
+than this.
+
+356
+00:16:40,120 --> 00:16:43,210
+But this is sort of an abstract
+way of understanding
+
+357
+00:16:43,210 --> 00:16:44,550
+a bunch of the issues.
+
+358
+00:16:44,550 --> 00:16:46,780
+And then, of course, they only
+get more complicated as we
+
+359
+00:16:46,780 --> 00:16:54,200
+look at reality, as with all
+these hardware related things.
+
+360
+00:16:54,200 --> 00:16:55,690
+And so, this is a chip
+multiprocessor.
+
+361
+00:16:55,690 --> 00:16:58,150
+Now there are other ways
+of using the silicon.
+
+362
+00:16:58,150 --> 00:17:00,830
+So another way of using the
+silicon is building things
+
+363
+00:17:00,830 --> 00:17:04,230
+like graphics processors and
+using silicon for a very
+
+364
+00:17:04,230 --> 00:17:07,130
+special purpose thing.
+
+365
+00:17:07,130 --> 00:17:09,890
+So that instead of saying,
+let's build multiple
+
+366
+00:17:09,890 --> 00:17:13,720
+processors, you can say, let's
+dedicate some fraction of the
+
+367
+00:17:13,720 --> 00:17:14,829
+silicon real estate.
+
+368
+00:17:14,829 --> 00:17:18,280
+Instead of to general purpose
+computing, let's dedicate it
+
+369
+00:17:18,280 --> 00:17:22,770
+to some specific purpose, like
+graphics, or some kind of
+
+370
+00:17:22,770 --> 00:17:26,290
+stream processing,
+or what have you.
+
+371
+00:17:26,290 --> 00:17:29,800
+Sensor processing.
+
+372
+00:17:29,800 --> 00:17:31,360
+A variety of other things
+you can do.
+
+373
+00:17:31,360 --> 00:17:34,100
+But one main trend is doing
+chip multiprocessors.
+
+374
+00:17:34,100 --> 00:17:37,930
+
+375
+00:17:37,930 --> 00:17:39,680
+So we're going to talk
+a little bit about
+
+376
+00:17:39,680 --> 00:17:40,820
+shared memory hardware.
+
+377
+00:17:40,820 --> 00:17:44,680
+Just enough to get you folks off
+the ground to understand
+
+378
+00:17:44,680 --> 00:17:47,400
+what's going on underneath
+the system.
+
+379
+00:17:47,400 --> 00:17:49,710
+And then, we're going to talk
+about four concurrency
+
+380
+00:17:49,710 --> 00:17:53,230
+platforms, which are not
+the only platforms
+
+381
+00:17:53,230 --> 00:17:54,230
+one can program in.
+
+382
+00:17:54,230 --> 00:17:59,640
+But they're ones that you
+should be familiar with.
+
+383
+00:17:59,640 --> 00:18:02,740
+The last one, Cilk++, is the
+one we're going to do our
+
+384
+00:18:02,740 --> 00:18:05,520
+programming assignments in.
+
+385
+00:18:05,520 --> 00:18:10,030
+And then, race conditions, we're
+going to talk about,
+
+386
+00:18:10,030 --> 00:18:13,320
+because that's the biggest thing
+that comes up when you
+
+387
+00:18:13,320 --> 00:18:16,900
+do parallel programming compared
+to ordinary serial
+
+388
+00:18:16,900 --> 00:18:17,240
+programming.
+
+389
+00:18:17,240 --> 00:18:19,850
+It's the most pernicious
+type of bugs.
+
+390
+00:18:19,850 --> 00:18:24,670
+And you need to understand race
+conditions and need a way
+
+391
+00:18:24,670 --> 00:18:25,340
+of handling it.
+
+392
+00:18:25,340 --> 00:18:27,240
+So here's basically--
+
+393
+00:18:27,240 --> 00:18:28,785
+so we'll start with shared
+memory hardware.
+
+394
+00:18:28,785 --> 00:18:33,830
+
+395
+00:18:33,830 --> 00:18:36,920
+So the main thing that shared
+memory hardware provides is a
+
+396
+00:18:36,920 --> 00:18:39,940
+thing called cache coherence.
+
+397
+00:18:39,940 --> 00:18:40,880
+OK.
+
+398
+00:18:40,880 --> 00:18:45,360
+And the basic idea is that you
+want every processor to be
+
+399
+00:18:45,360 --> 00:18:47,330
+able to fetch stuff out
+of local caches
+
+400
+00:18:47,330 --> 00:18:50,300
+because that's fast.
+
+401
+00:18:50,300 --> 00:18:55,020
+But at the same time, you want
+them to have a common view of
+
+402
+00:18:55,020 --> 00:18:58,760
+what is stored in a
+given location.
+
+403
+00:18:58,760 --> 00:19:00,690
+So let's run through this
+example and see what the
+
+404
+00:19:00,690 --> 00:19:01,580
+problem is.
+
+405
+00:19:01,580 --> 00:19:03,270
+And then, I'll show
+you how they solve
+
+406
+00:19:03,270 --> 00:19:05,325
+it in sketchy detail.
+
+407
+00:19:05,325 --> 00:19:09,070
+
+408
+00:19:09,070 --> 00:19:10,050
+So here's a processor.
+
+409
+00:19:10,050 --> 00:19:11,880
+Says he wants to load
+the value of x.
+
+410
+00:19:11,880 --> 00:19:14,100
+And in main memory here,
+x has got the value of
+
+411
+00:19:14,100 --> 00:19:16,210
+3, up here in DRAM.
+
+412
+00:19:16,210 --> 00:19:16,890
+OK.
+
+413
+00:19:16,890 --> 00:19:20,840
+So x moves through
+to the processor,
+
+414
+00:19:20,840 --> 00:19:22,160
+where it gets consumed.
+
+415
+00:19:22,160 --> 00:19:25,850
+And it leaves behind the
+fact that x equals 3
+
+416
+00:19:25,850 --> 00:19:28,690
+in its local cache.
+
+417
+00:19:28,690 --> 00:19:32,040
+Well, now along comes the
+second processor.
+
+418
+00:19:32,040 --> 00:19:33,860
+It says, I want x too.
+
+419
+00:19:33,860 --> 00:19:37,500
+And perhaps the same
+thing happens.
+
+420
+00:19:37,500 --> 00:19:38,020
+Very good.
+
+421
+00:19:38,020 --> 00:19:39,160
+So far, no problem.
+
+422
+00:19:39,160 --> 00:19:43,250
+So two caches may have
+the same value of x.
+
+423
+00:19:43,250 --> 00:19:45,590
+They may both want to
+use x, and it's both
+
+424
+00:19:45,590 --> 00:19:47,090
+in their local caches.
+
+425
+00:19:47,090 --> 00:19:49,960
+Now comes along the
+third processor.
+
+426
+00:19:49,960 --> 00:19:51,620
+Says load x as well.
+
+427
+00:19:51,620 --> 00:19:53,940
+Well, it turns out that
+it's actually--
+
+428
+00:19:53,940 --> 00:19:55,470
+what I showed you on
+the second case is
+
+429
+00:19:55,470 --> 00:19:56,940
+not the common case.
+
+430
+00:19:56,940 --> 00:20:00,080
+If these two processors, these
+two processing cores, are on
+
+431
+00:20:00,080 --> 00:20:04,750
+the same chip, it's generally
+cheaper for this guy to fetch
+
+432
+00:20:04,750 --> 00:20:08,780
+it out of one of these guys
+caches than it is to fetch it
+
+433
+00:20:08,780 --> 00:20:10,500
+out of DRAM.
+
+434
+00:20:10,500 --> 00:20:12,000
+DRAM is slow.
+
+435
+00:20:12,000 --> 00:20:14,530
+Getting it locally
+is much cheaper.
+
+436
+00:20:14,530 --> 00:20:20,030
+So basically, in this case, he
+gets it from this processor.
+
+437
+00:20:20,030 --> 00:20:21,710
+The first processor.
+
+438
+00:20:21,710 --> 00:20:22,650
+All is well and good.
+
+439
+00:20:22,650 --> 00:20:24,900
+They're all sharing
+merrily around.
+
+440
+00:20:24,900 --> 00:20:26,110
+OK.
+
+441
+00:20:26,110 --> 00:20:29,710
+And then this fella decides
+if he wants
+
+442
+00:20:29,710 --> 00:20:30,700
+to load it, no problem.
+
+443
+00:20:30,700 --> 00:20:31,400
+He can just load it.
+
+444
+00:20:31,400 --> 00:20:32,320
+He loads it locally.
+
+445
+00:20:32,320 --> 00:20:33,550
+No problem.
+
+446
+00:20:33,550 --> 00:20:34,580
+OK.
+
+447
+00:20:34,580 --> 00:20:36,410
+This guy decides, oh,
+he's going to store
+
+448
+00:20:36,410 --> 00:20:37,500
+some value to x.
+
+449
+00:20:37,500 --> 00:20:40,420
+In this case, he's going
+to store the value 5.
+
+450
+00:20:40,420 --> 00:20:43,480
+So he sets x equal to 5.
+
+451
+00:20:43,480 --> 00:20:44,520
+OK.
+
+452
+00:20:44,520 --> 00:20:45,810
+fine.
+
+453
+00:20:45,810 --> 00:20:47,310
+OK, now what?
+
+454
+00:20:47,310 --> 00:20:51,130
+Now this guy says,
+let me load x.
+
+455
+00:20:51,130 --> 00:20:54,130
+He gets the value x equals 3.
+
+456
+00:20:54,130 --> 00:20:55,920
+Uh-oh.
+
+457
+00:20:55,920 --> 00:20:58,810
+If your parallel program
+expected that this guy had
+
+458
+00:20:58,810 --> 00:21:02,510
+gone first and it set x value
+x equal to 5, these guys are
+
+459
+00:21:02,510 --> 00:21:04,250
+now incorrect.
+
+460
+00:21:04,250 --> 00:21:07,000
+
+461
+00:21:07,000 --> 00:21:11,670
+And so, the idea of cache
+coherence is not letting this
+
+462
+00:21:11,670 --> 00:21:18,020
+happen, making it so that
+whenever a value is changed by
+
+463
+00:21:18,020 --> 00:21:21,750
+a processor, the other
+processors see that change and
+
+464
+00:21:21,750 --> 00:21:25,330
+yet, they're still able most
+of the time to execute
+
+465
+00:21:25,330 --> 00:21:29,200
+effectively out of their
+own local caches.
+
+466
+00:21:29,200 --> 00:21:29,530
+OK.
+
+467
+00:21:29,530 --> 00:21:31,660
+So that's the problem.
+
+468
+00:21:31,660 --> 00:21:34,650
+So do people understand
+basically what the cache
+
+469
+00:21:34,650 --> 00:21:37,470
+coherence problem is?
+
+470
+00:21:37,470 --> 00:21:38,140
+Yes, question?
+
+471
+00:21:38,140 --> 00:21:41,880
+AUDIENCE: If the last processor
+was to store x and
+
+472
+00:21:41,880 --> 00:21:47,408
+set x equals 5, as soon as that
+happens, wouldn't that
+
+473
+00:21:47,408 --> 00:21:49,050
+write DRAM x equals 5?
+
+474
+00:21:49,050 --> 00:21:49,370
+PROFESSOR: Good.
+
+475
+00:21:49,370 --> 00:21:52,365
+So there's actually two
+types of strategies
+
+476
+00:21:52,365 --> 00:21:54,910
+that are used in caches.
+
+477
+00:21:54,910 --> 00:21:58,040
+One is called write through.
+
+478
+00:21:58,040 --> 00:22:00,180
+And one is called write back.
+
+479
+00:22:00,180 --> 00:22:02,150
+What you're describing
+is write through.
+
+480
+00:22:02,150 --> 00:22:05,240
+What right through caches do
+is if you write a value, it
+
+481
+00:22:05,240 --> 00:22:08,440
+pushes it all the
+way out to DRAM.
+
+482
+00:22:08,440 --> 00:22:11,170
+These days, nobody uses
+write through.
+
+483
+00:22:11,170 --> 00:22:12,640
+You're always going to DRAM.
+
+484
+00:22:12,640 --> 00:22:18,610
+You're always exercising the
+slow DRAM versus being able to
+
+485
+00:22:18,610 --> 00:22:20,770
+just write it locally.
+
+486
+00:22:20,770 --> 00:22:23,960
+But you do have to do something
+about these guys
+
+487
+00:22:23,960 --> 00:22:27,000
+that are going to have
+the shared values.
+
+488
+00:22:27,000 --> 00:22:29,290
+So here's the mechanism
+that they use.
+
+489
+00:22:29,290 --> 00:22:32,580
+So what most people do these
+days is write back caches.
+
+490
+00:22:32,580 --> 00:22:35,890
+Which basically means you only
+write it back when you really
+
+491
+00:22:35,890 --> 00:22:40,330
+need to evict or
+what have you.
+
+492
+00:22:40,330 --> 00:22:43,340
+You don't always write it
+all the way through.
+
+493
+00:22:43,340 --> 00:22:44,990
+And so here's how these
+schemes work.
+
+494
+00:22:44,990 --> 00:22:45,390
+So, right.
+
+495
+00:22:45,390 --> 00:22:51,470
+So that's a bogus value for
+that kind to be getting.
+
+496
+00:22:51,470 --> 00:22:52,410
+So let's take a look.
+
+497
+00:22:52,410 --> 00:22:54,680
+So what they use is what's
+called-- the simplest is
+
+498
+00:22:54,680 --> 00:22:59,060
+called an MSI protocol.
+
+499
+00:22:59,060 --> 00:23:02,620
+There are somewhat more
+complicated ones called MESI
+
+500
+00:23:02,620 --> 00:23:06,480
+protocols, and ones
+that are MOESI.
+
+501
+00:23:06,480 --> 00:23:08,930
+"Mo-esi" and "messy".
+
+502
+00:23:08,930 --> 00:23:11,610
+Anyway, the MESI one is probably
+the one you'll hear
+
+503
+00:23:11,610 --> 00:23:12,730
+most often.
+
+504
+00:23:12,730 --> 00:23:14,920
+It's just a little bit more
+complicated than this one.
+
+505
+00:23:14,920 --> 00:23:22,510
+But it saves you one extra
+access when we do a write.
+
+506
+00:23:22,510 --> 00:23:23,930
+I'll explain it in
+just a minute.
+
+507
+00:23:23,930 --> 00:23:28,610
+But let's first understand the
+simplest of these mechanisms.
+
+508
+00:23:28,610 --> 00:23:31,820
+So what you do is in each cache,
+you're going to label
+
+509
+00:23:31,820 --> 00:23:34,840
+each cache line with a state.
+
+510
+00:23:34,840 --> 00:23:38,350
+And basically, it's because
+of these states that you
+
+511
+00:23:38,350 --> 00:23:41,420
+associate with a cache line that
+cache lines end up having
+
+512
+00:23:41,420 --> 00:23:42,860
+to be long.
+
+513
+00:23:42,860 --> 00:23:43,140
+OK?
+
+514
+00:23:43,140 --> 00:23:47,100
+Because if you think about,
+you'd like cache lines to be
+
+515
+00:23:47,100 --> 00:23:51,830
+at some level very short, in
+that then you have more
+
+516
+00:23:51,830 --> 00:23:55,480
+opportunity to have just the
+stuff in cache that you want,
+
+517
+00:23:55,480 --> 00:23:57,740
+from a temporal locality
+point of view.
+
+518
+00:23:57,740 --> 00:24:01,160
+It's one thing if you want to
+bring in extra lines, extra
+
+519
+00:24:01,160 --> 00:24:03,120
+data, for spatial locality.
+
+520
+00:24:03,120 --> 00:24:05,710
+But to insist that it all be
+there whether you access it or
+
+521
+00:24:05,710 --> 00:24:09,870
+not, that's not clear how
+helpful that it is.
+
+522
+00:24:09,870 --> 00:24:12,470
+However, what instead is we have
+things like, on the Intel
+
+523
+00:24:12,470 --> 00:24:16,590
+architecture, 64 bytes
+of cache line.
+
+524
+00:24:16,590 --> 00:24:19,090
+And the reason is because
+they're keeping extra data
+
+525
+00:24:19,090 --> 00:24:21,360
+with each cache line.
+
+526
+00:24:21,360 --> 00:24:25,570
+And they want the data to be
+the larger fraction of what
+
+527
+00:24:25,570 --> 00:24:27,160
+they're keeping compared
+to the control
+
+528
+00:24:27,160 --> 00:24:28,900
+information about the data.
+
+529
+00:24:28,900 --> 00:24:31,120
+So in this case, they're
+keeping three values.
+
+530
+00:24:31,120 --> 00:24:33,520
+Three bits.
+
+531
+00:24:33,520 --> 00:24:36,370
+The M bit says this cache
+block has been modified.
+
+532
+00:24:36,370 --> 00:24:38,140
+Somebody's written to it.
+
+533
+00:24:38,140 --> 00:24:43,130
+And what they do is they, in
+this protocol, they guarantee
+
+534
+00:24:43,130 --> 00:24:46,210
+in the protocol that if somebody
+has it in the M
+
+535
+00:24:46,210 --> 00:24:50,490
+state, no other caches contain
+this block in either the M
+
+536
+00:24:50,490 --> 00:24:53,980
+state or S state.
+
+537
+00:24:53,980 --> 00:24:54,920
+So what are those states?
+
+538
+00:24:54,920 --> 00:24:58,540
+So the S state is when
+other caches may be
+
+539
+00:24:58,540 --> 00:25:00,500
+sharing this block.
+
+540
+00:25:00,500 --> 00:25:04,280
+And the I state is that this
+cache block is invalid.
+
+541
+00:25:04,280 --> 00:25:05,720
+It's the same as if
+it's not there.
+
+542
+00:25:05,720 --> 00:25:08,250
+It's empty entry.
+
+543
+00:25:08,250 --> 00:25:10,460
+So it just marks this entry.
+
+544
+00:25:10,460 --> 00:25:12,680
+There's no data there.
+
+545
+00:25:12,680 --> 00:25:16,860
+The cache line that's there is
+not really there, is basically
+
+546
+00:25:16,860 --> 00:25:17,820
+what it says.
+
+547
+00:25:17,820 --> 00:25:24,100
+So here, you see for example
+that this fella has x equals
+
+548
+00:25:24,100 --> 00:25:26,890
+13 in the modified state.
+
+549
+00:25:26,890 --> 00:25:29,770
+And so, if you look across here,
+oh, nobody else has that
+
+550
+00:25:29,770 --> 00:25:32,770
+in either the M or
+the S state.
+
+551
+00:25:32,770 --> 00:25:37,160
+They only have it in the
+I state or not at all.
+
+552
+00:25:37,160 --> 00:25:39,780
+If you have it in the shared
+state, as these guys have,
+
+553
+00:25:39,780 --> 00:25:41,950
+well, they all have it in the
+shared state and notice the
+
+554
+00:25:41,950 --> 00:25:45,340
+values are all the same.
+
+555
+00:25:45,340 --> 00:25:48,130
+And then, if it's in the invalid
+state, here this guy
+
+556
+00:25:48,130 --> 00:25:51,130
+once again has it in the
+modified state, which means
+
+557
+00:25:51,130 --> 00:25:54,230
+these guys don't have it in
+either the S or M state.
+
+558
+00:25:54,230 --> 00:25:55,610
+So that's the invariant.
+
+559
+00:25:55,610 --> 00:25:58,950
+So what's the basic idea
+behind the cache?
+
+560
+00:25:58,950 --> 00:26:00,650
+The MSI protocol?
+
+561
+00:26:00,650 --> 00:26:05,360
+The idea is that before you can
+write on a location, you
+
+562
+00:26:05,360 --> 00:26:09,445
+must first invalidate all
+the other copies.
+
+563
+00:26:09,445 --> 00:26:12,260
+
+564
+00:26:12,260 --> 00:26:14,760
+So whenever you try to write
+on something that's shared
+
+565
+00:26:14,760 --> 00:26:17,160
+across a bunch of things or
+that somebody else has
+
+566
+00:26:17,160 --> 00:26:20,940
+modified, what happens is over
+the network goes out a
+
+567
+00:26:20,940 --> 00:26:25,000
+protocol to invalidate
+all the other copies.
+
+568
+00:26:25,000 --> 00:26:27,540
+So if they're just being shared,
+that's no problem.
+
+569
+00:26:27,540 --> 00:26:28,970
+Because all you do
+is just have them
+
+570
+00:26:28,970 --> 00:26:31,300
+drop it from the cache.
+
+571
+00:26:31,300 --> 00:26:35,000
+If it's modified, then it may
+have to be written back or the
+
+572
+00:26:35,000 --> 00:26:38,820
+value brought back to you, so
+that you're in a position of
+
+573
+00:26:38,820 --> 00:26:39,200
+changing it.
+
+574
+00:26:39,200 --> 00:26:41,610
+If somebody has it modified,
+then you don't have it.
+
+575
+00:26:41,610 --> 00:26:45,420
+So therefore, you need to
+bring it in and make the
+
+576
+00:26:45,420 --> 00:26:46,250
+change to it.
+
+577
+00:26:46,250 --> 00:26:47,117
+Question?
+
+578
+00:26:47,117 --> 00:26:49,470
+AUDIENCE: [INAUDIBLE]
+three states?
+
+579
+00:26:49,470 --> 00:26:50,160
+PROFESSOR: Three states.
+
+580
+00:26:50,160 --> 00:26:51,210
+Not three bits.
+
+581
+00:26:51,210 --> 00:26:51,600
+Two bits.
+
+582
+00:26:51,600 --> 00:26:52,900
+Right.
+
+583
+00:26:52,900 --> 00:26:55,150
+OK.
+
+584
+00:26:55,150 --> 00:26:57,470
+So the idea is you first
+invalidate the other copies.
+
+585
+00:26:57,470 --> 00:27:03,250
+Therefore, when a processor core
+is changing the value of
+
+586
+00:27:03,250 --> 00:27:05,545
+some variable, it has
+the only copy.
+
+587
+00:27:05,545 --> 00:27:08,320
+
+588
+00:27:08,320 --> 00:27:10,940
+And by making sure that it only
+has the only copy, you
+
+589
+00:27:10,940 --> 00:27:13,660
+make sure that you never have
+copies out there that are
+
+590
+00:27:13,660 --> 00:27:20,020
+anything except copies of
+what everybody else has.
+
+591
+00:27:20,020 --> 00:27:22,170
+That they're all the same.
+
+592
+00:27:22,170 --> 00:27:23,340
+OK.
+
+593
+00:27:23,340 --> 00:27:26,320
+Does everybody follow that?
+
+594
+00:27:26,320 --> 00:27:28,440
+So there's hardware under
+there doing that.
+
+595
+00:27:28,440 --> 00:27:30,250
+It's actually pretty
+clever hardware.
+
+596
+00:27:30,250 --> 00:27:36,550
+In fact, the verification of
+cache protocols is a huge
+
+597
+00:27:36,550 --> 00:27:41,780
+problem for which there's a lot
+of technology built to try
+
+598
+00:27:41,780 --> 00:27:45,290
+to verify to make sure these
+cache protocols work the way
+
+599
+00:27:45,290 --> 00:27:46,960
+they're supposed to work.
+
+600
+00:27:46,960 --> 00:27:48,860
+Because what happens in practice
+is there are all
+
+601
+00:27:48,860 --> 00:27:50,070
+these intermediate states.
+
+602
+00:27:50,070 --> 00:27:52,980
+What happens if this guy starts
+doing this while this
+
+603
+00:27:52,980 --> 00:27:57,870
+guy is doing that, and these
+protocols start getting mixed,
+
+604
+00:27:57,870 --> 00:27:59,130
+and so forth?
+
+605
+00:27:59,130 --> 00:28:00,770
+And you've got to make
+sure that works out.
+
+606
+00:28:00,770 --> 00:28:03,410
+And that's what's going
+on in the hardware.
+
+607
+00:28:03,410 --> 00:28:07,200
+The MESI protocol does a
+simple optimization.
+
+608
+00:28:07,200 --> 00:28:11,610
+It says, look, before I store
+something, I probably
+
+609
+00:28:11,610 --> 00:28:13,230
+want to read it.
+
+610
+00:28:13,230 --> 00:28:15,120
+It's likely I'm going
+to read it.
+
+611
+00:28:15,120 --> 00:28:16,590
+So I can read it in two ways.
+
+612
+00:28:16,590 --> 00:28:21,100
+I can read it in a way that
+says that it is--
+
+613
+00:28:21,100 --> 00:28:23,330
+where it's just going
+to be shared.
+
+614
+00:28:23,330 --> 00:28:26,390
+But if I expect that I'm going
+to write it, let me when I
+
+615
+00:28:26,390 --> 00:28:31,530
+read it instead of getting a
+shared copy, let me get an
+
+616
+00:28:31,530 --> 00:28:32,770
+exclusive copy.
+
+617
+00:28:32,770 --> 00:28:34,920
+And that's where the
+E comes from.
+
+618
+00:28:34,920 --> 00:28:36,350
+Let me get an exclusive copy.
+
+619
+00:28:36,350 --> 00:28:39,420
+In other words, go through the
+invalidation protocols on the
+
+620
+00:28:39,420 --> 00:28:43,030
+read, so that with the
+expectation that when you
+
+621
+00:28:43,030 --> 00:28:47,320
+write, you don't have to then
+wait for the invalidation to
+
+622
+00:28:47,320 --> 00:28:48,240
+occur at that point.
+
+623
+00:28:48,240 --> 00:28:53,980
+So it's a way of reducing the
+latency of the protocol by
+
+624
+00:28:53,980 --> 00:28:56,270
+getting it exclusively by
+the read that you do
+
+625
+00:28:56,270 --> 00:28:58,860
+before you do the write.
+
+626
+00:28:58,860 --> 00:29:01,410
+So rather than doing a
+read, which would go
+
+627
+00:29:01,410 --> 00:29:04,210
+out and get the value--
+
+628
+00:29:04,210 --> 00:29:05,250
+but everybody [? has them ?]
+
+629
+00:29:05,250 --> 00:29:07,940
+shared-- then doing the write,
+and then doing a whole
+
+630
+00:29:07,940 --> 00:29:12,020
+invalidation protocol, if I
+basically get it in exclusive
+
+631
+00:29:12,020 --> 00:29:15,480
+mode on the read, then I go out,
+I get the value, and I
+
+632
+00:29:15,480 --> 00:29:17,570
+invalidate everybody else.
+
+633
+00:29:17,570 --> 00:29:20,340
+Now I've just saved myself
+half the work
+
+634
+00:29:20,340 --> 00:29:22,630
+and half the latency.
+
+635
+00:29:22,630 --> 00:29:24,770
+Or basically saved myself
+some latency.
+
+636
+00:29:24,770 --> 00:29:26,100
+Not half the latency.
+
+637
+00:29:26,100 --> 00:29:27,900
+OK?
+
+638
+00:29:27,900 --> 00:29:32,300
+So basically, what you should
+know is there is invalidation
+
+639
+00:29:32,300 --> 00:29:35,030
+stuff going on behind when you
+start using shared memory,
+
+640
+00:29:35,030 --> 00:29:39,200
+behind the scenes which
+can slow down your
+
+641
+00:29:39,200 --> 00:29:42,800
+processor from executing.
+
+642
+00:29:42,800 --> 00:29:45,520
+Because it can't do the things
+that it needs to do until it
+
+643
+00:29:45,520 --> 00:29:49,810
+goes through the protocol.
+
+644
+00:29:49,810 --> 00:29:52,060
+Any questions about that?
+
+645
+00:29:52,060 --> 00:29:58,920
+That's basically the level
+we're going to cover the
+
+646
+00:29:58,920 --> 00:30:01,390
+hardware at.
+
+647
+00:30:01,390 --> 00:30:04,510
+And so, you'll discover that in
+doing some your problems,
+
+648
+00:30:04,510 --> 00:30:06,880
+that if you're not careful,
+you're going to create what
+
+649
+00:30:06,880 --> 00:30:10,220
+are called invalidation storms,
+where you have a whole
+
+650
+00:30:10,220 --> 00:30:12,880
+bunch of things that are red,
+and they're distributed across
+
+651
+00:30:12,880 --> 00:30:13,560
+the processor.
+
+652
+00:30:13,560 --> 00:30:16,220
+And then you go in, and
+you set one value.
+
+653
+00:30:16,220 --> 00:30:18,460
+And suddenly, vrrrrrruuuum.
+
+654
+00:30:18,460 --> 00:30:21,420
+Gee, how come that wasn't
+a fast store?
+
+655
+00:30:21,420 --> 00:30:23,550
+The answer is it's going through
+and invalidating all
+
+656
+00:30:23,550 --> 00:30:24,800
+those other copies.
+
+657
+00:30:24,800 --> 00:30:27,630
+
+658
+00:30:27,630 --> 00:30:29,330
+Good.
+
+659
+00:30:29,330 --> 00:30:31,700
+So let's turn to the
+real hard problem.
+
+660
+00:30:31,700 --> 00:30:35,290
+So it turns out that building
+these things is not
+
+661
+00:30:35,290 --> 00:30:36,930
+particularly well understood.
+
+662
+00:30:36,930 --> 00:30:38,640
+But it's understood
+a lot better than
+
+663
+00:30:38,640 --> 00:30:41,310
+programming these beasts.
+
+664
+00:30:41,310 --> 00:30:42,400
+OK.
+
+665
+00:30:42,400 --> 00:30:47,370
+And so, we're going to focus on
+some of the strategies for
+
+666
+00:30:47,370 --> 00:30:48,620
+programming.
+
+667
+00:30:48,620 --> 00:30:51,120
+
+668
+00:30:51,120 --> 00:30:55,760
+So it turns out that trying to
+program their processor cores
+
+669
+00:30:55,760 --> 00:30:58,530
+directly is painful.
+
+670
+00:30:58,530 --> 00:31:04,110
+And you're liable to make a lot
+of errors, as we'll see.
+
+671
+00:31:04,110 --> 00:31:08,170
+Because we're going to talk
+about races soon.
+
+672
+00:31:08,170 --> 00:31:11,910
+And so the idea of a current
+currency platform is to do
+
+673
+00:31:11,910 --> 00:31:16,880
+some level of abstraction of the
+processor cores to handle
+
+674
+00:31:16,880 --> 00:31:20,540
+synchronization communication
+protocols, and often to do
+
+675
+00:31:20,540 --> 00:31:24,870
+things like load balancing, so
+that the work that you're
+
+676
+00:31:24,870 --> 00:31:28,750
+doing can be moved across from
+processor to processor.
+
+677
+00:31:28,750 --> 00:31:31,390
+And so, here are some examples
+of concurrency platforms.
+
+678
+00:31:31,390 --> 00:31:34,500
+Pthreads and WinAPI threads,
+we're going to talk more in
+
+679
+00:31:34,500 --> 00:31:35,500
+detail about.
+
+680
+00:31:35,500 --> 00:31:38,880
+Pthreads is basically for
+Unix type systems,
+
+681
+00:31:38,880 --> 00:31:40,470
+like Linux and such.
+
+682
+00:31:40,470 --> 00:31:43,930
+WinAPI threads is for Windows.
+
+683
+00:31:43,930 --> 00:31:48,380
+There's threading building
+blocks, TBB, OpenMP, which is
+
+684
+00:31:48,380 --> 00:31:50,120
+a standard, and Cilk++.
+
+685
+00:31:50,120 --> 00:31:54,060
+Those are all examples of
+concurrency platforms that
+
+686
+00:31:54,060 --> 00:31:59,280
+make it easier to program
+these parallel machines.
+
+687
+00:31:59,280 --> 00:32:01,520
+So I'm going to do, as an
+example, I'm going to use the
+
+688
+00:32:01,520 --> 00:32:06,320
+Fibonacci numbers, which you
+have seen before I'm sure,
+
+689
+00:32:06,320 --> 00:32:11,260
+because we've actually even
+used it in this class.
+
+690
+00:32:11,260 --> 00:32:16,040
+This is Leonardo da Pisa, who
+was also known as Fibonacci.
+
+691
+00:32:16,040 --> 00:32:17,820
+And he introduced--
+
+692
+00:32:17,820 --> 00:32:20,680
+he was the most brilliant
+mathematician of his day.
+
+693
+00:32:20,680 --> 00:32:24,230
+He came basically out of the
+blue, doing all kinds of
+
+694
+00:32:24,230 --> 00:32:28,150
+beautiful mathematics very
+early in the Renaissance.
+
+695
+00:32:28,150 --> 00:32:31,085
+You'll recognize 1202 is
+very early Renaissance.
+
+696
+00:32:31,085 --> 00:32:35,610
+
+697
+00:32:35,610 --> 00:32:38,440
+But it turns out, for those of
+you of Indian descent, the
+
+698
+00:32:38,440 --> 00:32:39,900
+Indian mathematicians
+had already
+
+699
+00:32:39,900 --> 00:32:41,150
+discovered all this stuff.
+
+700
+00:32:41,150 --> 00:32:43,700
+
+701
+00:32:43,700 --> 00:32:46,480
+But it didn't make it into
+Western culture except for
+
+702
+00:32:46,480 --> 00:32:50,040
+Leonardo da Pisa.
+
+703
+00:32:50,040 --> 00:32:57,740
+So here's a program as you might
+write it in C. So Fib
+
+704
+00:32:57,740 --> 00:33:00,980
+int n says, well, if n is
+less than 2, return n.
+
+705
+00:33:00,980 --> 00:33:04,100
+So if it's 0 or 1, we return,
+Fib of 0 is 0.
+
+706
+00:33:04,100 --> 00:33:05,580
+Fib of 1 is 1.
+
+707
+00:33:05,580 --> 00:33:09,815
+And otherwise, we compute Fib of
+n minus 1, compute Fib of n
+
+708
+00:33:09,815 --> 00:33:12,220
+minus 2, and return the sum.
+
+709
+00:33:12,220 --> 00:33:13,950
+Simple recursive program.
+
+710
+00:33:13,950 --> 00:33:15,080
+Here's the main routine.
+
+711
+00:33:15,080 --> 00:33:18,940
+We get the argument from the
+command line, compute the
+
+712
+00:33:18,940 --> 00:33:22,170
+result, and then print
+out Fibonacci
+
+713
+00:33:22,170 --> 00:33:24,210
+of whatever is whatever.
+
+714
+00:33:24,210 --> 00:33:26,290
+Pretty simple piece of code.
+
+715
+00:33:26,290 --> 00:33:28,240
+So what we're going to do is
+take a look at what happens in
+
+716
+00:33:28,240 --> 00:33:32,900
+each of these four concurrency
+platforms to see how it is
+
+717
+00:33:32,900 --> 00:33:37,510
+that they make this easy to
+run this in parallel.
+
+718
+00:33:37,510 --> 00:33:40,770
+Now just a disclaimer here.
+
+719
+00:33:40,770 --> 00:33:42,720
+This is a really bad way--
+
+720
+00:33:42,720 --> 00:33:43,850
+I hope you all recognize--
+
+721
+00:33:43,850 --> 00:33:46,365
+of computing Fibonacci
+numbers.
+
+722
+00:33:46,365 --> 00:33:49,960
+So this is exponential
+time algorithm.
+
+723
+00:33:49,960 --> 00:33:52,990
+And you all know the linear
+time algorithm, which is
+
+724
+00:33:52,990 --> 00:33:55,440
+basically computed up
+from the bottom.
+
+725
+00:33:55,440 --> 00:33:58,210
+And some of you probably know
+there's a logarithmic time
+
+726
+00:33:58,210 --> 00:34:00,910
+algorithm based on squaring
+matrices.
+
+727
+00:34:00,910 --> 00:34:02,160
+Two by two matrices.
+
+728
+00:34:02,160 --> 00:34:05,030
+
+729
+00:34:05,030 --> 00:34:12,670
+So in any case, we're all
+about performance here.
+
+730
+00:34:12,670 --> 00:34:15,820
+But obviously, this is a really
+poor choice to do
+
+731
+00:34:15,820 --> 00:34:16,330
+performance on.
+
+732
+00:34:16,330 --> 00:34:19,570
+But it is a good didactic
+example, because it's so the
+
+733
+00:34:19,570 --> 00:34:24,409
+structure and the issues that
+you get into in doing this
+
+734
+00:34:24,409 --> 00:34:28,639
+with a very simple program that
+I can fit on a slide.
+
+735
+00:34:28,639 --> 00:34:28,909
+OK.
+
+736
+00:34:28,909 --> 00:34:33,219
+So when you execute Fibonacci,
+when you call Fib of 4, it
+
+737
+00:34:33,219 --> 00:34:36,469
+calls Fib of 3 and Fib of 2.
+
+738
+00:34:36,469 --> 00:34:39,570
+And Fib of 3 calls Fib
+of 2 and Fib of 1.
+
+739
+00:34:39,570 --> 00:34:42,489
+And Fib of 1 just returns Fib
+of 2, calls [UNINTELLIGIBLE]
+
+740
+00:34:42,489 --> 00:34:44,060
+1, 0, et cetera.
+
+741
+00:34:44,060 --> 00:34:49,659
+And so basically, you get an
+execution trace that basically
+
+742
+00:34:49,659 --> 00:34:53,270
+corresponds to walk
+of this tree.
+
+743
+00:34:53,270 --> 00:34:57,720
+So if you were doing this in C,
+you'd basically call this,
+
+744
+00:34:57,720 --> 00:34:58,770
+call this, call this.
+
+745
+00:34:58,770 --> 00:34:59,670
+Get a value return.
+
+746
+00:34:59,670 --> 00:35:00,550
+Call this.
+
+747
+00:35:00,550 --> 00:35:02,930
+Add the two values together.
+
+748
+00:35:02,930 --> 00:35:04,540
+Return here.
+
+749
+00:35:04,540 --> 00:35:05,170
+Call this.
+
+750
+00:35:05,170 --> 00:35:06,330
+Add the two values together.
+
+751
+00:35:06,330 --> 00:35:07,780
+Call the return there.
+
+752
+00:35:07,780 --> 00:35:08,260
+And so forth.
+
+753
+00:35:08,260 --> 00:35:12,190
+You walk that using a stack, a
+call stack, in the execution.
+
+754
+00:35:12,190 --> 00:35:15,240
+
+755
+00:35:15,240 --> 00:35:19,550
+The key idea for parallelization
+is, well, gee.
+
+756
+00:35:19,550 --> 00:35:23,390
+Fib of n minus 1 and fib of n
+minus 2 are really, in this
+
+757
+00:35:23,390 --> 00:35:26,420
+calculation, completely
+independently calculated.
+
+758
+00:35:26,420 --> 00:35:27,940
+So let's just do them
+at the same time.
+
+759
+00:35:27,940 --> 00:35:31,040
+
+760
+00:35:31,040 --> 00:35:35,590
+And they can be executed at
+the same time without
+
+761
+00:35:35,590 --> 00:35:37,350
+interference, because
+all they're doing is
+
+762
+00:35:37,350 --> 00:35:38,290
+basing it on n.
+
+763
+00:35:38,290 --> 00:35:41,220
+They're not using any shared
+memory or anything even for
+
+764
+00:35:41,220 --> 00:35:43,800
+this particular program.
+
+765
+00:35:43,800 --> 00:35:45,450
+So let's take a look,
+to begin with, how
+
+766
+00:35:45,450 --> 00:35:48,320
+Pthreads might do this.
+
+767
+00:35:48,320 --> 00:35:56,090
+So Pthreads is a standard that
+ANSI and the IEEE have
+
+768
+00:35:56,090 --> 00:35:58,550
+established for--
+
+769
+00:35:58,550 --> 00:36:00,960
+and I actually believe this is
+a little bit out of date.
+
+770
+00:36:00,960 --> 00:36:03,700
+I believe there's now
+a 2010 version.
+
+771
+00:36:03,700 --> 00:36:05,870
+I'm not sure.
+
+772
+00:36:05,870 --> 00:36:07,990
+But I recall that they were
+working on a new version.
+
+773
+00:36:07,990 --> 00:36:10,330
+But anyway, this is a recent
+enough standard.
+
+774
+00:36:10,330 --> 00:36:13,520
+It's a standard that has been
+revised over the years, the
+
+775
+00:36:13,520 --> 00:36:15,980
+so-called POSIX standard.
+
+776
+00:36:15,980 --> 00:36:21,020
+So you'll hear, Pthreads is
+basically POSIX threads.
+
+777
+00:36:21,020 --> 00:36:23,530
+It's basically what you might
+characterize as a do it
+
+778
+00:36:23,530 --> 00:36:25,920
+yourself concurrency platform.
+
+779
+00:36:25,920 --> 00:36:30,370
+It's kind of like assembly
+language for parallelism.
+
+780
+00:36:30,370 --> 00:36:34,000
+It allows you to do the things
+you need to do, but you're
+
+781
+00:36:34,000 --> 00:36:38,230
+sort of doing it all by hand,
+one step at a time.
+
+782
+00:36:38,230 --> 00:36:42,190
+It's built as a library of
+functions with special non-C
+
+783
+00:36:42,190 --> 00:36:43,440
+or C++ semantics.
+
+784
+00:36:43,440 --> 00:36:50,760
+
+785
+00:36:50,760 --> 00:36:53,650
+And we'll look at what some
+of those semantics are.
+
+786
+00:36:53,650 --> 00:36:57,670
+Each thread implements an
+abstraction of a processor,
+
+787
+00:36:57,670 --> 00:37:01,640
+which are multiplexed onto the
+machine resources by the
+
+788
+00:37:01,640 --> 00:37:05,700
+Pthread runtime implementation.
+
+789
+00:37:05,700 --> 00:37:08,800
+Threads communicate through
+shared memory.
+
+790
+00:37:08,800 --> 00:37:13,090
+And library functions mask
+the protocols involved in
+
+791
+00:37:13,090 --> 00:37:15,680
+interthread coordination.
+
+792
+00:37:15,680 --> 00:37:20,290
+So you can start up threads, et
+cetera, and their library
+
+793
+00:37:20,290 --> 00:37:21,230
+function for doing that.
+
+794
+00:37:21,230 --> 00:37:23,310
+So let's just see
+how that works.
+
+795
+00:37:23,310 --> 00:37:25,860
+So here are, basically, the two
+
+796
+00:37:25,860 --> 00:37:29,800
+important Pthread functions.
+
+797
+00:37:29,800 --> 00:37:31,560
+There are actually a whole bunch
+of them, because they
+
+798
+00:37:31,560 --> 00:37:34,730
+also provide a bunch of
+other facilities.
+
+799
+00:37:34,730 --> 00:37:38,200
+One is pthread_create, which
+creates Pthread.
+
+800
+00:37:38,200 --> 00:37:39,450
+And one is pthread_join.
+
+801
+00:37:39,450 --> 00:37:41,620
+
+802
+00:37:41,620 --> 00:37:49,990
+So pthread_create basically
+is return an identifier.
+
+803
+00:37:49,990 --> 00:37:53,160
+So when you say create a
+Pthread, the Pthread system
+
+804
+00:37:53,160 --> 00:37:55,860
+says, here's a handle by which
+you can name this thread in
+
+805
+00:37:55,860 --> 00:37:57,420
+the future.
+
+806
+00:37:57,420 --> 00:37:57,660
+OK.
+
+807
+00:37:57,660 --> 00:38:00,490
+So it's a very common thing
+that the implementer says,
+
+808
+00:38:00,490 --> 00:38:01,730
+here's the name that you get.
+
+809
+00:38:01,730 --> 00:38:02,850
+It's called a handle.
+
+810
+00:38:02,850 --> 00:38:05,640
+So it returns a handle.
+
+811
+00:38:05,640 --> 00:38:12,020
+It then has an object to set
+various thread attributes.
+
+812
+00:38:12,020 --> 00:38:14,250
+And for most of what we're
+going to need, we're just
+
+813
+00:38:14,250 --> 00:38:15,860
+going to need NULL
+for default.
+
+814
+00:38:15,860 --> 00:38:18,390
+We don't need any special
+things like changing the
+
+815
+00:38:18,390 --> 00:38:21,720
+priority or what have you.
+
+816
+00:38:21,720 --> 00:38:28,390
+Then what you pass is a void*
+pointer to a function, which
+
+817
+00:38:28,390 --> 00:38:32,360
+is going to be the routine
+executed after creation.
+
+818
+00:38:32,360 --> 00:38:35,310
+So you can name the function
+that you want to have it
+
+819
+00:38:35,310 --> 00:38:36,560
+operate on.
+
+820
+00:38:36,560 --> 00:38:39,220
+
+821
+00:38:39,220 --> 00:38:42,290
+And then you have a single
+pointer to an argument that
+
+822
+00:38:42,290 --> 00:38:43,700
+you're going to pass
+to the function.
+
+823
+00:38:43,700 --> 00:38:46,710
+
+824
+00:38:46,710 --> 00:38:49,860
+So when you call something with
+Pthreads to create them,
+
+825
+00:38:49,860 --> 00:38:53,070
+you can't say, and here's
+my list of arguments.
+
+826
+00:38:53,070 --> 00:38:55,610
+If you have more than one
+argument, you have to pack it
+
+827
+00:38:55,610 --> 00:38:58,670
+together into a struct
+and pass the
+
+828
+00:38:58,670 --> 00:39:00,380
+pointer to the struct.
+
+829
+00:39:00,380 --> 00:39:02,830
+And this function has to be
+smart enough to understand how
+
+830
+00:39:02,830 --> 00:39:04,470
+to unpack it.
+
+831
+00:39:04,470 --> 00:39:07,150
+We'll see an example
+in a minute.
+
+832
+00:39:07,150 --> 00:39:09,620
+And then, it returns
+an error status.
+
+833
+00:39:09,620 --> 00:39:11,810
+So the most common thing people
+do is they don't bother
+
+834
+00:39:11,810 --> 00:39:14,140
+to check the error status.
+
+835
+00:39:14,140 --> 00:39:14,610
+OK.
+
+836
+00:39:14,610 --> 00:39:16,950
+And yet sometimes, you try to
+create a Pthread, there's a
+
+837
+00:39:16,950 --> 00:39:18,810
+reason it can't create one.
+
+838
+00:39:18,810 --> 00:39:21,300
+And now you keep going thinking
+you have one, and
+
+839
+00:39:21,300 --> 00:39:24,640
+then your program crashes
+and you wonder why.
+
+840
+00:39:24,640 --> 00:39:26,990
+So when you create things,
+you should check.
+
+841
+00:39:26,990 --> 00:39:31,540
+I'm not sure in my code here
+whether I checked everywhere.
+
+842
+00:39:31,540 --> 00:39:33,700
+But you should check.
+
+843
+00:39:33,700 --> 00:39:36,720
+Do as I say, not as I do.
+
+844
+00:39:36,720 --> 00:39:37,670
+OK.
+
+845
+00:39:37,670 --> 00:39:40,280
+So the other key function
+is join.
+
+846
+00:39:40,280 --> 00:39:43,310
+And basically, what you do is
+you say, you name the thread
+
+847
+00:39:43,310 --> 00:39:44,900
+that you want to wait for.
+
+848
+00:39:44,900 --> 00:39:46,680
+This is the name that
+would be returned
+
+849
+00:39:46,680 --> 00:39:49,700
+by the create function.
+
+850
+00:39:49,700 --> 00:39:57,860
+And you also give a place where
+it can store the status
+
+851
+00:39:57,860 --> 00:40:01,000
+of the thread when
+it terminated.
+
+852
+00:40:01,000 --> 00:40:03,290
+It's allowed to say, I
+terminated normally.
+
+853
+00:40:03,290 --> 00:40:05,950
+I terminated with a given error
+condition or whatever.
+
+854
+00:40:05,950 --> 00:40:07,430
+But if you don't care
+what it is, you
+
+855
+00:40:07,430 --> 00:40:08,990
+just put in NULL there.
+
+856
+00:40:08,990 --> 00:40:10,610
+And then it returns
+to the error
+
+857
+00:40:10,610 --> 00:40:13,230
+status of the join function.
+
+858
+00:40:13,230 --> 00:40:15,560
+So those are the two functions
+that you program with.
+
+859
+00:40:15,560 --> 00:40:16,408
+Question?
+
+860
+00:40:16,408 --> 00:40:17,658
+AUDIENCE: [INAUDIBLE PHRASE]?
+
+861
+00:40:17,658 --> 00:40:21,090
+
+862
+00:40:21,090 --> 00:40:22,170
+PROFESSOR: It's different.
+
+863
+00:40:22,170 --> 00:40:22,690
+It's different.
+
+864
+00:40:22,690 --> 00:40:26,350
+So it's basically, if the error
+status, if it returns
+
+865
+00:40:26,350 --> 00:40:29,170
+NULL, it just means everything
+went OK.
+
+866
+00:40:29,170 --> 00:40:33,710
+
+867
+00:40:33,710 --> 00:40:37,800
+The handle is you pass a name,
+and basically this is *thread.
+
+868
+00:40:37,800 --> 00:40:41,790
+It stuffs the name into
+whatever you give it.
+
+869
+00:40:41,790 --> 00:40:44,070
+OK so you're not saying,
+here's the name.
+
+870
+00:40:44,070 --> 00:40:47,430
+This is returned as an
+output parameter.
+
+871
+00:40:47,430 --> 00:40:52,560
+So you're giving it an address
+of some place to put the name.
+
+872
+00:40:52,560 --> 00:40:52,690
+OK.
+
+873
+00:40:52,690 --> 00:40:54,270
+Let's see an example.
+
+874
+00:40:54,270 --> 00:40:59,840
+So here's Fibonacci
+with Pthreads.
+
+875
+00:40:59,840 --> 00:41:02,280
+So let's just go through that.
+
+876
+00:41:02,280 --> 00:41:06,330
+So the first part
+is pretty good.
+
+877
+00:41:06,330 --> 00:41:11,750
+This is your original code
+that does Fibonacci.
+
+878
+00:41:11,750 --> 00:41:15,930
+And now what we do is
+we have a structure
+
+879
+00:41:15,930 --> 00:41:17,750
+for the thread arguments.
+
+880
+00:41:17,750 --> 00:41:20,110
+And so we're going to have an
+input argument and an output
+
+881
+00:41:20,110 --> 00:41:21,500
+argument in this example.
+
+882
+00:41:21,500 --> 00:41:23,980
+Because Fib takes an input
+argument in and
+
+883
+00:41:23,980 --> 00:41:27,280
+returns Fib of n.
+
+884
+00:41:27,280 --> 00:41:29,180
+So we're going to call those
+input and output.
+
+885
+00:41:29,180 --> 00:41:31,570
+And we'll call them
+thread_args.
+
+886
+00:41:31,570 --> 00:41:37,660
+And now, here is my void*
+function, thread_func, which
+
+887
+00:41:37,660 --> 00:41:39,790
+takes a pointer.
+
+888
+00:41:39,790 --> 00:41:43,980
+And what it does is
+when it executes--
+
+889
+00:41:43,980 --> 00:41:46,070
+so what you're going to be able
+to do is, as we'll see in
+
+890
+00:41:46,070 --> 00:41:47,300
+a minute--.
+
+891
+00:41:47,300 --> 00:41:48,910
+Let me just go through this.
+
+892
+00:41:48,910 --> 00:41:50,610
+This is going to be the function
+called when the
+
+893
+00:41:50,610 --> 00:41:52,140
+thread is created.
+
+894
+00:41:52,140 --> 00:41:53,211
+So when the thread is created,
+you're just going
+
+895
+00:41:53,211 --> 00:41:54,990
+to call this function.
+
+896
+00:41:54,990 --> 00:42:00,150
+And what it's going to get is
+the argument that was passed,
+
+897
+00:42:00,150 --> 00:42:03,660
+which is this *star thing.
+
+898
+00:42:03,660 --> 00:42:06,050
+And what it does in this case
+is it's basically going to
+
+899
+00:42:06,050 --> 00:42:12,140
+cast the pointer to a thread_arg
+struct and
+
+900
+00:42:12,140 --> 00:42:16,570
+dereference the input, and stick
+that into I. Then going
+
+901
+00:42:16,570 --> 00:42:19,710
+to compute Fib of I. And then
+it's going to take, once
+
+902
+00:42:19,710 --> 00:42:24,100
+again, deference the pointer as
+if it's a thread_arg, and
+
+903
+00:42:24,100 --> 00:42:29,190
+store into the output field
+the result of the Fib.
+
+904
+00:42:29,190 --> 00:42:30,590
+And then it returns NULL.
+
+905
+00:42:30,590 --> 00:42:34,060
+
+906
+00:42:34,060 --> 00:42:36,170
+So that's basically the function
+that's going to be
+
+907
+00:42:36,170 --> 00:42:37,910
+called when the thread
+is created.
+
+908
+00:42:37,910 --> 00:42:43,560
+So in your main routine now,
+what happens is we initialize
+
+909
+00:42:43,560 --> 00:42:44,400
+a bunch of things.
+
+910
+00:42:44,400 --> 00:42:48,350
+And now, if argc is less
+than 2, we'll return 1.
+
+911
+00:42:48,350 --> 00:42:50,860
+That's fine.
+
+912
+00:42:50,860 --> 00:42:54,850
+Then we're going to get the
+reading that we fail.
+
+913
+00:42:54,850 --> 00:42:56,280
+That's actually the reading
+of the input.
+
+914
+00:42:56,280 --> 00:43:00,220
+So then, what we do here is we
+get n from the command line.
+
+915
+00:43:00,220 --> 00:43:03,430
+And then if n is less than
+30, we're just going to
+
+916
+00:43:03,430 --> 00:43:05,710
+compute Fib of n.
+
+917
+00:43:05,710 --> 00:43:10,680
+This is what I evaluated on my
+laptop was a good number.
+
+918
+00:43:10,680 --> 00:43:13,870
+So the idea is there's no point
+in creating the extra
+
+919
+00:43:13,870 --> 00:43:17,740
+thread to do the work if it's
+going to be more expensive
+
+920
+00:43:17,740 --> 00:43:19,710
+than me just doing
+the work myself.
+
+921
+00:43:19,710 --> 00:43:23,150
+So I looked at the overhead of
+thread creation and discovered
+
+922
+00:43:23,150 --> 00:43:27,420
+that if it was smaller than 30,
+it's going to be slower to
+
+923
+00:43:27,420 --> 00:43:30,780
+create another thread
+to help me out.
+
+924
+00:43:30,780 --> 00:43:33,780
+It's sort of like you folks
+when you're doing pair
+
+925
+00:43:33,780 --> 00:43:35,850
+programming, which you're
+supposed to be doing, versus
+
+926
+00:43:35,850 --> 00:43:36,990
+handing it off.
+
+927
+00:43:36,990 --> 00:43:38,790
+Sometimes, there are some things
+that are too small to
+
+928
+00:43:38,790 --> 00:43:40,920
+ask somebody else to do.
+
+929
+00:43:40,920 --> 00:43:43,897
+You might as well just do it,
+by time you explain what it
+
+930
+00:43:43,897 --> 00:43:45,310
+is, and so forth.
+
+931
+00:43:45,310 --> 00:43:47,160
+Same thing here.
+
+932
+00:43:47,160 --> 00:43:49,710
+What's the point in starting
+up a thread to do something
+
+933
+00:43:49,710 --> 00:43:53,630
+else, because the startup cost
+is rather substantial.
+
+934
+00:43:53,630 --> 00:43:56,180
+So if it's less than 30, well,
+we'll just be done.
+
+935
+00:43:56,180 --> 00:44:01,120
+Otherwise, what we do
+is we marshall the
+
+936
+00:44:01,120 --> 00:44:02,300
+argument to the thread.
+
+937
+00:44:02,300 --> 00:44:06,370
+We basically set args.input
+to n minus 1.
+
+938
+00:44:06,370 --> 00:44:08,860
+Because args is going to be
+what I'm going to pass in.
+
+939
+00:44:08,860 --> 00:44:11,700
+So I say the input number
+is n minus 1.
+
+940
+00:44:11,700 --> 00:44:17,520
+And now what I do is I create
+the thread by saying, give me
+
+941
+00:44:17,520 --> 00:44:22,840
+the name of the thread
+that I'm creating.
+
+942
+00:44:22,840 --> 00:44:28,520
+This was the field that I said
+you could put to be NULL,
+
+943
+00:44:28,520 --> 00:44:30,710
+which basically lets
+you set some policy
+
+944
+00:44:30,710 --> 00:44:32,370
+parameters and so forth.
+
+945
+00:44:32,370 --> 00:44:34,470
+I say, execute the
+thread_func.
+
+946
+00:44:34,470 --> 00:44:36,000
+This guy here.
+
+947
+00:44:36,000 --> 00:44:38,650
+And here's the argument list
+that I want to provide it,
+
+948
+00:44:38,650 --> 00:44:42,000
+which is this args thing.
+
+949
+00:44:42,000 --> 00:44:44,950
+Once you do the thread_create,
+and this is where you depart
+
+950
+00:44:44,950 --> 00:44:48,420
+from normal C or
+C++ semantics.
+
+951
+00:44:48,420 --> 00:44:51,000
+And in fact, we're going to be
+doing more moving in the
+
+952
+00:44:51,000 --> 00:44:52,260
+direction of C++.
+
+953
+00:44:52,260 --> 00:44:57,240
+We'll have some tutorials
+on that.
+
+954
+00:44:57,240 --> 00:45:00,200
+What happens is we
+check the status.
+
+955
+00:45:00,200 --> 00:45:03,200
+OK, I actually did check the
+status to see whether or not
+
+956
+00:45:03,200 --> 00:45:05,550
+it created it properly.
+
+957
+00:45:05,550 --> 00:45:09,240
+But basically now, what's
+happening is after I execute
+
+958
+00:45:09,240 --> 00:45:13,520
+this, it goes off and all the
+magic in Pthreads starts
+
+959
+00:45:13,520 --> 00:45:16,370
+another thread doing
+that computation.
+
+960
+00:45:16,370 --> 00:45:19,910
+And control returns to the
+statement after the
+
+961
+00:45:19,910 --> 00:45:21,850
+pthread_create.
+
+962
+00:45:21,850 --> 00:45:25,230
+So when the pthread_create
+returns, that doesn't mean
+
+963
+00:45:25,230 --> 00:45:28,150
+it's done computing the thing
+you told it to do.
+
+964
+00:45:28,150 --> 00:45:30,420
+Then, what would be the point?
+
+965
+00:45:30,420 --> 00:45:35,230
+It returns after it's set up
+to operate in parallel the
+
+966
+00:45:35,230 --> 00:45:36,650
+other thread.
+
+967
+00:45:36,650 --> 00:45:38,110
+People follow that?
+
+968
+00:45:38,110 --> 00:45:41,480
+So now at this point, there
+are two threads operating.
+
+969
+00:45:41,480 --> 00:45:43,060
+There's the thread we've
+called thread.
+
+970
+00:45:43,060 --> 00:45:45,260
+And there's whatever the name
+of the thread is that we
+
+971
+00:45:45,260 --> 00:45:46,510
+started on.
+
+972
+00:45:46,510 --> 00:45:48,740
+
+973
+00:45:48,740 --> 00:45:52,510
+So then we, in our own processor
+here, we compute Fib
+
+974
+00:45:52,510 --> 00:45:54,610
+of N minus 2.
+
+975
+00:45:54,610 --> 00:45:58,960
+And now, what we do is we go
+on to join this thread with
+
+976
+00:45:58,960 --> 00:46:04,220
+the thread that we
+had created.
+
+977
+00:46:04,220 --> 00:46:08,130
+
+978
+00:46:08,130 --> 00:46:10,740
+So let's see here.
+
+979
+00:46:10,740 --> 00:46:13,810
+And the thing that the join does
+is if the other thread
+
+980
+00:46:13,810 --> 00:46:17,620
+isn't done, it sits there and
+waits until it is done.
+
+981
+00:46:17,620 --> 00:46:19,050
+And it does that
+synchronization
+
+982
+00:46:19,050 --> 00:46:20,420
+automatically for you.
+
+983
+00:46:20,420 --> 00:46:21,530
+And this is the kind of thing a
+
+984
+00:46:21,530 --> 00:46:23,130
+concurrency platform provides.
+
+985
+00:46:23,130 --> 00:46:28,250
+It provides the coordination
+under the covers for you to be
+
+986
+00:46:28,250 --> 00:46:31,960
+able to synchronize with it
+without you having to
+
+987
+00:46:31,960 --> 00:46:34,930
+synchronize on your own.
+
+988
+00:46:34,930 --> 00:46:41,400
+And then, once it does return,
+it adds the results together
+
+989
+00:46:41,400 --> 00:46:46,710
+by taking the result which came
+from the Fib of n minus 2
+
+990
+00:46:46,710 --> 00:46:50,750
+and adds to it the value that
+this thread has returned in
+
+991
+00:46:50,750 --> 00:46:52,000
+the args.output.
+
+992
+00:46:52,000 --> 00:46:54,660
+
+993
+00:46:54,660 --> 00:46:57,420
+And then it prints the result.
+
+994
+00:46:57,420 --> 00:46:59,910
+So any question about that?
+
+995
+00:46:59,910 --> 00:47:02,860
+Wouldn't this be fun to write
+a really big system in?
+
+996
+00:47:02,860 --> 00:47:04,230
+People do.
+
+997
+00:47:04,230 --> 00:47:05,480
+People do.
+
+998
+00:47:05,480 --> 00:47:07,928
+Yeah, question?
+
+999
+00:47:07,928 --> 00:47:09,178
+AUDIENCE: [INAUDIBLE PHRASE]
+
+1000
+00:47:09,178 --> 00:47:13,540
+
+1001
+00:47:13,540 --> 00:47:14,795
+PROFESSOR: That's a
+tuning parameter.
+
+1002
+00:47:14,795 --> 00:47:15,595
+That's a voodoo parameter.
+
+1003
+00:47:15,595 --> 00:47:15,930
+AUDIENCE: Right.
+
+1004
+00:47:15,930 --> 00:47:19,374
+But in this particular case, it
+makes no difference at all.
+
+1005
+00:47:19,374 --> 00:47:23,310
+It would've made a difference
+if it was an actual person
+
+1006
+00:47:23,310 --> 00:47:23,802
+[INAUDIBLE]?
+
+1007
+00:47:23,802 --> 00:47:25,290
+PROFESSOR: No, it does
+make a difference.
+
+1008
+00:47:25,290 --> 00:47:27,080
+For how fast it computes this?
+
+1009
+00:47:27,080 --> 00:47:28,170
+Absolutely does.
+
+1010
+00:47:28,170 --> 00:47:29,530
+AUDIENCE: That's
+not recursive?
+
+1011
+00:47:29,530 --> 00:47:30,050
+PROFESSOR: No, that's right.
+
+1012
+00:47:30,050 --> 00:47:30,920
+This is not recursive.
+
+1013
+00:47:30,920 --> 00:47:33,238
+I'm just doing two things
+and then quitting.
+
+1014
+00:47:33,238 --> 00:47:36,202
+AUDIENCE: [INAUDIBLE] if it's
+less than 30, then it's going
+
+1015
+00:47:36,202 --> 00:47:39,390
+to be [INAUDIBLE], right?
+
+1016
+00:47:39,390 --> 00:47:41,660
+PROFESSOR: If it's less than
+30, it's fast enough that I
+
+1017
+00:47:41,660 --> 00:47:43,175
+might as well just return.
+
+1018
+00:47:43,175 --> 00:47:46,025
+AUDIENCE: Then why
+[INAUDIBLE PHRASE]
+
+1019
+00:47:46,025 --> 00:47:46,975
+to do it.
+
+1020
+00:47:46,975 --> 00:47:49,350
+It would return [INAUDIBLE]
+too.
+
+1021
+00:47:49,350 --> 00:47:49,560
+PROFESSOR: No.
+
+1022
+00:47:49,560 --> 00:47:51,470
+But it would be slower.
+
+1023
+00:47:51,470 --> 00:47:52,645
+It would be wasteful
+of resources.
+
+1024
+00:47:52,645 --> 00:47:53,434
+Maybe somebody--
+
+1025
+00:47:53,434 --> 00:47:56,338
+AUDIENCE: Well, because you're
+using such a bad
+
+1026
+00:47:56,338 --> 00:47:56,822
+algorithm, I guess?
+
+1027
+00:47:56,822 --> 00:47:57,306
+PROFESSOR: Yeah.
+
+1028
+00:47:57,306 --> 00:47:57,790
+AUDIENCE: Oh, I see.
+
+1029
+00:47:57,790 --> 00:47:58,280
+Oh, OK.
+
+1030
+00:47:58,280 --> 00:47:59,430
+PROFESSOR: OK.
+
+1031
+00:47:59,430 --> 00:48:02,410
+So in any case, that's Pthread's
+programming.
+
+1032
+00:48:02,410 --> 00:48:03,450
+There are a bunch of issues.
+
+1033
+00:48:03,450 --> 00:48:08,090
+One is that the overhead of
+creating a thread is more than
+
+1034
+00:48:08,090 --> 00:48:10,220
+10,000 cycles.
+
+1035
+00:48:10,220 --> 00:48:13,130
+So it leaves you to only be able
+to do very coarse grain
+
+1036
+00:48:13,130 --> 00:48:13,760
+concurrency.
+
+1037
+00:48:13,760 --> 00:48:15,590
+There are some tricks
+around that.
+
+1038
+00:48:15,590 --> 00:48:17,870
+One is to use what's called
+thread pools.
+
+1039
+00:48:17,870 --> 00:48:21,600
+What I do is I start up, and I
+create a bunch of threads.
+
+1040
+00:48:21,600 --> 00:48:22,560
+And I have their names.
+
+1041
+00:48:22,560 --> 00:48:23,810
+I put them in a link list.
+
+1042
+00:48:23,810 --> 00:48:26,270
+And whenever I need to create
+one, rather than actually
+
+1043
+00:48:26,270 --> 00:48:29,090
+creating one, I take one out of
+the list, much as I would
+
+1044
+00:48:29,090 --> 00:48:30,820
+do memory allocation.
+
+1045
+00:48:30,820 --> 00:48:32,310
+Which you folks are
+familiar with.
+
+1046
+00:48:32,310 --> 00:48:35,580
+
+1047
+00:48:35,580 --> 00:48:36,050
+OK.
+
+1048
+00:48:36,050 --> 00:48:38,490
+Ha, ha, ha, ha, ha.
+
+1049
+00:48:38,490 --> 00:48:45,340
+[MANIACAL LAUGHTER]
+
+1050
+00:48:45,340 --> 00:48:48,960
+So basically, you can have
+a free list of threads.
+
+1051
+00:48:48,960 --> 00:48:53,550
+And when you need a thread,
+you grab the thread.
+
+1052
+00:48:53,550 --> 00:48:57,750
+The second thing
+is scalability.
+
+1053
+00:48:57,750 --> 00:49:01,580
+So this code gets about a 1.5
+speed up for two cores.
+
+1054
+00:49:01,580 --> 00:49:05,450
+If I want to use three cores
+or four cores, what
+
+1055
+00:49:05,450 --> 00:49:07,470
+do I have to do?
+
+1056
+00:49:07,470 --> 00:49:09,210
+Rewrite the whole program.
+
+1057
+00:49:09,210 --> 00:49:12,490
+This program only works
+for two cores.
+
+1058
+00:49:12,490 --> 00:49:14,780
+It will also work
+for one core.
+
+1059
+00:49:14,780 --> 00:49:17,600
+but basically, it doesn't
+really exploit
+
+1060
+00:49:17,600 --> 00:49:20,550
+three or four cores.
+
+1061
+00:49:20,550 --> 00:49:22,300
+It's really bad for
+modulatary.
+
+1062
+00:49:22,300 --> 00:49:25,670
+The Fibonacci logic is no longer
+neatly encapsulated in
+
+1063
+00:49:25,670 --> 00:49:28,510
+the Fib function.
+
+1064
+00:49:28,510 --> 00:49:31,320
+So where do we see if we
+go back to this code?
+
+1065
+00:49:31,320 --> 00:49:32,910
+Here's the Fib function.
+
+1066
+00:49:32,910 --> 00:49:35,410
+Oh, but now, I've
+kind of got--
+
+1067
+00:49:35,410 --> 00:49:37,510
+well, this is sort of just
+marshaling and calling.
+
+1068
+00:49:37,510 --> 00:49:41,570
+But over here, oh my goodness,
+I've got some arguments here.
+
+1069
+00:49:41,570 --> 00:49:43,640
+If n is less than 30,
+I give a result.
+
+1070
+00:49:43,640 --> 00:49:45,960
+Otherwise, I'm adding
+together--
+
+1071
+00:49:45,960 --> 00:49:46,310
+but wait a minute.
+
+1072
+00:49:46,310 --> 00:49:48,730
+I already specified
+Fib up here.
+
+1073
+00:49:48,730 --> 00:49:51,510
+So I'm specifying my serial
+implementation, and I'm
+
+1074
+00:49:51,510 --> 00:49:55,000
+specifying a parallel
+way of doing it.
+
+1075
+00:49:55,000 --> 00:49:56,410
+And so that's not modular.
+
+1076
+00:49:56,410 --> 00:49:59,640
+If I decided I wanted to change
+the Fib, I've got to
+
+1077
+00:49:59,640 --> 00:50:01,860
+change things in two places.
+
+1078
+00:50:01,860 --> 00:50:07,840
+If Fib were something I did.
+
+1079
+00:50:07,840 --> 00:50:08,870
+Code simplicity.
+
+1080
+00:50:08,870 --> 00:50:10,280
+The programmers for this are
+
+1081
+00:50:10,280 --> 00:50:12,630
+actually marshalling arguments.
+
+1082
+00:50:12,630 --> 00:50:15,070
+This is what I call
+shades of 1958.
+
+1083
+00:50:15,070 --> 00:50:18,495
+What happened in 1958 that's
+relevant to computer science?
+
+1084
+00:50:18,495 --> 00:50:21,060
+
+1085
+00:50:21,060 --> 00:50:25,320
+What was the big innovation
+in 1958?
+
+1086
+00:50:25,320 --> 00:50:27,310
+Programming language.
+
+1087
+00:50:27,310 --> 00:50:29,380
+Fortran.
+
+1088
+00:50:29,380 --> 00:50:30,820
+So, Fortran.
+
+1089
+00:50:30,820 --> 00:50:35,320
+Before Fortran, people wrote
+in assembly language.
+
+1090
+00:50:35,320 --> 00:50:39,710
+If you wanted to put three
+arguments to a function, you
+
+1091
+00:50:39,710 --> 00:50:43,790
+did a push, push, push, or
+passed them in parameters.
+
+1092
+00:50:43,790 --> 00:50:46,720
+Actually, their machines were
+so much more primitive than
+
+1093
+00:50:46,720 --> 00:50:48,680
+that it was even more
+complicated than you could
+
+1094
+00:50:48,680 --> 00:50:54,100
+imagine, given how complicated
+it is today what the
+
+1095
+00:50:54,100 --> 00:50:56,170
+compilers are doing.
+
+1096
+00:50:56,170 --> 00:50:57,870
+But you had marshal the
+arguments yourself.
+
+1097
+00:50:57,870 --> 00:51:00,150
+What Fortran did was say,
+no, you can actually
+
+1098
+00:51:00,150 --> 00:51:03,780
+write f of a, b, c.
+
+1099
+00:51:03,780 --> 00:51:06,320
+Close paren.
+
+1100
+00:51:06,320 --> 00:51:10,820
+And that it will cause a, b,
+and c all to be marshalled
+
+1101
+00:51:10,820 --> 00:51:13,160
+automatically for you.
+
+1102
+00:51:13,160 --> 00:51:15,450
+Well, Pthreads doesn't have that
+automatic marshalling.
+
+1103
+00:51:15,450 --> 00:51:18,300
+You got to marshall by hand if
+you're going to use pthreads.
+
+1104
+00:51:18,300 --> 00:51:21,790
+
+1105
+00:51:21,790 --> 00:51:24,770
+And of course, as you can
+imagine, that was error prone.
+
+1106
+00:51:24,770 --> 00:51:27,800
+Because there is
+no type safety.
+
+1107
+00:51:27,800 --> 00:51:31,730
+Are you calling things with the
+right types and so forth?
+
+1108
+00:51:31,730 --> 00:51:33,940
+And so forth.
+
+1109
+00:51:33,940 --> 00:51:39,460
+And also, one of the things here
+is that we've created two
+
+1110
+00:51:39,460 --> 00:51:41,010
+jobs that aren't
+the same size.
+
+1111
+00:51:41,010 --> 00:51:46,230
+So there's no way that they
+have of load balancing.
+
+1112
+00:51:46,230 --> 00:51:50,070
+So this is why pthreads is sort
+of the assembly language
+
+1113
+00:51:50,070 --> 00:51:53,320
+level, so that you can do
+anything you want in pthreads.
+
+1114
+00:51:53,320 --> 00:51:55,790
+But you have to program
+at this kind of very
+
+1115
+00:51:55,790 --> 00:51:59,500
+protocol-laden level.
+
+1116
+00:51:59,500 --> 00:52:00,600
+Next thing I want
+to talk about is
+
+1117
+00:52:00,600 --> 00:52:01,850
+threading building blocks.
+
+1118
+00:52:01,850 --> 00:52:04,700
+
+1119
+00:52:04,700 --> 00:52:09,250
+This is a technology
+developed by Intel.
+
+1120
+00:52:09,250 --> 00:52:12,930
+It's implemented as a C++
+library that runs on top of
+
+1121
+00:52:12,930 --> 00:52:16,480
+the native Pthreads, typically,
+or WinAPI threads.
+
+1122
+00:52:16,480 --> 00:52:21,590
+So it's basically a layer on
+top of the Pthread layer.
+
+1123
+00:52:21,590 --> 00:52:23,580
+In this case, the program
+specifies
+
+1124
+00:52:23,580 --> 00:52:26,400
+tasks rather than threads.
+
+1125
+00:52:26,400 --> 00:52:30,690
+And tasks are automatically
+load balanced across the
+
+1126
+00:52:30,690 --> 00:52:33,540
+threads using a strategy called
+work-stealing, which
+
+1127
+00:52:33,540 --> 00:52:36,640
+we'll talk about a little
+bit more later.
+
+1128
+00:52:36,640 --> 00:52:38,610
+And the focus for this
+is on performance.
+
+1129
+00:52:38,610 --> 00:52:43,130
+They want to write programs that
+actually perform well.
+
+1130
+00:52:43,130 --> 00:52:45,700
+So here's Fibonacci in TBB.
+
+1131
+00:52:45,700 --> 00:52:48,190
+So as you'll see, it's better.
+
+1132
+00:52:48,190 --> 00:52:51,805
+But maybe not ideal for what
+you might like to express.
+
+1133
+00:52:51,805 --> 00:52:56,220
+
+1134
+00:52:56,220 --> 00:53:02,070
+So what we do is we declare the
+computer, the computation,
+
+1135
+00:53:02,070 --> 00:53:05,290
+it's going to organized as a
+bunch of explicit tasks.
+
+1136
+00:53:05,290 --> 00:53:10,030
+So you say that it's
+going to be a task.
+
+1137
+00:53:10,030 --> 00:53:19,280
+And FibTask is going to have an
+input parameter, n, and an
+
+1138
+00:53:19,280 --> 00:53:22,720
+output parameters, sum.
+
+1139
+00:53:22,720 --> 00:53:28,990
+And what we're going to do is
+when the task is started, it
+
+1140
+00:53:28,990 --> 00:53:36,890
+automatically executes the
+execute method of this tasking
+
+1141
+00:53:36,890 --> 00:53:38,500
+object here.
+
+1142
+00:53:38,500 --> 00:53:40,350
+And the execute method now
+starts to do something that
+
+1143
+00:53:40,350 --> 00:53:41,850
+looks very much like
+Fibonacci.
+
+1144
+00:53:41,850 --> 00:53:46,880
+It says if n is less than
+2, sum is equal to n.
+
+1145
+00:53:46,880 --> 00:53:48,200
+That's we had before.
+
+1146
+00:53:48,200 --> 00:53:49,550
+And otherwise.
+
+1147
+00:53:49,550 --> 00:53:53,570
+And now what we're going to do
+is recursively create two
+
+1148
+00:53:53,570 --> 00:53:57,630
+child tasks, which we basically
+do with this
+
+1149
+00:53:57,630 --> 00:54:07,490
+function, allocate_task, giving
+it the fib task a name,
+
+1150
+00:54:07,490 --> 00:54:13,040
+where this is basically a method
+for allocating out of a
+
+1151
+00:54:13,040 --> 00:54:16,150
+particular type of the
+pool, which is an
+
+1152
+00:54:16,150 --> 00:54:18,760
+allocate child pool.
+
+1153
+00:54:18,760 --> 00:54:23,080
+And then similarly for b, we
+recursively do for n minus 2.
+
+1154
+00:54:23,080 --> 00:54:25,240
+And then what it does is
+it sets the number of
+
+1155
+00:54:25,240 --> 00:54:27,630
+tasks to wait for.
+
+1156
+00:54:27,630 --> 00:54:30,250
+In this case, it's basically
+two children plus 1 for
+
+1157
+00:54:30,250 --> 00:54:32,140
+bookkeeping.
+
+1158
+00:54:32,140 --> 00:54:35,580
+So this ends up always being one
+more than the things that
+
+1159
+00:54:35,580 --> 00:54:39,240
+you created as subtasks.
+
+1160
+00:54:39,240 --> 00:54:44,160
+And then what we do is we
+say, OK, let's spawn.
+
+1161
+00:54:44,160 --> 00:54:46,050
+So this will only
+set up the task.
+
+1162
+00:54:46,050 --> 00:54:48,070
+It doesn't actually
+say, do it.
+
+1163
+00:54:48,070 --> 00:54:52,390
+So the spawn command says
+actually do this computation
+
+1164
+00:54:52,390 --> 00:54:53,870
+here that I set up.
+
+1165
+00:54:53,870 --> 00:54:57,000
+So it actually does b.
+
+1166
+00:54:57,000 --> 00:54:58,440
+Start task b.
+
+1167
+00:54:58,440 --> 00:55:02,760
+And then itself, it executes a
+and waits for all of the other
+
+1168
+00:55:02,760 --> 00:55:05,640
+tasks, namely both a
+and b, to finish.
+
+1169
+00:55:05,640 --> 00:55:08,760
+And once it's finished, it adds
+the results together to
+
+1170
+00:55:08,760 --> 00:55:10,160
+produce the final output.
+
+1171
+00:55:10,160 --> 00:55:13,300
+
+1172
+00:55:13,300 --> 00:55:17,600
+So this, notice, has the big
+advantage over the previous
+
+1173
+00:55:17,600 --> 00:55:22,260
+implementation that this
+is actually recursive.
+
+1174
+00:55:22,260 --> 00:55:26,010
+So in doing Fib, you're not
+just getting two tasks.
+
+1175
+00:55:26,010 --> 00:55:29,010
+You're recursively getting each
+of those two more, and
+
+1176
+00:55:29,010 --> 00:55:30,830
+two more, and two more, down
+to the leaves of the
+
+1177
+00:55:30,830 --> 00:55:32,630
+computation.
+
+1178
+00:55:32,630 --> 00:55:36,660
+And then what TBB does is it
+load balances those across the
+
+1179
+00:55:36,660 --> 00:55:42,450
+number of available processors
+by creating these tasks.
+
+1180
+00:55:42,450 --> 00:55:45,270
+And then, it automatically does
+all the load balancing of
+
+1181
+00:55:45,270 --> 00:55:47,610
+the tasks and so forth.
+
+1182
+00:55:47,610 --> 00:55:50,180
+Questions about that?
+
+1183
+00:55:50,180 --> 00:55:51,130
+Any questions?
+
+1184
+00:55:51,130 --> 00:55:55,720
+I don't expect you to be able
+to program a TBB, unless I
+
+1185
+00:55:55,720 --> 00:55:57,480
+gave you a book and said,
+program a TBB.
+
+1186
+00:55:57,480 --> 00:55:58,730
+But I'm not going to do that.
+
+1187
+00:55:58,730 --> 00:56:00,900
+
+1188
+00:56:00,900 --> 00:56:03,320
+This is mainly to give you a
+flavor of what's in there.
+
+1189
+00:56:03,320 --> 00:56:05,500
+What the alternatives are.
+
+1190
+00:56:05,500 --> 00:56:08,670
+So TBB provides many
+C++ templates that
+
+1191
+00:56:08,670 --> 00:56:10,150
+simplify common patterns.
+
+1192
+00:56:10,150 --> 00:56:13,020
+So rather than having to write
+that kind of thing for
+
+1193
+00:56:13,020 --> 00:56:16,010
+everything, for example, if
+you have loop parallelism.
+
+1194
+00:56:16,010 --> 00:56:19,380
+If you have n things that you
+want to have that operate
+
+1195
+00:56:19,380 --> 00:56:23,520
+parallel, you can do a parallel
+four and not actually
+
+1196
+00:56:23,520 --> 00:56:24,500
+see the tasks.
+
+1197
+00:56:24,500 --> 00:56:27,960
+It covers them over and
+creates the tasks
+
+1198
+00:56:27,960 --> 00:56:32,940
+automatically, so that you can
+just say, for I gets 1 to n,
+
+1199
+00:56:32,940 --> 00:56:36,220
+do this to all I, and do them at
+the same time essentially.
+
+1200
+00:56:36,220 --> 00:56:39,920
+And it then balances
+those and so forth.
+
+1201
+00:56:39,920 --> 00:56:42,930
+It also has to things like
+parallel reduce.
+
+1202
+00:56:42,930 --> 00:56:46,880
+Sometimes what you want to do
+across an array is not just do
+
+1203
+00:56:46,880 --> 00:56:48,530
+something for every element
+of the array.
+
+1204
+00:56:48,530 --> 00:56:51,770
+You may want to add up all the
+elements into a single value.
+
+1205
+00:56:51,770 --> 00:56:54,870
+And so it basically has what's
+called a reduction function.
+
+1206
+00:56:54,870 --> 00:56:56,980
+It does parallel reduce
+to aggregate.
+
+1207
+00:56:56,980 --> 00:56:59,120
+And it's got various other
+things, like pipelining and
+
+1208
+00:56:59,120 --> 00:57:02,250
+filtering for doing what's
+called software pipelining,
+
+1209
+00:57:02,250 --> 00:57:08,810
+where you have one subsystem
+that basically is going to
+
+1210
+00:57:08,810 --> 00:57:11,230
+process the data and pass
+it to the next.
+
+1211
+00:57:11,230 --> 00:57:13,270
+So you're going to process it
+and pass it to the next.
+
+1212
+00:57:13,270 --> 00:57:18,810
+And it allows you to set up a
+software pipeline of things.
+
+1213
+00:57:18,810 --> 00:57:22,150
+It also collides with some
+container classes, such as
+
+1214
+00:57:22,150 --> 00:57:25,180
+hash tables, concurrent hash
+tables, that allow you to have
+
+1215
+00:57:25,180 --> 00:57:33,670
+multiple tasks beating
+on a hash table.
+
+1216
+00:57:33,670 --> 00:57:35,680
+Inserting and deleting from
+the hash table at the same
+
+1217
+00:57:35,680 --> 00:57:39,790
+time and a variety of mutual
+exclusion library functions,
+
+1218
+00:57:39,790 --> 00:57:42,630
+including locks and
+atomic updates.
+
+1219
+00:57:42,630 --> 00:57:48,230
+So it has a bunch of other
+facilities that make it much
+
+1220
+00:57:48,230 --> 00:57:50,950
+easier to use than just using
+the raw task interface.
+
+1221
+00:57:50,950 --> 00:57:54,360
+
+1222
+00:57:54,360 --> 00:57:55,610
+OpenMP.
+
+1223
+00:57:55,610 --> 00:57:57,220
+
+1224
+00:57:57,220 --> 00:58:00,100
+So OpenMP is a specification
+produced by an industry
+
+1225
+00:58:00,100 --> 00:58:04,290
+consortium of which the
+principal players--
+
+1226
+00:58:04,290 --> 00:58:09,780
+the original principal player
+was Silicon Graphics, which
+
+1227
+00:58:09,780 --> 00:58:13,160
+essentially has become
+less important in the
+
+1228
+00:58:13,160 --> 00:58:14,080
+industry, let's say.
+
+1229
+00:58:14,080 --> 00:58:15,820
+Put it that way.
+
+1230
+00:58:15,820 --> 00:58:19,270
+And for the most part, recently,
+it's been players
+
+1231
+00:58:19,270 --> 00:58:24,290
+from Intel and Sun, which is now
+no longer Sun, except that
+
+1232
+00:58:24,290 --> 00:58:33,160
+it is Sun part of Oracle, and
+of IBM, and variety of other
+
+1233
+00:58:33,160 --> 00:58:37,200
+industry players.
+
+1234
+00:58:37,200 --> 00:58:39,430
+There's several compilers
+available.
+
+1235
+00:58:39,430 --> 00:58:43,860
+Both open source and
+proprietary, including gcc,
+
+1236
+00:58:43,860 --> 00:58:46,190
+has OpenMP built-in.
+
+1237
+00:58:46,190 --> 00:58:51,370
+And also, Visual Studio
+has OpenMP built-in.
+
+1238
+00:58:51,370 --> 00:58:55,460
+These are a set of linguistic
+extensions to C and C++ or
+
+1239
+00:58:55,460 --> 00:58:59,710
+Fortran in the form of compiler
+practice pragmas.
+
+1240
+00:58:59,710 --> 00:59:03,460
+So who knows what a pragma is?
+
+1241
+00:59:03,460 --> 00:59:05,150
+OK.
+
+1242
+00:59:05,150 --> 00:59:05,350
+Good.
+
+1243
+00:59:05,350 --> 00:59:06,490
+Can you tell us what
+a pragma is?
+
+1244
+00:59:06,490 --> 00:59:07,740
+AUDIENCE: [INAUDIBLE PHRASE]
+
+1245
+00:59:07,740 --> 00:59:12,140
+
+1246
+00:59:12,140 --> 00:59:15,390
+PROFESSOR: Yeah, it's kind
+of like a compiler hint.
+
+1247
+00:59:15,390 --> 00:59:18,420
+It's a way of saying to the
+compiler, here's something I
+
+1248
+00:59:18,420 --> 00:59:21,970
+want to tell you about the
+code that I'm writing.
+
+1249
+00:59:21,970 --> 00:59:25,150
+And it basically is a hint.
+
+1250
+00:59:25,150 --> 00:59:27,920
+So technically, it's not
+supposed to have any semantic
+
+1251
+00:59:27,920 --> 00:59:31,490
+impact, but rather suggest how
+something might be implemented
+
+1252
+00:59:31,490 --> 00:59:33,810
+by the compiler.
+
+1253
+00:59:33,810 --> 00:59:36,160
+However, in OpenMP's case, they
+
+1254
+00:59:36,160 --> 00:59:39,110
+actually have a compiler--
+
+1255
+00:59:39,110 --> 00:59:42,570
+it does change the semantics
+in certain cases.
+
+1256
+00:59:42,570 --> 00:59:44,990
+It runs on top of native threads
+and it supports,
+
+1257
+00:59:44,990 --> 00:59:46,700
+especially, loop parallelism.
+
+1258
+00:59:46,700 --> 00:59:49,050
+And then, in the latest version,
+it supports a kind of
+
+1259
+00:59:49,050 --> 00:59:54,560
+task parallelism like
+we saw with TBB.
+
+1260
+00:59:54,560 --> 00:59:56,270
+So, in fact, their
+task parallelism
+
+1261
+00:59:56,270 --> 00:59:58,750
+is fairly to specify.
+
+1262
+00:59:58,750 --> 01:00:00,420
+So here's the Fib code.
+
+1263
+01:00:00,420 --> 01:00:03,710
+So now, this is not
+looking too bad.
+
+1264
+01:00:03,710 --> 01:00:06,960
+We basically inserted
+a few lines here.
+
+1265
+01:00:06,960 --> 01:00:08,440
+And otherwise, we actually
+have the
+
+1266
+01:00:08,440 --> 01:00:13,530
+original Fibonacci code.
+
+1267
+01:00:13,530 --> 01:00:18,520
+So the sharp pragma says, here's
+a compiler directive.
+
+1268
+01:00:18,520 --> 01:00:21,450
+And it says, the OMP
+says it is an
+
+1269
+01:00:21,450 --> 01:00:24,210
+OpenMP compiler directive.
+
+1270
+01:00:24,210 --> 01:00:26,850
+The task says, oh, the following
+things should be
+
+1271
+01:00:26,850 --> 01:00:30,000
+interpreted as an independent
+task.
+
+1272
+01:00:30,000 --> 01:00:33,760
+And now, the sharing of memory
+in OpenMP is managed
+
+1273
+01:00:33,760 --> 01:00:35,760
+explicitly, because they're
+trying to allow for
+
+1274
+01:00:35,760 --> 01:00:39,360
+programming both of distributed
+memory clusters,
+
+1275
+01:00:39,360 --> 01:00:43,000
+as well as shared
+memory machines.
+
+1276
+01:00:43,000 --> 01:00:48,020
+And so, you have to explicitly
+name the shared variables that
+
+1277
+01:00:48,020 --> 01:00:50,000
+you're using.
+
+1278
+01:00:50,000 --> 01:00:52,740
+And here, we're basically
+saying, wait for the two
+
+1279
+01:00:52,740 --> 01:00:56,180
+things that we spawned
+off here to complete.
+
+1280
+01:00:56,180 --> 01:01:00,430
+So pretty simple code.
+
+1281
+01:01:00,430 --> 01:01:05,250
+It provides many pragma
+directives to express common
+
+1282
+01:01:05,250 --> 01:01:08,990
+patterns, such as a parallel
+for parallelization.
+
+1283
+01:01:08,990 --> 01:01:10,230
+It also has reduction.
+
+1284
+01:01:10,230 --> 01:01:14,490
+It also has directives for
+scheduling and data sharing.
+
+1285
+01:01:14,490 --> 01:01:16,360
+And it has a whole bunch
+of synchronization
+
+1286
+01:01:16,360 --> 01:01:18,010
+constructs and so forth.
+
+1287
+01:01:18,010 --> 01:01:21,650
+So it's another interesting
+one to do.
+
+1288
+01:01:21,650 --> 01:01:24,370
+The main downside, I would say,
+of OpenMP is that the
+
+1289
+01:01:24,370 --> 01:01:27,990
+performance is not really
+very composable.
+
+1290
+01:01:27,990 --> 01:01:30,660
+So if you have a program you've
+written with OpenMP
+
+1291
+01:01:30,660 --> 01:01:33,090
+over here, another one here,
+and you want to put them
+
+1292
+01:01:33,090 --> 01:01:37,380
+together, they fight
+with each other.
+
+1293
+01:01:37,380 --> 01:01:40,310
+You have to have your
+concept of what are
+
+1294
+01:01:40,310 --> 01:01:42,350
+going to be the programs.
+
+1295
+01:01:42,350 --> 01:01:45,250
+The task parallelism helps
+a bit with that.
+
+1296
+01:01:45,250 --> 01:01:49,410
+But the basic OpenMP is very
+much of the model, I know how
+
+1297
+01:01:49,410 --> 01:01:50,800
+many cores I'm running on.
+
+1298
+01:01:50,800 --> 01:01:52,350
+I can set that.
+
+1299
+01:01:52,350 --> 01:01:55,430
+And then I can have it
+automatically parse up the
+
+1300
+01:01:55,430 --> 01:01:56,820
+work for those many.
+
+1301
+01:01:56,820 --> 01:02:00,310
+But once you've done that, some
+other job, some other
+
+1302
+01:02:00,310 --> 01:02:03,170
+part of the system that wants to
+do the same thing, then you
+
+1303
+01:02:03,170 --> 01:02:07,490
+get oversubscription and perhaps
+some [UNINTELLIGIBLE].
+
+1304
+01:02:07,490 --> 01:02:10,970
+Nevertheless, a very
+interesting system.
+
+1305
+01:02:10,970 --> 01:02:14,960
+And very accessible, because
+it's in most of the standard
+
+1306
+01:02:14,960 --> 01:02:16,210
+compilers these days.
+
+1307
+01:02:16,210 --> 01:02:19,090
+
+1308
+01:02:19,090 --> 01:02:23,130
+What we're going to
+look at is Cilk++.
+
+1309
+01:02:23,130 --> 01:02:28,740
+So this is actually a small set
+of linguistics extensions
+
+1310
+01:02:28,740 --> 01:02:31,320
+to C++ to support fork-join
+parallelism.
+
+1311
+01:02:31,320 --> 01:02:33,890
+And it was developed by Cilk
+Arts, which is an MIT
+
+1312
+01:02:33,890 --> 01:02:38,050
+spin-off, which was acquired
+by Intel last year.
+
+1313
+01:02:38,050 --> 01:02:40,790
+So this is now an Intel
+technology.
+
+1314
+01:02:40,790 --> 01:02:43,770
+And the reason I know about it
+is because I was the founder
+
+1315
+01:02:43,770 --> 01:02:44,680
+of Cilk Arts.
+
+1316
+01:02:44,680 --> 01:02:48,300
+It was based on 15 years of
+research at MIT out of my
+
+1317
+01:02:48,300 --> 01:02:50,940
+research group.
+
+1318
+01:02:50,940 --> 01:02:55,850
+And we won a bunch of awards,
+actually, for this work.
+
+1319
+01:02:55,850 --> 01:02:59,490
+In fact, the work-stealing
+scheduler that's in it is
+
+1320
+01:02:59,490 --> 01:03:00,500
+provably efficient.
+
+1321
+01:03:00,500 --> 01:03:02,440
+In other words, it's not just
+a heuristic scheduler.
+
+1322
+01:03:02,440 --> 01:03:05,080
+It's actually got a mathematical
+proof that it's
+
+1323
+01:03:05,080 --> 01:03:06,480
+an effective scheduler.
+
+1324
+01:03:06,480 --> 01:03:10,200
+And in fact, was the inspiration
+for things like
+
+1325
+01:03:10,200 --> 01:03:14,090
+the work-stealing in TBB and the
+new task mechanisms and so
+
+1326
+01:03:14,090 --> 01:03:19,640
+forth in OpenMP, as well as a
+bunch of other people who've
+
+1327
+01:03:19,640 --> 01:03:21,360
+done work-stealing.
+
+1328
+01:03:21,360 --> 01:03:24,520
+It in addition provides a
+hyperobject library for
+
+1329
+01:03:24,520 --> 01:03:27,140
+parallelizing code with global
+variables, which we'll talk
+
+1330
+01:03:27,140 --> 01:03:28,120
+about later.
+
+1331
+01:03:28,120 --> 01:03:32,720
+And it includes two tools that
+you'll come to know and love.
+
+1332
+01:03:32,720 --> 01:03:35,570
+One is the Cilkscreen race
+detector, and the other is the
+
+1333
+01:03:35,570 --> 01:03:39,460
+Cilkview scalability analyzer.
+
+1334
+01:03:39,460 --> 01:03:41,890
+Now, what we're going to be
+using in this class is going
+
+1335
+01:03:41,890 --> 01:03:49,580
+to be the Cilk++ technology
+that was developed at Cilk
+
+1336
+01:03:49,580 --> 01:03:51,400
+Arts and then massaged
+a little bit
+
+1337
+01:03:51,400 --> 01:03:52,630
+when it got to Intel.
+
+1338
+01:03:52,630 --> 01:03:55,990
+There is a brand new Intel
+technology with Cilk built
+
+1339
+01:03:55,990 --> 01:03:58,030
+into their compiler.
+
+1340
+01:03:58,030 --> 01:04:02,000
+And it is due to come out
+in like, two weeks.
+
+1341
+01:04:02,000 --> 01:04:05,480
+
+1342
+01:04:05,480 --> 01:04:08,830
+So our timing for this was it
+would've been nice to have you
+
+1343
+01:04:08,830 --> 01:04:13,510
+folks on the new Intel
+Cilk+ technology.
+
+1344
+01:04:13,510 --> 01:04:16,950
+But we're going to go with
+this one for now.
+
+1345
+01:04:16,950 --> 01:04:19,690
+It's not going to make too big
+a difference to you folks.
+
+1346
+01:04:19,690 --> 01:04:22,190
+But you should just be aware
+that coming down the pike,
+
+1347
+01:04:22,190 --> 01:04:27,430
+there's actually some much
+more cleanly integrated
+
+1348
+01:04:27,430 --> 01:04:33,120
+technology that you can use
+that's in the Intel compiler.
+
+1349
+01:04:33,120 --> 01:04:36,670
+So here's how we do nested
+parallelism in Cilk++.
+
+1350
+01:04:36,670 --> 01:04:38,420
+So basically, this
+is Fibonacci.
+
+1351
+01:04:38,420 --> 01:04:42,580
+And now, what I have here is,
+if you notice, I've got two
+
+1352
+01:04:42,580 --> 01:04:46,430
+keywords, cilk_spawn
+and cilk_sync.
+
+1353
+01:04:46,430 --> 01:04:50,160
+And this is how you write
+parallel Fibonacci in Cilk.
+
+1354
+01:04:50,160 --> 01:04:51,825
+This is it.
+
+1355
+01:04:51,825 --> 01:04:56,200
+I've inserted two key words,
+and my program is parallel.
+
+1356
+01:04:56,200 --> 01:05:00,350
+The cilk_spawn keyword says that
+the named child function
+
+1357
+01:05:00,350 --> 01:05:03,260
+can execute in parallel with
+the parent caller.
+
+1358
+01:05:03,260 --> 01:05:06,070
+So when you say x equals
+cilk_spawn or Fib of n minus
+
+1359
+01:05:06,070 --> 01:05:08,660
+1, it does the same thing
+that you normally think.
+
+1360
+01:05:08,660 --> 01:05:09,910
+It calls the child.
+
+1361
+01:05:09,910 --> 01:05:12,810
+
+1362
+01:05:12,810 --> 01:05:16,340
+But after it calls the child,
+rather than waiting for it to
+
+1363
+01:05:16,340 --> 01:05:21,360
+return, it goes on to
+the next statement.
+
+1364
+01:05:21,360 --> 01:05:24,650
+So then, the statement y equals
+Fib of n minus 2 is
+
+1365
+01:05:24,650 --> 01:05:26,960
+going on at the same time
+as the calculation of
+
+1366
+01:05:26,960 --> 01:05:28,210
+Fib of n minus 1.
+
+1367
+01:05:28,210 --> 01:05:30,730
+
+1368
+01:05:30,730 --> 01:05:34,560
+And then, the cilk_sync says,
+don't go past this point until
+
+1369
+01:05:34,560 --> 01:05:36,390
+all the children you've spawned
+off have returned.
+
+1370
+01:05:36,390 --> 01:05:39,530
+
+1371
+01:05:39,530 --> 01:05:44,580
+And since this is a recursive
+program, it generates gobs of
+
+1372
+01:05:44,580 --> 01:05:47,130
+parallelism, if it's
+a big thing.
+
+1373
+01:05:47,130 --> 01:05:50,720
+So one of the key things about
+Cilk++, is unlike Pthreads--
+
+1374
+01:05:50,720 --> 01:05:54,490
+Pthreads, when you say,
+pthread_create, it actually
+
+1375
+01:05:54,490 --> 01:05:57,080
+goes and creates a
+piece of work.
+
+1376
+01:05:57,080 --> 01:06:02,630
+In Cilk++, these keywords
+only grant permission.
+
+1377
+01:06:02,630 --> 01:06:06,050
+They say you may execute these
+things in parallel.
+
+1378
+01:06:06,050 --> 01:06:08,630
+It doesn't insist that they
+be executed in parallel.
+
+1379
+01:06:08,630 --> 01:06:11,880
+The program may decide, no, in
+fact, I'm going to just call
+
+1380
+01:06:11,880 --> 01:06:15,190
+this, and then return, and
+then execute this.
+
+1381
+01:06:15,190 --> 01:06:18,320
+
+1382
+01:06:18,320 --> 01:06:25,550
+So it only grants permission,
+and the Cilk++ runtime system
+
+1383
+01:06:25,550 --> 01:06:28,690
+figures out how to load balance
+it and schedule it.
+
+1384
+01:06:28,690 --> 01:06:31,260
+
+1385
+01:06:31,260 --> 01:06:36,590
+Cilk++ also supports
+loop parallelism.
+
+1386
+01:06:36,590 --> 01:06:39,360
+So here's an example of an
+in-place matrix transpose.
+
+1387
+01:06:39,360 --> 01:06:42,830
+So I want to take this matrix
+and flip it on its major axis.
+
+1388
+01:06:42,830 --> 01:06:45,330
+
+1389
+01:06:45,330 --> 01:06:47,480
+And we can do it
+with for loops.
+
+1390
+01:06:47,480 --> 01:06:49,040
+As you know, for loops
+are not the best way
+
+1391
+01:06:49,040 --> 01:06:50,270
+to do matrix transpose.
+
+1392
+01:06:50,270 --> 01:06:53,070
+Right?
+
+1393
+01:06:53,070 --> 01:06:56,090
+It's better to do divide
+and conquer.
+
+1394
+01:06:56,090 --> 01:07:00,640
+But here's how you
+could do it.
+
+1395
+01:07:00,640 --> 01:07:04,240
+And here, I made the indices
+run from 0, not 1, because
+
+1396
+01:07:04,240 --> 01:07:05,610
+that's the way you do
+it in programming.
+
+1397
+01:07:05,610 --> 01:07:08,150
+But if I did it up here, then
+these things get to be n minus
+
+1398
+01:07:08,150 --> 01:07:10,810
+1, n minus 1, and then it gets
+too crowded on the slide.
+
+1399
+01:07:10,810 --> 01:07:15,030
+And I said, OK, I'll just put
+a comment there rather than
+
+1400
+01:07:15,030 --> 01:07:17,450
+try to sort it out.
+
+1401
+01:07:17,450 --> 01:07:21,150
+So here's what I'm saying, is
+this outer loop is parallel.
+
+1402
+01:07:21,150 --> 01:07:24,340
+It's going from 1
+to n minus 1.
+
+1403
+01:07:24,340 --> 01:07:26,620
+And saying, do all those
+things in parallel.
+
+1404
+01:07:26,620 --> 01:07:29,290
+And each one is going through
+a different number of
+
+1405
+01:07:29,290 --> 01:07:30,390
+iterations of j.
+
+1406
+01:07:30,390 --> 01:07:33,240
+So you can see you actually need
+some load balancing here,
+
+1407
+01:07:33,240 --> 01:07:36,760
+because some of these are going
+through just one step,
+
+1408
+01:07:36,760 --> 01:07:39,520
+and some are going through
+n minus 1 steps.
+
+1409
+01:07:39,520 --> 01:07:43,440
+It's basically the amount of
+work in every iteration of the
+
+1410
+01:07:43,440 --> 01:07:47,310
+outer loop here is different.
+
+1411
+01:07:47,310 --> 01:07:47,810
+I'm sorry?
+
+1412
+01:07:47,810 --> 01:07:50,130
+AUDIENCE: [INAUDIBLE PHRASE].
+
+1413
+01:07:50,130 --> 01:07:53,610
+PROFESSOR: No. i equals 1 is
+where you want to start.
+
+1414
+01:07:53,610 --> 01:07:54,995
+Because you don't have
+to move the diagonal.
+
+1415
+01:07:54,995 --> 01:07:58,170
+
+1416
+01:07:58,170 --> 01:08:01,750
+You only have to go across
+the top here.
+
+1417
+01:08:01,750 --> 01:08:07,170
+And for each of those, copy it
+into the appropriate column.
+
+1418
+01:08:07,170 --> 01:08:08,790
+Flip it into the appropriate
+column.
+
+1419
+01:08:08,790 --> 01:08:11,030
+Flip the two things.
+
+1420
+01:08:11,030 --> 01:08:12,720
+Actually, transpose is one
+of these functions.
+
+1421
+01:08:12,720 --> 01:08:15,220
+I remember writing my first
+transpose functions.
+
+1422
+01:08:15,220 --> 01:08:16,989
+And when I was done, I somehow
+had the identity.
+
+1423
+01:08:16,989 --> 01:08:19,569
+
+1424
+01:08:19,569 --> 01:08:24,520
+Because I basically made the
+loops go from 1 to n and 1 to
+
+1425
+01:08:24,520 --> 01:08:27,260
+n and swapped them.
+
+1426
+01:08:27,260 --> 01:08:27,819
+So I swapped them.
+
+1427
+01:08:27,819 --> 01:08:29,720
+So I said, oh, that
+was a lot of work
+
+1428
+01:08:29,720 --> 01:08:32,979
+to compute the identity.
+
+1429
+01:08:32,979 --> 01:08:34,630
+No, you've got to make sure
+you only go through a
+
+1430
+01:08:34,630 --> 01:08:39,210
+triangular iteration space in
+order to make sure you swap--
+
+1431
+01:08:39,210 --> 01:08:40,460
+and then swap.
+
+1432
+01:08:40,460 --> 01:08:43,670
+
+1433
+01:08:43,670 --> 01:08:45,450
+This is an in-place swap.
+
+1434
+01:08:45,450 --> 01:08:46,970
+So that's cilk_for.
+
+1435
+01:08:46,970 --> 01:08:48,490
+That's basically it.
+
+1436
+01:08:48,490 --> 01:08:50,470
+There are some more facilities
+we'll talk about.
+
+1437
+01:08:50,470 --> 01:08:52,630
+But that's basically
+it for parallel
+
+1438
+01:08:52,630 --> 01:08:54,210
+programming in Cilk++.
+
+1439
+01:08:54,210 --> 01:08:58,000
+The other part is, how do you
+do it so you get fast code?
+
+1440
+01:08:58,000 --> 01:08:59,920
+Which we'll talk about.
+
+1441
+01:08:59,920 --> 01:09:04,670
+Now, Cilk has serial
+semantics.
+
+1442
+01:09:04,670 --> 01:09:09,060
+And what that means is unlike
+some of the other ones, it's
+
+1443
+01:09:09,060 --> 01:09:13,220
+kind of what OpenMP was
+aspiring to do.
+
+1444
+01:09:13,220 --> 01:09:17,240
+The idea is that if I, for
+example here, delete these two
+
+1445
+01:09:17,240 --> 01:09:22,510
+keywords, I get a C++ code.
+
+1446
+01:09:22,510 --> 01:09:25,600
+And that code is always a legal
+way to execute this
+
+1447
+01:09:25,600 --> 01:09:27,560
+parallel code.
+
+1448
+01:09:27,560 --> 01:09:29,840
+So the parallel code may have
+more behaviors of its
+
+1449
+01:09:29,840 --> 01:09:31,630
+nondeterministic code.
+
+1450
+01:09:31,630 --> 01:09:35,609
+But always, it's legal to
+treat it as if it's just
+
+1451
+01:09:35,609 --> 01:09:36,859
+straight C++.
+
+1452
+01:09:36,859 --> 01:09:38,939
+
+1453
+01:09:38,939 --> 01:09:41,270
+And the reason for that is
+that, really, we're only
+
+1454
+01:09:41,270 --> 01:09:44,439
+granting permission for
+parallel execution.
+
+1455
+01:09:44,439 --> 01:09:47,149
+So even though I put in these
+keywords, I still can execute
+
+1456
+01:09:47,149 --> 01:09:50,779
+it serially if I wish.
+
+1457
+01:09:50,779 --> 01:09:52,420
+They don't command parallel
+execution.
+
+1458
+01:09:52,420 --> 01:09:55,430
+To obtain this serialization,
+you can do it by hand by just
+
+1459
+01:09:55,430 --> 01:09:58,675
+defining a cilk_for to be for,
+and the cilk_spawn and
+
+1460
+01:09:58,675 --> 01:10:01,420
+cilk_sync to be empty.
+
+1461
+01:10:01,420 --> 01:10:04,950
+Or there's a switch to the
+Cilk++ composite that does
+
+1462
+01:10:04,950 --> 01:10:06,340
+that for you automatically.
+
+1463
+01:10:06,340 --> 01:10:10,750
+And it's probably the preferred
+way of doing it.
+
+1464
+01:10:10,750 --> 01:10:15,440
+But the idea is conceptually,
+you can sprinkle in these
+
+1465
+01:10:15,440 --> 01:10:18,140
+keywords, and if you don't
+want it anymore, fine.
+
+1466
+01:10:18,140 --> 01:10:21,470
+If you want to compile it with
+the straight c compilers, it's
+
+1467
+01:10:21,470 --> 01:10:23,600
+better to use the Cilk++
+compiler to do it.
+
+1468
+01:10:23,600 --> 01:10:27,970
+But if you wanted to ship it
+off to somebody else, you
+
+1469
+01:10:27,970 --> 01:10:30,440
+could just do these sharp
+defines, and they could
+
+1470
+01:10:30,440 --> 01:10:32,120
+compile it with their compilers,
+and it would be the
+
+1471
+01:10:32,120 --> 01:10:36,870
+same as a serial C++ code.
+
+1472
+01:10:36,870 --> 01:10:41,180
+So the Cilk++ concurrency
+platform allows the program to
+
+1473
+01:10:41,180 --> 01:10:45,290
+express potential parallelism
+in application.
+
+1474
+01:10:45,290 --> 01:10:47,110
+So it says, where is
+the parallelism?
+
+1475
+01:10:47,110 --> 01:10:49,240
+It doesn't say how
+to schedule it.
+
+1476
+01:10:49,240 --> 01:10:50,910
+It says, where is it?
+
+1477
+01:10:50,910 --> 01:10:56,800
+And then, it gets mapped onto,
+at runtime, dynamically mapped
+
+1478
+01:10:56,800 --> 01:10:58,240
+onto the processor cores.
+
+1479
+01:10:58,240 --> 01:11:01,680
+
+1480
+01:11:01,680 --> 01:11:05,510
+And the way that it does the
+mapping is mathematically
+
+1481
+01:11:05,510 --> 01:11:09,130
+provably a good way
+of doing it.
+
+1482
+01:11:09,130 --> 01:11:12,530
+And if you take one of my
+graduate courses, I can teach
+
+1483
+01:11:12,530 --> 01:11:15,840
+you how that works.
+
+1484
+01:11:15,840 --> 01:11:19,120
+We'll do a little bit of study
+of simple scheduling.
+
+1485
+01:11:19,120 --> 01:11:23,380
+But the actual schedule it
+uses is more involved.
+
+1486
+01:11:23,380 --> 01:11:25,680
+But we'll cover it
+a little bit.
+
+1487
+01:11:25,680 --> 01:11:28,280
+Here's the components
+of the Cilk++
+
+1488
+01:11:28,280 --> 01:11:31,330
+platform on a single slide.
+
+1489
+01:11:31,330 --> 01:11:32,380
+So let me just say
+what they are.
+
+1490
+01:11:32,380 --> 01:11:34,600
+The first one is the keywords.
+
+1491
+01:11:34,600 --> 01:11:36,630
+So you get to put
+things in there.
+
+1492
+01:11:36,630 --> 01:11:42,900
+And if you elide or create the
+serialization, then you get
+
+1493
+01:11:42,900 --> 01:11:47,700
+the C++ code or C code, for
+which then you can run your
+
+1494
+01:11:47,700 --> 01:11:50,780
+regression test and demonstrate
+you have some good
+
+1495
+01:11:50,780 --> 01:11:53,170
+single-threaded program.
+
+1496
+01:11:53,170 --> 01:11:56,270
+Alternatively, you can send it
+through the Cilk++ compiler,
+
+1497
+01:11:56,270 --> 01:11:58,120
+which is based on a conventional
+compiler.
+
+1498
+01:11:58,120 --> 01:12:00,520
+In our case, it will be GCC.
+
+1499
+01:12:00,520 --> 01:12:02,920
+You can link that with the
+hyperobject library, which
+
+1500
+01:12:02,920 --> 01:12:05,780
+we'll talk about when we start
+talking about synchronization.
+
+1501
+01:12:05,780 --> 01:12:07,515
+It produces a binary.
+
+1502
+01:12:07,515 --> 01:12:11,090
+If you run that binary on the
+runtime system, you can also
+
+1503
+01:12:11,090 --> 01:12:12,300
+run it to the regression test.
+
+1504
+01:12:12,300 --> 01:12:14,980
+And in particular, if you run
+it on the runtime system,
+
+1505
+01:12:14,980 --> 01:12:20,780
+running on one core, it should
+behave identically to having
+
+1506
+01:12:20,780 --> 01:12:23,920
+run it through this path with
+just the serial code.
+
+1507
+01:12:23,920 --> 01:12:26,670
+
+1508
+01:12:26,670 --> 01:12:29,080
+And of course, you get
+exceptional performance.
+
+1509
+01:12:29,080 --> 01:12:31,080
+These, I think, were originally
+marketing slides.
+
+1510
+01:12:31,080 --> 01:12:34,290
+
+1511
+01:12:34,290 --> 01:12:38,900
+However, there's also the fact
+that you may get what are
+
+1512
+01:12:38,900 --> 01:12:42,910
+called races in your code, which
+are bugs that will come
+
+1513
+01:12:42,910 --> 01:12:45,870
+up that won't occur in your
+serial code, but will occur in
+
+1514
+01:12:45,870 --> 01:12:48,680
+your parallel code.
+
+1515
+01:12:48,680 --> 01:12:51,330
+Cilk has a race detector to
+detect those, for which you
+
+1516
+01:12:51,330 --> 01:12:54,450
+can run parallel regression
+tests to produce your reliable
+
+1517
+01:12:54,450 --> 01:12:55,960
+multi-threaded code.
+
+1518
+01:12:55,960 --> 01:12:58,270
+And then, the final piece of
+it is there's this thing
+
+1519
+01:12:58,270 --> 01:13:02,250
+called Cilkview, which allows
+you to analyze the scalability
+
+1520
+01:13:02,250 --> 01:13:03,410
+of your software.
+
+1521
+01:13:03,410 --> 01:13:07,370
+So you can run, in fact, on a
+single core or on a small
+
+1522
+01:13:07,370 --> 01:13:08,550
+number of cores.
+
+1523
+01:13:08,550 --> 01:13:10,680
+And then, you can predict how
+it's going to behave on a
+
+1524
+01:13:10,680 --> 01:13:14,320
+large number of cores.
+
+1525
+01:13:14,320 --> 01:13:18,450
+So let's just, to conclude
+here, talk about races.
+
+1526
+01:13:18,450 --> 01:13:21,590
+Because they're the nasty,
+nasty, nasty thing we get into
+
+1527
+01:13:21,590 --> 01:13:22,820
+parallel programming.
+
+1528
+01:13:22,820 --> 01:13:25,620
+And then next time, we'll
+get deeper into the Cilk
+
+1529
+01:13:25,620 --> 01:13:26,870
+technology itself.
+
+1530
+01:13:26,870 --> 01:13:29,400
+
+1531
+01:13:29,400 --> 01:13:32,930
+So the most basic kind of race
+there is what's called a
+
+1532
+01:13:32,930 --> 01:13:35,330
+determinacy race.
+
+1533
+01:13:35,330 --> 01:13:38,710
+Because if you have one of these
+things, your program
+
+1534
+01:13:38,710 --> 01:13:41,350
+becomes nondeterministic.
+
+1535
+01:13:41,350 --> 01:13:44,400
+It doesn't do the same
+thing every time.
+
+1536
+01:13:44,400 --> 01:13:47,570
+A determinacy race occurs when
+two logically parallel
+
+1537
+01:13:47,570 --> 01:13:51,990
+instructions access the same
+memory location, and at least
+
+1538
+01:13:51,990 --> 01:13:55,500
+one of the instructions performs
+a write, performs a
+
+1539
+01:13:55,500 --> 01:13:58,190
+store, to that location.
+
+1540
+01:13:58,190 --> 01:14:01,030
+So here's an example.
+
+1541
+01:14:01,030 --> 01:14:06,050
+I have a cilk_for here, both
+branches of which are
+
+1542
+01:14:06,050 --> 01:14:08,540
+incrementing x.
+
+1543
+01:14:08,540 --> 01:14:09,560
+This is basically going.
+
+1544
+01:14:09,560 --> 01:14:10,740
+The index is going.
+
+1545
+01:14:10,740 --> 01:14:13,010
+i equals 0 and i equals 1.
+
+1546
+01:14:13,010 --> 01:14:15,640
+And then, it's asserting
+that x equals 2.
+
+1547
+01:14:15,640 --> 01:14:19,200
+If I run this serially,
+the assertion passes.
+
+1548
+01:14:19,200 --> 01:14:22,200
+
+1549
+01:14:22,200 --> 01:14:27,230
+But when I run it in parallel,
+it may not produce a 2.
+
+1550
+01:14:27,230 --> 01:14:28,730
+It can produce a 1.
+
+1551
+01:14:28,730 --> 01:14:31,000
+And let's see why that is.
+
+1552
+01:14:31,000 --> 01:14:34,350
+So the way to understand this
+code is to think about its
+
+1553
+01:14:34,350 --> 01:14:37,520
+execution in terms of a
+dependency [? dag ?].
+
+1554
+01:14:37,520 --> 01:14:41,650
+So here I have my initialization
+of x.
+
+1555
+01:14:41,650 --> 01:14:45,330
+Then once that's done, the
+cilk_for loop allows me to do
+
+1556
+01:14:45,330 --> 01:14:52,030
+two things at a time, b and c,
+which are both incrementing x.
+
+1557
+01:14:52,030 --> 01:14:55,440
+And then, I assert that
+x equals 2 when
+
+1558
+01:14:55,440 --> 01:14:58,340
+they're both done.
+
+1559
+01:14:58,340 --> 01:15:01,970
+Because that's the semantics
+of the cilk_for.
+
+1560
+01:15:01,970 --> 01:15:04,400
+So let's see where
+the race occurs.
+
+1561
+01:15:04,400 --> 01:15:06,580
+So remember that it occurs
+when I have two logically
+
+1562
+01:15:06,580 --> 01:15:08,550
+parallel instructions
+that access
+
+1563
+01:15:08,550 --> 01:15:10,390
+the same memory location.
+
+1564
+01:15:10,390 --> 01:15:12,350
+Here, it's going to
+be the location x.
+
+1565
+01:15:12,350 --> 01:15:18,750
+And at least one of them
+performs a write execution.
+
+1566
+01:15:18,750 --> 01:15:22,630
+So if we actually looked closer,
+I want to expand this
+
+1567
+01:15:22,630 --> 01:15:23,910
+into this larger thing.
+
+1568
+01:15:23,910 --> 01:15:28,040
+Because as you know, X++ is not
+done on a memory location.
+
+1569
+01:15:28,040 --> 01:15:30,120
+It's not done as a single
+instruction.
+
+1570
+01:15:30,120 --> 01:15:33,480
+It's done as a load,
+x into a register.
+
+1571
+01:15:33,480 --> 01:15:38,470
+Increment the register, and then
+store the value back in.
+
+1572
+01:15:38,470 --> 01:15:41,140
+And meanwhile, there's another
+register on another processor,
+
+1573
+01:15:41,140 --> 01:15:45,030
+presumably, that's doing
+the same thing.
+
+1574
+01:15:45,030 --> 01:15:46,590
+So this is the one I
+want to look at.
+
+1575
+01:15:46,590 --> 01:15:50,390
+This is just a zooming in, if
+you will, on this dependency
+
+1576
+01:15:50,390 --> 01:15:53,070
+graph to look a little bit finer
+grain at what's actually
+
+1577
+01:15:53,070 --> 01:15:56,570
+happening one step at a time.
+
+1578
+01:15:56,570 --> 01:15:59,980
+So the determinacy race,
+recall, occurs--
+
+1579
+01:15:59,980 --> 01:16:01,210
+this is by something,
+I'm going to say
+
+1580
+01:16:01,210 --> 01:16:04,420
+again, you should memorize.
+
+1581
+01:16:04,420 --> 01:16:05,850
+So you should know
+what this is.
+
+1582
+01:16:05,850 --> 01:16:09,750
+You should be able to say what
+a determinacy race is.
+
+1583
+01:16:09,750 --> 01:16:12,430
+It's when you have two
+instructions that are both
+
+1584
+01:16:12,430 --> 01:16:14,540
+accessing the same location,
+and one of
+
+1585
+01:16:14,540 --> 01:16:15,230
+them performs write.
+
+1586
+01:16:15,230 --> 01:16:16,160
+And here, I have that.
+
+1587
+01:16:16,160 --> 01:16:17,780
+This guy is in parallel.
+
+1588
+01:16:17,780 --> 01:16:20,360
+He's being stored to here.
+
+1589
+01:16:20,360 --> 01:16:22,160
+This is also a race.
+
+1590
+01:16:22,160 --> 01:16:26,080
+He's been reading it, and
+this guy is writing it.
+
+1591
+01:16:26,080 --> 01:16:29,470
+So let's see what can happen
+and what can go wrong here.
+
+1592
+01:16:29,470 --> 01:16:31,650
+So here's my value,
+x, in memory.
+
+1593
+01:16:31,650 --> 01:16:34,820
+And here's my two registers on,
+presumably, two different
+
+1594
+01:16:34,820 --> 01:16:36,020
+processors.
+
+1595
+01:16:36,020 --> 01:16:38,690
+So one thing is that
+you can typically--
+
+1596
+01:16:38,690 --> 01:16:42,580
+and this is not quite the case
+with real hardware-- but an
+
+1597
+01:16:42,580 --> 01:16:45,620
+abstraction of the hardware
+is that you can treat the
+
+1598
+01:16:45,620 --> 01:16:49,320
+parallel execution from a
+logical point of view as if
+
+1599
+01:16:49,320 --> 01:16:51,690
+you're interleaving instructions
+from the
+
+1600
+01:16:51,690 --> 01:16:53,190
+different processors.
+
+1601
+01:16:53,190 --> 01:16:53,680
+OK.
+
+1602
+01:16:53,680 --> 01:16:57,850
+We're going to talk in three or
+four lectures about where
+
+1603
+01:16:57,850 --> 01:17:00,000
+that isn't the right
+abstraction.
+
+1604
+01:17:00,000 --> 01:17:03,480
+But it is close to the
+right abstraction.
+
+1605
+01:17:03,480 --> 01:17:06,690
+So here, basically, we execute
+statement one, which causes x
+
+1606
+01:17:06,690 --> 01:17:09,430
+to become 0.
+
+1607
+01:17:09,430 --> 01:17:11,300
+Now let's execute
+statement two.
+
+1608
+01:17:11,300 --> 01:17:16,730
+That causes r1 to become 0.
+
+1609
+01:17:16,730 --> 01:17:18,130
+Then, I can increment that.
+
+1610
+01:17:18,130 --> 01:17:19,310
+It becomes a 1.
+
+1611
+01:17:19,310 --> 01:17:21,130
+All well and good.
+
+1612
+01:17:21,130 --> 01:17:25,670
+But now if the next logical
+thing that happens is that r2
+
+1613
+01:17:25,670 --> 01:17:31,390
+is set to the value x,
+then it becomes 0.
+
+1614
+01:17:31,390 --> 01:17:33,360
+Then we increment it.
+
+1615
+01:17:33,360 --> 01:17:36,900
+And now, he stores
+back 1 into x.
+
+1616
+01:17:36,900 --> 01:17:39,530
+And now, this guy stores
+1 back into x.
+
+1617
+01:17:39,530 --> 01:17:41,770
+And notice that now,
+we [UNINTELLIGIBLE]
+
+1618
+01:17:41,770 --> 01:17:43,320
+go to the assertion.
+
+1619
+01:17:43,320 --> 01:17:47,630
+And we assert that it's
+2, and it's not the 2.
+
+1620
+01:17:47,630 --> 01:17:49,660
+It's a 1.
+
+1621
+01:17:49,660 --> 01:17:51,870
+Because we lost one
+of the updates.
+
+1622
+01:17:51,870 --> 01:17:55,090
+Now the reason race bugs are
+really pernicious is, notice
+
+1623
+01:17:55,090 --> 01:17:58,570
+that if I had executed this
+whole branch, and then this
+
+1624
+01:17:58,570 --> 01:18:02,510
+whole branch, I get
+the right answer.
+
+1625
+01:18:02,510 --> 01:18:06,100
+Or if I executed this whole
+branch, and then this whole
+
+1626
+01:18:06,100 --> 01:18:08,600
+branch, I get the
+right answer.
+
+1627
+01:18:08,600 --> 01:18:11,310
+The only time I don't get the
+right answer is when those two
+
+1628
+01:18:11,310 --> 01:18:14,490
+things happen to interleave
+just so.
+
+1629
+01:18:14,490 --> 01:18:18,370
+And that's what happens with
+race conditions generally, is
+
+1630
+01:18:18,370 --> 01:18:22,050
+that you can run your code a
+million times and not see the
+
+1631
+01:18:22,050 --> 01:18:27,670
+bug, and then run it once, and
+it crashes out in the field.
+
+1632
+01:18:27,670 --> 01:18:31,400
+Or what's happened is there
+have been race bugs
+
+1633
+01:18:31,400 --> 01:18:35,640
+responsible for failure of
+space shuttle to launch.
+
+1634
+01:18:35,640 --> 01:18:42,042
+You have the North American
+blackout of 2001?
+
+1635
+01:18:42,042 --> 01:18:43,505
+2003?
+
+1636
+01:18:43,505 --> 01:18:44,890
+It wasn't that long ago.
+
+1637
+01:18:44,890 --> 01:18:45,680
+It was like, 10 years ago.
+
+1638
+01:18:45,680 --> 01:18:48,970
+We had big black out caused by
+a race condition in the code
+
+1639
+01:18:48,970 --> 01:18:51,840
+run by the power companies.
+
+1640
+01:18:51,840 --> 01:18:56,600
+There been medical instruments
+that have fried people, killed
+
+1641
+01:18:56,600 --> 01:19:00,030
+them and maimed them, because
+of race conditions.
+
+1642
+01:19:00,030 --> 01:19:02,890
+These are really serious bugs.
+
+1643
+01:19:02,890 --> 01:19:03,835
+Question?
+
+1644
+01:19:03,835 --> 01:19:08,290
+AUDIENCE: [INAUDIBLE] when you
+said, the only time that that
+
+1645
+01:19:08,290 --> 01:19:12,260
+code is actually execute
+serially?
+
+1646
+01:19:12,260 --> 01:19:15,380
+PROFESSOR: It could execute in
+parallel if it happened that
+
+1647
+01:19:15,380 --> 01:19:17,330
+these guys executed
+before these guys.
+
+1648
+01:19:17,330 --> 01:19:20,690
+If you think of a larger
+context, a whole bunch of
+
+1649
+01:19:20,690 --> 01:19:23,350
+these things, and I have two
+routines where they're both
+
+1650
+01:19:23,350 --> 01:19:26,210
+incrementing x in the middle
+of great big parallel
+
+1651
+01:19:26,210 --> 01:19:29,710
+programs, it could be that
+they're executing perfectly
+
+1652
+01:19:29,710 --> 01:19:31,280
+well in parallel.
+
+1653
+01:19:31,280 --> 01:19:34,910
+But if those two small sections
+of code happen to
+
+1654
+01:19:34,910 --> 01:19:40,670
+execute like this or like this,
+then you're going to end
+
+1655
+01:19:40,670 --> 01:19:42,360
+up with it executing
+correctly.
+
+1656
+01:19:42,360 --> 01:19:46,170
+But if they execute sort of at
+the same time, it would not
+
+1657
+01:19:46,170 --> 01:19:49,710
+necessarily behave correctly.
+
+1658
+01:19:49,710 --> 01:19:54,500
+So there are two types of races
+that people talk about,
+
+1659
+01:19:54,500 --> 01:19:56,900
+a read race and a write race.
+
+1660
+01:19:56,900 --> 01:19:59,580
+So suppose you have two
+instructions that access a
+
+1661
+01:19:59,580 --> 01:20:00,880
+location, x.
+
+1662
+01:20:00,880 --> 01:20:03,405
+And suppose that a
+is parallel to b.
+
+1663
+01:20:03,405 --> 01:20:06,170
+Both a and b are both reads,
+you get no race.
+
+1664
+01:20:06,170 --> 01:20:08,920
+That's good.
+
+1665
+01:20:08,920 --> 01:20:09,950
+Because there's no way.
+
+1666
+01:20:09,950 --> 01:20:13,130
+But if one is a read and one is
+a write, then one of them
+
+1667
+01:20:13,130 --> 01:20:15,330
+is going to see a different
+value, depending upon whether
+
+1668
+01:20:15,330 --> 01:20:16,930
+it occurred before and
+after the write.
+
+1669
+01:20:16,930 --> 01:20:19,155
+Or if they both are writing,
+one can lose a value.
+
+1670
+01:20:19,155 --> 01:20:22,190
+
+1671
+01:20:22,190 --> 01:20:25,490
+So these are read races.
+
+1672
+01:20:25,490 --> 01:20:27,210
+And this is a write race.
+
+1673
+01:20:27,210 --> 01:20:28,760
+So we say that the two
+sections of code are
+
+1674
+01:20:28,760 --> 01:20:30,630
+independent if they have
+no determinacy
+
+1675
+01:20:30,630 --> 01:20:32,480
+races between them.
+
+1676
+01:20:32,480 --> 01:20:35,490
+So for example, this piece of
+code is incrementing y, and
+
+1677
+01:20:35,490 --> 01:20:37,050
+this is incrementing x.
+
+1678
+01:20:37,050 --> 01:20:39,050
+And y is not equal to x.
+
+1679
+01:20:39,050 --> 01:20:41,240
+Those are independent
+pieces of code.
+
+1680
+01:20:41,240 --> 01:20:45,970
+So to avoid races, you want to
+make sure that the iterations
+
+1681
+01:20:45,970 --> 01:20:48,720
+of your cilk_for are
+independent.
+
+1682
+01:20:48,720 --> 01:20:51,970
+So what's going on in one
+iteration is different from
+
+1683
+01:20:51,970 --> 01:20:52,990
+what's going on in another.
+
+1684
+01:20:52,990 --> 01:20:54,910
+That you're not writing
+something in one that you're
+
+1685
+01:20:54,910 --> 01:20:58,740
+using in the next,
+for example.
+
+1686
+01:20:58,740 --> 01:21:02,460
+Between a cilk_spawn and the
+corresponding cilk_sync, the
+
+1687
+01:21:02,460 --> 01:21:05,230
+code of the spawn child should
+be independent of the code of
+
+1688
+01:21:05,230 --> 01:21:06,360
+the parent.
+
+1689
+01:21:06,360 --> 01:21:06,630
+OK?
+
+1690
+01:21:06,630 --> 01:21:09,400
+Including any code executed
+by additional
+
+1691
+01:21:09,400 --> 01:21:11,430
+spawned or called children.
+
+1692
+01:21:11,430 --> 01:21:13,800
+So it's basically saying, when
+you spawn something off, don't
+
+1693
+01:21:13,800 --> 01:21:16,840
+then go and do something that's
+going to modify the
+
+1694
+01:21:16,840 --> 01:21:18,140
+same locations.
+
+1695
+01:21:18,140 --> 01:21:19,985
+You really want to modify
+different locations.
+
+1696
+01:21:19,985 --> 01:21:22,530
+
+1697
+01:21:22,530 --> 01:21:24,730
+It's fine if they both read
+the same locations.
+
+1698
+01:21:24,730 --> 01:21:26,765
+But it's not fine for one
+of them to read and
+
+1699
+01:21:26,765 --> 01:21:29,730
+one of them to write.
+
+1700
+01:21:29,730 --> 01:21:33,350
+One thing here to understand
+is that when you spawn a
+
+1701
+01:21:33,350 --> 01:21:36,540
+function, the arguments are
+actually executed serially
+
+1702
+01:21:36,540 --> 01:21:38,880
+before the actual
+spawn occurs.
+
+1703
+01:21:38,880 --> 01:21:41,900
+So you evaluate the arguments,
+and you set it all up, then
+
+1704
+01:21:41,900 --> 01:21:45,070
+you spawn the function.
+
+1705
+01:21:45,070 --> 01:21:46,950
+So the actual spawn
+occurs after the
+
+1706
+01:21:46,950 --> 01:21:48,260
+evaluation of arguments.
+
+1707
+01:21:48,260 --> 01:21:49,760
+So they're evaluated
+in the parent.
+
+1708
+01:21:49,760 --> 01:21:52,350
+
+1709
+01:21:52,350 --> 01:21:54,690
+Machine word size matters.
+
+1710
+01:21:54,690 --> 01:21:58,250
+So this is generally
+the case for races.
+
+1711
+01:21:58,250 --> 01:22:00,640
+By the way, races are
+not just Cilk stuff.
+
+1712
+01:22:00,640 --> 01:22:05,600
+These races occur in all of
+these concurrency platforms.
+
+1713
+01:22:05,600 --> 01:22:07,430
+I'm illustrating Cilk because
+that's what we're going to be
+
+1714
+01:22:07,430 --> 01:22:10,480
+using in our labs
+and so forth.
+
+1715
+01:22:10,480 --> 01:22:12,430
+So it turns out machine
+word size matters.
+
+1716
+01:22:12,430 --> 01:22:16,370
+And you can have races in
+packed data structures.
+
+1717
+01:22:16,370 --> 01:22:22,180
+So for example, on some
+machines, if you declare a
+
+1718
+01:22:22,180 --> 01:22:28,580
+char a and char b in a struct,
+then updating x and x, b in
+
+1719
+01:22:28,580 --> 01:22:32,420
+parallel may cause a race,
+because they're both actually
+
+1720
+01:22:32,420 --> 01:22:34,380
+operating on a word basis.
+
+1721
+01:22:34,380 --> 01:22:36,650
+Now on the Intel architectures,
+
+1722
+01:22:36,650 --> 01:22:37,550
+that doesn't happen.
+
+1723
+01:22:37,550 --> 01:22:42,090
+Because Intel supports atomic
+updates of single bytes.
+
+1724
+01:22:42,090 --> 01:22:43,740
+So you don't have to
+worry about it.
+
+1725
+01:22:43,740 --> 01:22:47,360
+But if you were accessing bits
+within a word, you could end
+
+1726
+01:22:47,360 --> 01:22:48,240
+up with the same thing.
+
+1727
+01:22:48,240 --> 01:22:52,990
+You access bit five and bit
+three, you think you're acting
+
+1728
+01:22:52,990 --> 01:22:55,670
+independently, but in fact,
+you're reading the whole word
+
+1729
+01:22:55,670 --> 01:22:57,800
+or the whole byte in
+order to access it.
+
+1730
+01:22:57,800 --> 01:23:01,070
+
+1731
+01:23:01,070 --> 01:23:04,450
+The technology that you're going
+to be using fortunately
+
+1732
+01:23:04,450 --> 01:23:09,180
+comes with a race detector,
+which you will find invaluable
+
+1733
+01:23:09,180 --> 01:23:11,590
+for debugging your stuff.
+
+1734
+01:23:11,590 --> 01:23:14,240
+And so this is kind of like
+a Valgrind for races.
+
+1735
+01:23:14,240 --> 01:23:18,920
+
+1736
+01:23:18,920 --> 01:23:22,740
+What's good about this race
+detector is it provides a rock
+
+1737
+01:23:22,740 --> 01:23:24,150
+hard guarantee.
+
+1738
+01:23:24,150 --> 01:23:28,520
+If you have a deterministic
+program that on a given input
+
+1739
+01:23:28,520 --> 01:23:31,250
+could possibly behave any
+differently from your serial
+
+1740
+01:23:31,250 --> 01:23:35,080
+program, from the corresponding
+serial program,
+
+1741
+01:23:35,080 --> 01:23:38,970
+if you got rid of the parallel
+keywords, this tool,
+
+1742
+01:23:38,970 --> 01:23:41,570
+Cilkscreen, guarantees to
+report and localize the
+
+1743
+01:23:41,570 --> 01:23:43,370
+offending race.
+
+1744
+01:23:43,370 --> 01:23:45,470
+It'll tell you, you got
+a race between this
+
+1745
+01:23:45,470 --> 01:23:47,100
+location and that location.
+
+1746
+01:23:47,100 --> 01:23:49,980
+And it's up to you to find
+it and fix it, but it
+
+1747
+01:23:49,980 --> 01:23:51,065
+can tell you that.
+
+1748
+01:23:51,065 --> 01:23:53,850
+It employs regression test
+methodology, where the
+
+1749
+01:23:53,850 --> 01:23:55,820
+programmer provides
+test inputs.
+
+1750
+01:23:55,820 --> 01:24:00,720
+So if you don't provide test
+inputs to elicit the race, you
+
+1751
+01:24:00,720 --> 01:24:02,650
+still can have a bug.
+
+1752
+01:24:02,650 --> 01:24:05,430
+But if you have a test input
+that in any way could behave
+
+1753
+01:24:05,430 --> 01:24:08,090
+differently than the serial
+execution, bingo.
+
+1754
+01:24:08,090 --> 01:24:09,340
+It'll tell you.
+
+1755
+01:24:09,340 --> 01:24:11,850
+
+1756
+01:24:11,850 --> 01:24:14,860
+It identifies a bunch of things
+involving the race,
+
+1757
+01:24:14,860 --> 01:24:16,700
+including a stack trace.
+
+1758
+01:24:16,700 --> 01:24:19,580
+It runs off the binary
+executable using what's called
+
+1759
+01:24:19,580 --> 01:24:21,530
+dynamic instrumentation.
+
+1760
+01:24:21,530 --> 01:24:24,170
+So that's kind of like Valgrind,
+except it actually
+
+1761
+01:24:24,170 --> 01:24:26,700
+does this as it's running.
+
+1762
+01:24:26,700 --> 01:24:31,030
+It uses a technology called PIN,
+which you can read about.
+
+1763
+01:24:31,030 --> 01:24:37,340
+P-I-N, which is a nice platform
+for doing code
+
+1764
+01:24:37,340 --> 01:24:39,620
+rewriting and analysis
+on the fly.
+
+1765
+01:24:39,620 --> 01:24:42,600
+It runs about 20 times slower
+than real time.
+
+1766
+01:24:42,600 --> 01:24:47,600
+So you basically use
+it for debugging.
+
+1767
+01:24:47,600 --> 01:24:56,660
+So the first part of project
+four is basically coming up to
+
+1768
+01:24:56,660 --> 01:24:58,750
+speed with this technology.
+
+1769
+01:24:58,750 --> 01:24:59,790
+And so, there's some
+good things.
+
+1770
+01:24:59,790 --> 01:25:01,180
+And that's going to be
+available tomorrow.
+
+1771
+01:25:01,180 --> 01:25:01,900
+Is that what we said?
+
+1772
+01:25:01,900 --> 01:25:05,310
+Yeah, that will be available
+tomorrow.
+
+1773
+01:25:05,310 --> 01:25:07,410
+So this is actually--
+this is tons of fun.
+
+1774
+01:25:07,410 --> 01:25:10,120
+Most people in most places
+don't get to play with
+
+1775
+01:25:10,120 --> 01:25:11,560
+parallel technology like this.
+
+1776
+01:25:11,560 --> 01:25:20,555
